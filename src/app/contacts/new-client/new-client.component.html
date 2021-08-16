@@ -1,0 +1,156 @@
+<h3>Cliente</h3>
+
+<form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
+  <div class="container-fluid">
+    <div class="row mb-3">
+      <div class="col-3">
+        <label for="cName" class="form-label">Nombre</label>
+        <input
+          type="text"
+          name="cName"
+          id="cNameId"
+          class="form-control"
+          aria-describedby="name"
+          formControlName="cName"
+        />
+        <div
+          class="error"
+          *ngIf="
+            clientForm.controls.cName.errors?.required &&
+            clientForm.controls.cName.touched
+          "
+        >
+          Se requiere un nombre
+        </div>
+      </div>
+      <div class="col-3">
+        <label for="cLastName" class="form-label">Apellidos</label>
+        <input
+          type="text"
+          name="cLastName"
+          id="cLastNameId"
+          class="form-control"
+          aria-describedby="lastName"
+          formControlName="cLastName"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <label for="cLastName" class="form-label">Teléfono</label>
+        <div class="input-group">
+          <div class="row g-0">
+            <div class="col-2">
+              <input
+                type="text"
+                name="cAreaCode"
+                id="cAreaCodeId"
+                class="form-control"
+                aria-describedby="areaCode"
+                maxlength="3"
+                formControlName="cAreaCode"
+              />
+            </div>
+            <div class="col-1">
+              <span class="input-group-text justify-content-center">-</span>
+            </div>
+            <div class="col-3">
+              <input
+                type="text"
+                name="cPhone"
+                id="cPhoneId"
+                class="form-control"
+                aria-describedby="phone"
+                maxlength="7"
+                formControlName="cPhone"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div
+        class="error"
+        *ngIf="
+          clientForm.controls.cAreaCode.errors?.required &&
+          clientForm.controls.cAreaCode.touched
+        "
+      >
+        Se requiere una lada
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          clientForm.controls.cAreaCode.errors?.minlength &&
+          clientForm.controls.cAreaCode.touched
+        "
+      >
+        La lada debe ser de
+        {{ clientForm.controls.cAreaCode.errors?.minlength.requiredLength }}
+        dígitos
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          clientForm.controls.cAreaCode.errors &&
+          clientForm.controls.cAreaCode.touched
+        "
+      >
+        Escribe dígitos solamente
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          clientForm.controls.cPhone.errors?.required &&
+          clientForm.controls.cPhone.touched
+        "
+      >
+        Se requiere un teléfono
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          clientForm.controls.cPhone.errors?.minlength &&
+          clientForm.controls.cPhone.touched
+        "
+      >
+        El número de teléfono debe ser de
+        {{ clientForm.controls.cPhone.errors?.minlength.requiredLength }}
+        dígitos
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          clientForm.controls.cPhone.errors &&
+          clientForm.controls.cPhone.touched
+        "
+      >
+        Escribe dígitos solamente
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-3">
+        <label for="cEmail" class="form-label">Correo electrónico</label>
+        <input
+          type="email"
+          name="cEmail"
+          id="cEmailId"
+          class="form-control"
+          aria-describedby="Email"
+          placeholder="nombre@ejemplo.com"
+          formControlName="cEmail"
+        />
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="!clientForm.valid"
+      class="btn btn-primary"
+    >
+      Registrar
+    </button>
+  </div>
+</form>
