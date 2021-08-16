@@ -8,7 +8,8 @@ import { SuppliersComponent } from './contacts/suppliers/suppliers.component';
 import { NewSupplierComponent } from './contacts/new-supplier/new-supplier.component';
 import { NewClientComponent } from './contacts/new-client/new-client.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NavbarComponent } from './appbar/navbar/navbar.component';
+import { NavbarComponent } from './bars/navbar/navbar.component';
+import { SidebarComponent } from './bars/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,9 @@ import { NavbarComponent } from './appbar/navbar/navbar.component';
     NewSupplierComponent,
     NewClientComponent,
     NavbarComponent,
+    SidebarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule,  ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

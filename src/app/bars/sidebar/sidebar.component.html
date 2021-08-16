@@ -1,0 +1,97 @@
+<div class="sidebar" [ngClass]="{active:toggle}">
+    <div class="logo_content">
+        <div class="logo">
+            <i class='bx bxl-docker'></i>
+            <div class="logo_name">AO</div>
+        </div>
+        <i class='bx bx-menu' id="btn" (click)="toggleSidebar()"></i>
+    </div>
+    <ul class="nav_list">
+        <li>
+            <a href="#">
+                <i class='bx bxs-home' ></i>
+                <span class="span links_name">
+                    Inicio
+                </span>
+            </a>
+            <span class="tooltip">Inicio</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-user' ></i>
+                <span class="span links_name">
+                    Usuarios
+                </span>
+            </a>
+            <span class="tooltip">Usuarios</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-bar-chart-alt-2' ></i>
+                <span class="span links_name">
+                    Estadísticas
+                </span>
+            </a>
+            <span class="tooltip">Estadísticas</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-wrench'></i>
+                <span class="span links_name">
+                    Taller
+                </span>
+            </a>
+            <span class="tooltip">Taller</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-dollar-circle' ></i>
+                <span class="span links_name">
+                    Finanzas
+                </span>
+            </a>
+            <span class="tooltip">Finanzas</span>
+        </li>
+        <li>
+            
+            <a href="#">
+                <i class='bx bxs-contact' ></i>
+                <span class="span links_name">
+                    Contactos
+                </span>
+            </a>
+            
+            <span class="tooltip">Contactos</span>
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bxs-cog'></i>
+                <span class="span links_name">
+                    Configuraciones
+                </span>
+            </a>
+            <span class="tooltip">Configuraciones</span>
+        </li>
+    </ul>
+    <div class="profile_content">
+        <div class="profile">
+            <div class="profile_details">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Arh-avatar.jpg" alt="user" >
+                <div class="name_job">
+                    <div class="name">Alberto Osnaya</div>
+                    <div class="job">Administrador</div>
+                </div>
+            </div>
+            <i class='bx bxs-log-out' id="log_out"></i>
+        </div>
+    </div>
+</div>
+<div class="home_content">
+    <div class="text">Home Content</div>
+</div>
+
+<!-- <script>
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+</script> -->

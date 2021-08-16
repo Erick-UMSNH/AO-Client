@@ -21,6 +21,7 @@
     "@popperjs/core": "^2.9.3",
     "ajv": "^8.6.2",
     "bootstrap": "^5.1.0",
+    "boxicons": "^2.0.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
