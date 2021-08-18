@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,14 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'AO';
-  @Input() passingToggle: boolean;
-
+  toggleState: boolean;
+  
   constructor() {
-    this.passingToggle = false;
+    this.toggleState=false;
   }
 
   handleToggle = (toggle: boolean) => {
     console.log('llegue aqui con el valor de : ', toggle);
+    this.toggleState=toggle;
   };
 }

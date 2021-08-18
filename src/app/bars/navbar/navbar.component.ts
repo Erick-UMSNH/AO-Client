@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   constructor() {
     this.toggle = new EventEmitter();
     this.isToggle = false;
+    //this.sendAction=false;
   }
 
   ngOnInit(): void {}

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit,Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-resbar',
@@ -6,10 +6,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./resbar.component.css'],
 })
 export class ResbarComponent implements OnInit {
-  //Emit toggle to parent component
-  @Output() toggle: EventEmitter<boolean>;
-  //For the sidebar toggle
-  hideSidebar: boolean;
+  //Receive action from parent
+  @Input() receiveAction:boolean;
+  
   //For the estadisticas submenu
   estSubmenu: boolean;
   //For the taller submenu
@@ -23,8 +22,7 @@ export class ResbarComponent implements OnInit {
 
   constructor() {
     //Initialize variables
-    this.toggle = new EventEmitter();
-    this.hideSidebar = false;
+    this.receiveAction=false;
     this.estSubmenu = false;
     this.talSubmenu = false;
     this.finSubmenu = false;
@@ -32,18 +30,12 @@ export class ResbarComponent implements OnInit {
     this.confSubmenu = false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   /***************** Toggling ********************/
 
-  /**
-   * Toggle the sidebar
-   */
-  toggleResbar = () => {
-    this.toggle.emit(!this.hideSidebar);
-    this.hideSidebar = !this.hideSidebar;
-  };
-
+  
   /**
    * Toggle estadisticas submenu
    */
