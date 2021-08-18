@@ -1,0 +1,108 @@
+<div class="sidebar" [ngClass]="{ close: hideSidebar }">
+  <div class="logo-details">
+    <i class="bx bx-menu" id="btn" (click)="toggleResbar()"></i>
+    <!-- <i class="bx bxs-pyramid"></i> -->
+    <span class="logo_name">AO</span>
+  </div>
+  <ul class="nav-links">
+    <li>
+      <a href="#">
+        <i class="bx bx-grid-alt"></i>
+        <span class="link_name">Inicio</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Inicio</a></li>
+      </ul>
+    </li>
+    <li [ngClass]="{ showMenu: estSubmenu }">
+      <div class="icon-link">
+        <a href="#">
+          <i class="bx bxs-bar-chart-alt-2"></i>
+          <span class="link_name">Estadísticas</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow" (click)="toggleEstSubmenu()"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Estadísticas</a></li>
+        <li><a href="#">Ventas</a></li>
+      </ul>
+    </li>
+    <li [ngClass]="{ showMenu: talSubmenu }">
+      <div class="icon-link">
+        <a href="#">
+          <i class="bx bxs-wrench"></i>
+          <span class="link_name">Taller</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow" (click)="toggleTalSubmenu()"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Taller</a></li>
+        <li><a href="#">Ordenes de reparación</a></li>
+        <li><a href="#">Vehiculos registrados</a></li>
+      </ul>
+    </li>
+    <li [ngClass]="{ showMenu: finSubmenu }">
+      <div class="icon-link">
+        <a href="#">
+          <i class="bx bxs-dollar-circle"></i>
+          <span class="link_name">Finanzas</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow" (click)="toggleFinSubmenu()"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Finanzas</a></li>
+        <li><a href="#">Compras</a></li>
+        <li><a href="#">Ventas</a></li>
+      </ul>
+    </li>
+    <li [ngClass]="{ showMenu: conSubmenu }">
+      <div class="icon-link">
+        <a href="#">
+          <i class="bx bxs-contact"></i>
+          <span class="link_name">Contactos</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow" (click)="toggleConSubmenu()"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Contactos</a></li>
+        <li><a href="#">Clientes</a></li>
+        <li><a href="#">Proveedores</a></li>
+      </ul>
+    </li>
+
+    <li [ngClass]="{ showMenu: confSubmenu }">
+      <div class="icon-link">
+        <a href="#">
+          <i class="bx bx-cog"></i>
+          <span class="link_name">Configuración</span>
+        </a>
+        <i class="bx bxs-chevron-down arrow" (click)="toggleConfSubmenu()"></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Configuración</a></li>
+        <li><a href="#">Usuarios</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="profile-details">
+        <div class="profile-content">
+          <img
+            src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/06/04/15912219730543.jpg"
+            alt="profileImg"
+          />
+        </div>
+        <div class="name-job">
+          <div class="profile_name">Osnaya</div>
+          <div class="job">Administrador</div>
+        </div>
+        <i class="bx bx-log-out"></i>
+      </div>
+    </li>
+  </ul>
+</div>
+<!-- <section class="home-section">
+  <div class="home-content">
+    <i class="bx bx-menu" (click)="toggleResbar()"></i>
+    <span class="text">Automotriz Osnaya</span>
+  </div>
+</section> -->

@@ -10,6 +10,7 @@ import { NewClientComponent } from './contacts/new-client/new-client.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './bars/navbar/navbar.component';
 import { SidebarComponent } from './bars/sidebar/sidebar.component';
+import { ResbarComponent } from './bars/resbar/resbar.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { SidebarComponent } from './bars/sidebar/sidebar.component';
     NewClientComponent,
     NavbarComponent,
     SidebarComponent,
+    ResbarComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule,  ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

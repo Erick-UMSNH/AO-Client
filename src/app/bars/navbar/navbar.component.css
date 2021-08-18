@@ -1,0 +1,9 @@
+.bg-primary {
+  background-color: #11101d !important;
+}
+
+#btn {
+  color: #fff;
+  cursor: pointer;
+  font-size: 25px;
+}
