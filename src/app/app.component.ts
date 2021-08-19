@@ -8,13 +8,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'AO';
   toggleState: boolean;
-  
+
   constructor() {
-    this.toggleState=false;
+    this.toggleState = false;
+  }
+  ngOnInit() {
+    this.toggleState = true;
   }
 
   handleToggle = (toggle: boolean) => {
     console.log('llegue aqui con el valor de : ', toggle);
-    this.toggleState=toggle;
+    this.toggleState = toggle;
   };
 }

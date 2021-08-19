@@ -1,6 +1,7 @@
 .bg-primary {
+  /* background-color: #11101d !important; */
   background-color: #11101d !important;
-} 
+}
 
 #btn {
   font-size: 30px;
@@ -8,6 +9,19 @@
   height: 50px;
   min-width: 55px;
   line-height: 50px;
-  margin-left:13px;
+  margin-left: 13px;
   cursor: pointer;
+}
+
+.logo {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 50px;
+  margin-left: 9px;
+  cursor: pointer;
+}
+
+.overlay {
+  z-index: 101;
 }

@@ -1,76 +1,79 @@
-<h3>Cliente</h3>
+<a type="button" class="btn btn-secondary" [routerLink]="['/clients']"
+  >Regresar</a
+>
+
+<h3 class="text-center mb-5">Cliente</h3>
 
 <form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
-  <div class="container-fluid">
-    <div class="row mb-3">
-      <div class="col-3">
-        <label for="cName" class="form-label">Nombre</label>
-        <input
-          type="text"
-          name="cName"
-          id="cNameId"
-          class="form-control"
-          aria-describedby="name"
-          formControlName="cName"
-        />
-        <div
-          class="error"
-          *ngIf="
-            clientForm.controls.cName.errors?.required &&
-            clientForm.controls.cName.touched
-          "
-        >
-          Se requiere un nombre
-        </div>
-      </div>
-      <div class="col-3">
-        <label for="cLastName" class="form-label">Apellidos</label>
-        <input
-          type="text"
-          name="cLastName"
-          id="cLastNameId"
-          class="form-control"
-          aria-describedby="lastName"
-          formControlName="cLastName"
-        />
-      </div>
+  <div class="row mb-3">
+    <label for="cName" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-3">
+      <input
+        type="text"
+        name="cName"
+        id="cNameId"
+        class="form-control"
+        aria-describedby="name"
+        formControlName="cName"
+      />
     </div>
-    <div class="row">
-      <div class="col-6">
-        <label for="cLastName" class="form-label">Teléfono</label>
-        <div class="input-group">
-          <div class="row g-0">
-            <div class="col-2">
-              <input
-                type="text"
-                name="cAreaCode"
-                id="cAreaCodeId"
-                class="form-control"
-                aria-describedby="areaCode"
-                maxlength="3"
-                formControlName="cAreaCode"
-              />
-            </div>
-            <div class="col-1">
-              <span class="input-group-text justify-content-center">-</span>
-            </div>
-            <div class="col-3">
-              <input
-                type="text"
-                name="cPhone"
-                id="cPhoneId"
-                class="form-control"
-                aria-describedby="phone"
-                maxlength="7"
-                formControlName="cPhone"
-              />
-            </div>
+    <div
+      class="error col-sm-3"
+      *ngIf="
+        clientForm.controls.cName.errors?.required &&
+        clientForm.controls.cName.touched
+      "
+    >
+      Se requiere un nombre
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="cLastName" class="col-sm-2 col-form-label">Apellidos</label>
+    <div class="col-sm-3">
+      <input
+        type="text"
+        name="cLastName"
+        id="cLastNameId"
+        class="form-control"
+        aria-describedby="lastName"
+        formControlName="cLastName"
+      />
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="cPhone" class="col-sm-2 col-form-label">Teléfono</label>
+    <div class="col-sm-3">
+      <div class="input-group">
+        <div class="row g-0">
+          <div class="col-4">
+            <input
+              type="text"
+              name="cAreaCode"
+              id="cAreaCodeId"
+              class="form-control"
+              aria-describedby="areaCode"
+              maxlength="3"
+              formControlName="cAreaCode"
+            />
+          </div>
+          <div class="col-2">
+            <span class="input-group-text justify-content-center">-</span>
+          </div>
+          <div class="col-6">
+            <input
+              type="text"
+              name="cPhone"
+              id="cPhoneId"
+              class="form-control"
+              aria-describedby="phone"
+              maxlength="7"
+              formControlName="cPhone"
+            />
           </div>
         </div>
       </div>
     </div>
-
-    <div class="row mb-3">
+    <div class="col-sm-3">
       <div
         class="error"
         *ngIf="
@@ -130,27 +133,23 @@
         Escribe dígitos solamente
       </div>
     </div>
-    <div class="row mb-5">
-      <div class="col-3">
-        <label for="cEmail" class="form-label">Correo electrónico</label>
-        <input
-          type="email"
-          name="cEmail"
-          id="cEmailId"
-          class="form-control"
-          aria-describedby="Email"
-          placeholder="nombre@ejemplo.com"
-          formControlName="cEmail"
-        />
-      </div>
-    </div>
-
-    <button
-      type="submit"
-      [disabled]="!clientForm.valid"
-      class="btn btn-primary"
-    >
-      Registrar
-    </button>
   </div>
+  <div class="row mb-3">
+    <label for="cEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-3">
+      <input
+        type="email"
+        name="cEmail"
+        id="cEmailId"
+        class="form-control"
+        aria-describedby="Email"
+        placeholder="nombre@ejemplo.com"
+        formControlName="cEmail"
+      />
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">
+    Guardar
+  </button>
 </form>

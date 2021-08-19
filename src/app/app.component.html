@@ -1,8 +1,5 @@
-<!-- <app-sidebar></app-sidebar> -->
-<!-- <app-navbar></app-navbar> -->
+<app-resbar [receiveAction]="toggleState"></app-resbar>
 <app-navbar (toggle)="handleToggle($event)"></app-navbar>
-<app-resbar [receiveAction]="toggleState" ></app-resbar>
-<div class="home-section" [ngClass]="{close:toggleState}">
-  <app-clients [receiveToggle]="toggleState" ></app-clients> 
+<div class="home-section" [ngClass]="{ close: toggleState }">
+  <router-outlet></router-outlet>
 </div>
-

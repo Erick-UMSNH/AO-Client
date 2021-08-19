@@ -1,8 +1,12 @@
 <div class="sidebar" [ngClass]="{ close: receiveAction }">
   <div class="logo-details">
-    <i class="bx bxs-pyramid" id="btn"></i>
-    <!-- <i class="bx bxs-pyramid"></i> -->
-    <span class="logo_name">AO</span>
+    <!-- <img
+      src="../../../assets/AOLogo.jpeg"
+      alt="Logo"
+      height="50"
+      width="50"
+      class="logo_name"
+    /> -->
   </div>
   <ul class="nav-links">
     <li>
@@ -65,8 +69,8 @@
       </div>
       <ul class="sub-menu">
         <li><a class="link_name" href="#">Contactos</a></li>
-        <li><a href="#">Clientes</a></li>
-        <li><a href="#">Proveedores</a></li>
+        <li><a [routerLink]="['/clients']">Clientes</a></li>
+        <li><a [routerLink]="['/suppliers']">Proveedores</a></li>
       </ul>
     </li>
 
@@ -74,12 +78,12 @@
       <div class="icon-link">
         <a href="#">
           <i class="bx bx-cog"></i>
-          <span class="link_name">Configuración</span>
+          <span class="link_name">Ajustes</span>
         </a>
         <i class="bx bxs-chevron-down arrow" (click)="toggleConfSubmenu()"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Configuración</a></li>
+        <li><a class="link_name" href="#">Ajustes</a></li>
         <li><a href="#">Usuarios</a></li>
       </ul>
     </li>
@@ -92,7 +96,7 @@
           />
         </div>
         <div class="name-job">
-          <div class="profile_name">Osnaya</div>
+          <div class="profile_name">Alberto</div>
           <div class="job">Administrador</div>
         </div>
         <i class="bx bx-log-out"></i>
@@ -100,9 +104,3 @@
     </li>
   </ul>
 </div>
-<!-- <section class="home-section">
-  <div class="home-content">
-    <i class="bx bx-menu" (click)="toggleResbar()"></i>
-    <span class="text">Automotriz Osnaya</span>
-  </div>
-</section> -->

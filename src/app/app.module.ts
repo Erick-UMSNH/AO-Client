@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './bars/navbar/navbar.component';
 import { SidebarComponent } from './bars/sidebar/sidebar.component';
 import { ResbarComponent } from './bars/resbar/resbar.component';
+import { StartComponent } from './home/start/start.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ResbarComponent } from './bars/resbar/resbar.component';
     NavbarComponent,
     SidebarComponent,
     ResbarComponent,
+    StartComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],

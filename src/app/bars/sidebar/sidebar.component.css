@@ -13,8 +13,8 @@ body {
 
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 55px;
+  left: 380px;
   height: 100%;
   width: 78px;
   background-color: #11101d;
