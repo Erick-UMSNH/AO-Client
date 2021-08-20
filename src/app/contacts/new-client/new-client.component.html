@@ -1,155 +1,194 @@
-<a type="button" class="btn btn-secondary" [routerLink]="['/clients']"
-  >Regresar</a
->
+<!-- <button type="menu" class="btn btn-secondary" [routerLink]="['/clients']">
+  <i class="bx bx-undo"></i> Clientes
+</button> -->
 
-<h3 class="text-center mb-5">Cliente</h3>
-
-<form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
-  <div class="row mb-3">
-    <label for="cName" class="col-sm-2 col-form-label">Nombre</label>
-    <div class="col-sm-3">
-      <input
-        type="text"
-        name="cName"
-        id="cNameId"
-        class="form-control"
-        aria-describedby="name"
-        formControlName="cName"
-      />
+<nav class="nav nav-pills flex-column flex-sm-row justify-content-end">
+  <ul class="nav nav-tabs" id="clientsGTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="clients-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#clients"
+        type="button"
+        role="tab"
+        aria-controls="clients"
+        aria-selected="false"
+        [routerLink]="['/clients']"
+      >
+        <i class="bx bx-food-menu"></i>
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="new-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#new"
+        type="button"
+        role="tab"
+        aria-controls="new"
+        aria-selected="true"
+      >
+        <i class="bx bxs-user-plus"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+<h3 class="text-center mt-3 mb-5">Cliente</h3>
+<div class="justify-content-center">
+  <form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
+    <div class="row mb-3">
+      <label for="cName" class="col-sm-2 col-form-label">Nombre</label>
+      <div class="col-sm-3">
+        <input
+          type="text"
+          name="cName"
+          id="cNameId"
+          class="form-control"
+          aria-describedby="name"
+          formControlName="cName"
+        />
+      </div>
+      <div
+        class="error col-sm-3"
+        *ngIf="
+          clientForm.controls.cName.errors?.required &&
+          clientForm.controls.cName.touched
+        "
+      >
+        Se requiere un nombre
+      </div>
     </div>
-    <div
-      class="error col-sm-3"
-      *ngIf="
-        clientForm.controls.cName.errors?.required &&
-        clientForm.controls.cName.touched
-      "
-    >
-      Se requiere un nombre
+    <div class="row mb-3">
+      <label for="cLastName" class="col-sm-2 col-form-label">Apellidos</label>
+      <div class="col-sm-3">
+        <input
+          type="text"
+          name="cLastName"
+          id="cLastNameId"
+          class="form-control"
+          aria-describedby="lastName"
+          formControlName="cLastName"
+        />
+      </div>
     </div>
-  </div>
-  <div class="row mb-3">
-    <label for="cLastName" class="col-sm-2 col-form-label">Apellidos</label>
-    <div class="col-sm-3">
-      <input
-        type="text"
-        name="cLastName"
-        id="cLastNameId"
-        class="form-control"
-        aria-describedby="lastName"
-        formControlName="cLastName"
-      />
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="cPhone" class="col-sm-2 col-form-label">Teléfono</label>
-    <div class="col-sm-3">
-      <div class="input-group">
-        <div class="row g-0">
-          <div class="col-4">
-            <input
-              type="text"
-              name="cAreaCode"
-              id="cAreaCodeId"
-              class="form-control"
-              aria-describedby="areaCode"
-              maxlength="3"
-              formControlName="cAreaCode"
-            />
-          </div>
-          <div class="col-2">
-            <span class="input-group-text justify-content-center">-</span>
-          </div>
-          <div class="col-6">
-            <input
-              type="text"
-              name="cPhone"
-              id="cPhoneId"
-              class="form-control"
-              aria-describedby="phone"
-              maxlength="7"
-              formControlName="cPhone"
-            />
+    <div class="row mb-3">
+      <label for="cPhone" class="col-sm-2 col-form-label">Teléfono</label>
+      <div class="col-sm-3">
+        <div class="input-group">
+          <div class="row g-0">
+            <div class="col-4">
+              <input
+                type="text"
+                name="cAreaCode"
+                id="cAreaCodeId"
+                class="form-control"
+                aria-describedby="areaCode"
+                maxlength="3"
+                formControlName="cAreaCode"
+              />
+            </div>
+            <div class="col-2">
+              <span class="input-group-text justify-content-center">-</span>
+            </div>
+            <div class="col-6">
+              <input
+                type="text"
+                name="cPhone"
+                id="cPhoneId"
+                class="form-control"
+                aria-describedby="phone"
+                maxlength="7"
+                formControlName="cPhone"
+              />
+            </div>
           </div>
         </div>
       </div>
+      <div class="col-sm-3">
+        <div
+          class="error"
+          *ngIf="
+            clientForm.controls.cAreaCode.errors?.required &&
+            clientForm.controls.cAreaCode.touched
+          "
+        >
+          Se requiere una lada
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            clientForm.controls.cAreaCode.errors?.minlength &&
+            clientForm.controls.cAreaCode.touched
+          "
+        >
+          La lada debe ser de
+          {{ clientForm.controls.cAreaCode.errors?.minlength.requiredLength }}
+          dígitos
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            clientForm.controls.cAreaCode.errors &&
+            clientForm.controls.cAreaCode.touched
+          "
+        >
+          Escribe dígitos solamente
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            clientForm.controls.cPhone.errors?.required &&
+            clientForm.controls.cPhone.touched
+          "
+        >
+          Se requiere un teléfono
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            clientForm.controls.cPhone.errors?.minlength &&
+            clientForm.controls.cPhone.touched
+          "
+        >
+          El número de teléfono debe ser de
+          {{ clientForm.controls.cPhone.errors?.minlength.requiredLength }}
+          dígitos
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            clientForm.controls.cPhone.errors &&
+            clientForm.controls.cPhone.touched
+          "
+        >
+          Escribe dígitos solamente
+        </div>
+      </div>
     </div>
-    <div class="col-sm-3">
-      <div
-        class="error"
-        *ngIf="
-          clientForm.controls.cAreaCode.errors?.required &&
-          clientForm.controls.cAreaCode.touched
-        "
-      >
-        Se requiere una lada
-      </div>
-      <div
-        class="error"
-        *ngIf="
-          clientForm.controls.cAreaCode.errors?.minlength &&
-          clientForm.controls.cAreaCode.touched
-        "
-      >
-        La lada debe ser de
-        {{ clientForm.controls.cAreaCode.errors?.minlength.requiredLength }}
-        dígitos
-      </div>
-      <div
-        class="error"
-        *ngIf="
-          clientForm.controls.cAreaCode.errors &&
-          clientForm.controls.cAreaCode.touched
-        "
-      >
-        Escribe dígitos solamente
-      </div>
-      <div
-        class="error"
-        *ngIf="
-          clientForm.controls.cPhone.errors?.required &&
-          clientForm.controls.cPhone.touched
-        "
-      >
-        Se requiere un teléfono
-      </div>
-      <div
-        class="error"
-        *ngIf="
-          clientForm.controls.cPhone.errors?.minlength &&
-          clientForm.controls.cPhone.touched
-        "
-      >
-        El número de teléfono debe ser de
-        {{ clientForm.controls.cPhone.errors?.minlength.requiredLength }}
-        dígitos
-      </div>
-      <div
-        class="error"
-        *ngIf="
-          clientForm.controls.cPhone.errors &&
-          clientForm.controls.cPhone.touched
-        "
-      >
-        Escribe dígitos solamente
+    <div class="row mb-3">
+      <label for="cEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-3">
+        <input
+          type="email"
+          name="cEmail"
+          id="cEmailId"
+          class="form-control"
+          aria-describedby="Email"
+          placeholder="nombre@ejemplo.com"
+          formControlName="cEmail"
+        />
       </div>
     </div>
-  </div>
-  <div class="row mb-3">
-    <label for="cEmail" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-3">
-      <input
-        type="email"
-        name="cEmail"
-        id="cEmailId"
-        class="form-control"
-        aria-describedby="Email"
-        placeholder="nombre@ejemplo.com"
-        formControlName="cEmail"
-      />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!clientForm.valid"
+      >
+        <div class="d-inline-flex">Guardar<i class="bx bxs-save ms-2"></i></div>
+      </button>
     </div>
-  </div>
-
-  <button type="submit" class="btn btn-primary" [disabled]="!clientForm.valid">
-    Guardar
-  </button>
-</form>
+  </form>
+</div>
