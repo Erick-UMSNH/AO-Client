@@ -1,0 +1,21 @@
+.container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gray;
+  border-radius: 12px;
+  /* color: rgb(175, 173, 173); */
+  color: #fff;
+  height: 5rem;
+}
+
+i {
+  font-size: 25px;
+}
+
+.nav-link {
+  color: var(--primary);
+}
+.nav-link.active {
+  background-color: #11101d;
+}

@@ -1,7 +1,4 @@
-<!-- <button type="menu" class="btn btn-secondary" [routerLink]="['/clients']">
-  <i class="bx bx-undo"></i> Clientes
-</button> -->
-
+<app-location [title]="'Nuevo Cliente'"></app-location>
 <nav class="nav nav-pills flex-column flex-sm-row justify-content-end">
   <ul class="nav nav-tabs" id="clientsGTab" role="tablist">
     <li class="nav-item" role="presentation">
@@ -35,21 +32,19 @@
     </li>
   </ul>
 </nav>
-<h3 class="text-center mt-3 mb-5">Cliente</h3>
-<div class="justify-content-center">
+<div class="container">
   <form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
-    <div class="row mb-3">
-      <label for="cName" class="col-sm-2 col-form-label">Nombre</label>
-      <div class="col-sm-3">
-        <input
-          type="text"
-          name="cName"
-          id="cNameId"
-          class="form-control"
-          aria-describedby="name"
-          formControlName="cName"
-        />
-      </div>
+    <div class="mb-3">
+      <label for="cName" class="form-label fw-bold">Nombre*:</label>
+      <input
+        type="text"
+        name="cName"
+        id="cNameId"
+        class="form-control"
+        aria-describedby="name"
+        formControlName="cName"
+        autofocus
+      />
       <div
         class="error col-sm-3"
         *ngIf="
@@ -60,53 +55,51 @@
         Se requiere un nombre
       </div>
     </div>
-    <div class="row mb-3">
-      <label for="cLastName" class="col-sm-2 col-form-label">Apellidos</label>
-      <div class="col-sm-3">
-        <input
-          type="text"
-          name="cLastName"
-          id="cLastNameId"
-          class="form-control"
-          aria-describedby="lastName"
-          formControlName="cLastName"
-        />
-      </div>
+    <div class="mb-3">
+      <label for="cLastName" class="form-label fw-bold">Apellidos:</label>
+      <input
+        type="text"
+        name="cLastName"
+        id="cLastNameId"
+        class="form-control"
+        aria-describedby="lastName"
+        formControlName="cLastName"
+      />
     </div>
-    <div class="row mb-3">
-      <label for="cPhone" class="col-sm-2 col-form-label">Teléfono</label>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <div class="row g-0">
-            <div class="col-4">
-              <input
-                type="text"
-                name="cAreaCode"
-                id="cAreaCodeId"
-                class="form-control"
-                aria-describedby="areaCode"
-                maxlength="3"
-                formControlName="cAreaCode"
-              />
-            </div>
-            <div class="col-2">
-              <span class="input-group-text justify-content-center">-</span>
-            </div>
-            <div class="col-6">
-              <input
-                type="text"
-                name="cPhone"
-                id="cPhoneId"
-                class="form-control"
-                aria-describedby="phone"
-                maxlength="7"
-                formControlName="cPhone"
-              />
-            </div>
+    <div class="mb-3">
+      <label for="cPhone" class="form-label fw-bold">Teléfono*:</label>
+      <div class="input-group">
+        <div class="row g-0">
+          <div class="col-4">
+            <input
+              type="text"
+              name="cAreaCode"
+              id="cAreaCodeId"
+              class="form-control"
+              aria-describedby="areaCode"
+              maxlength="3"
+              formControlName="cAreaCode"
+            />
+          </div>
+          <div class="col-2">
+            <span class="input-group-text justify-content-center fw-bold"
+              >-</span
+            >
+          </div>
+          <div class="col-6">
+            <input
+              type="text"
+              name="cPhone"
+              id="cPhoneId"
+              class="form-control"
+              aria-describedby="phone"
+              maxlength="7"
+              formControlName="cPhone"
+            />
           </div>
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="error-list">
         <div
           class="error"
           *ngIf="
@@ -167,21 +160,18 @@
         </div>
       </div>
     </div>
-    <div class="row mb-3">
-      <label for="cEmail" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-3">
-        <input
-          type="email"
-          name="cEmail"
-          id="cEmailId"
-          class="form-control"
-          aria-describedby="Email"
-          placeholder="nombre@ejemplo.com"
-          formControlName="cEmail"
-        />
-      </div>
+    <div class="mb-3">
+      <label for="cEmail" class="col-sm-2 col-form-label fw-bold">Email</label>
+      <input
+        type="email"
+        name="cEmail"
+        id="cEmailId"
+        class="form-control"
+        aria-describedby="Email"
+        formControlName="cEmail"
+      />
     </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <div class="d-grid gap-2 col-6 mx-auto">
       <button
         type="submit"
         class="btn btn-primary"

@@ -1,0 +1,64 @@
+<!-- <div class="container">
+  <h1 class="text-center">{{ title }}</h1>
+</div> -->
+
+<!-- <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-tabs justify-content-end">
+      <li class="nav-item">
+        <button
+          class="nav-link"
+          id="clients-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#clients-tab"
+          type="button"
+          role="tab"
+          aria-controls="clients"
+          aria-selected="true"
+        >
+          <i class="bx bx-food-menu"></i>
+        </button>
+      </li>
+      <li class="nav-item">
+        <button
+          class="nav-link"
+          id="newClient-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#newClient-tab"
+          type="button"
+          role="tab"
+          aria-controls="newClient"
+          aria-selected="false"
+        >
+          <i class="bx bxs-user-plus"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ title }}</h5>
+    <p class="card-text">LLena los campos para agregar un nuevo cliente</p>
+  </div>
+</div> -->
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-tabs justify-content-end">
+      <li class="nav-item" *ngFor="let tab of tabs">
+        <button
+          class="nav-link"
+          [ngClass]="{ active: tab.active }"
+          type="button"
+          role="tab"
+          [routerLink]="[tab.navigate]"
+        >
+          <i class="{{ tab.icon }}"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ title }}</h5>
+    <p class="card-text">LLena los campos para agregar un nuevo cliente</p>
+  </div>
+</div>

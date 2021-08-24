@@ -1,8 +1,5 @@
 <app-resbar [receiveAction]="toggleState"></app-resbar>
 <app-navbar (toggle)="handleToggle($event)"></app-navbar>
 <div class="home-section" [ngClass]="{ close: toggleState }">
-  <h1>
-    Header que indica el módulo donde se encuentra actualmente este es global
-  </h1>
-  <router-outlet></router-outlet>
+  <router-outlet> </router-outlet>
 </div>

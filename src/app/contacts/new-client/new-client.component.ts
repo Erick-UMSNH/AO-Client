@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-client',
@@ -9,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class NewClientComponent implements OnInit {
   clientForm: FormGroup;
 
-  constructor() {
+  constructor(private router: Router) {
     this.clientForm = new FormGroup({
       cName: new FormControl('', [Validators.required]),
       cLastName: new FormControl(''),
@@ -30,7 +31,7 @@ export class NewClientComponent implements OnInit {
   ngOnInit(): void {}
 
   submitNewClient = () => {
-    console.log('Submitting new client');
     console.log(this.clientForm.value);
+    this.router.navigate(['clients']);
   };
 }

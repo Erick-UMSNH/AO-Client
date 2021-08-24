@@ -7,17 +7,24 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AO';
+  //For handling the state of the sidebar (open or close)
   toggleState: boolean;
 
   constructor() {
+    //Initialize variables
     this.toggleState = false;
   }
   ngOnInit() {
+    //Bar is closed (by default)
     this.toggleState = true;
   }
 
+  /**
+   * Receive action from the navbar
+   * @param toggle (open:false or close:true)
+   */
   handleToggle = (toggle: boolean) => {
-    console.log('llegue aqui con el valor de : ', toggle);
+    //Store the action from the navbar in a local variable
     this.toggleState = toggle;
   };
 }

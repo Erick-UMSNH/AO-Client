@@ -1,1 +1,184 @@
-<p>new-supplier works!</p>
+<app-location [title]="'Nuevo proveedor'"></app-location>
+<nav class="nav nav-pills flex-column flex-sm-row justify-content-end">
+  <ul class="nav nav-tabs" id="suppliersGTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="suppliers-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#suppliers"
+        type="button"
+        role="tab"
+        aria-controls="suppliers"
+        aria-selected="false"
+        [routerLink]="['/suppliers']"
+      >
+        <i class="bx bx-food-menu"></i>
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="new-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#new"
+        type="button"
+        role="tab"
+        aria-controls="new"
+        aria-selected="true"
+      >
+        <i class="bx bxs-user-plus"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <form [formGroup]="supplierForm" (ngSubmit)="submitNewSupplier()">
+    <div class="mb-3">
+      <label for="cName" class="form-label fw-bold">Nombre*:</label>
+      <input
+        type="text"
+        name="cName"
+        id="cNameId"
+        class="form-control"
+        aria-describedby="name"
+        formControlName="cName"
+        autofocus
+      />
+      <div
+        class="error col-sm-3"
+        *ngIf="
+          supplierForm.controls.cName.errors?.required &&
+          supplierForm.controls.cName.touched
+        "
+      >
+        Se requiere un nombre
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="cLastName" class="form-label fw-bold">Apellidos:</label>
+      <input
+        type="text"
+        name="cLastName"
+        id="cLastNameId"
+        class="form-control"
+        aria-describedby="lastName"
+        formControlName="cLastName"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="cPhone" class="form-label fw-bold">Teléfono*:</label>
+      <div class="input-group">
+        <div class="row g-0">
+          <div class="col-4">
+            <input
+              type="text"
+              name="cAreaCode"
+              id="cAreaCodeId"
+              class="form-control"
+              aria-describedby="areaCode"
+              maxlength="3"
+              formControlName="cAreaCode"
+            />
+          </div>
+          <div class="col-2">
+            <span class="input-group-text justify-content-center fw-bold"
+              >-</span
+            >
+          </div>
+          <div class="col-6">
+            <input
+              type="text"
+              name="cPhone"
+              id="cPhoneId"
+              class="form-control"
+              aria-describedby="phone"
+              maxlength="7"
+              formControlName="cPhone"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="error-list">
+        <div
+          class="error"
+          *ngIf="
+            supplierForm.controls.cAreaCode.errors?.required &&
+            supplierForm.controls.cAreaCode.touched
+          "
+        >
+          Se requiere una lada
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            supplierForm.controls.cAreaCode.errors?.minlength &&
+            supplierForm.controls.cAreaCode.touched
+          "
+        >
+          La lada debe ser de
+          {{ supplierForm.controls.cAreaCode.errors?.minlength.requiredLength }}
+          dígitos
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            supplierForm.controls.cAreaCode.errors &&
+            supplierForm.controls.cAreaCode.touched
+          "
+        >
+          Escribe dígitos solamente
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            supplierForm.controls.cPhone.errors?.required &&
+            supplierForm.controls.cPhone.touched
+          "
+        >
+          Se requiere un teléfono
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            supplierForm.controls.cPhone.errors?.minlength &&
+            supplierForm.controls.cPhone.touched
+          "
+        >
+          El número de teléfono debe ser de
+          {{ supplierForm.controls.cPhone.errors?.minlength.requiredLength }}
+          dígitos
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            supplierForm.controls.cPhone.errors &&
+            supplierForm.controls.cPhone.touched
+          "
+        >
+          Escribe dígitos solamente
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="cEmail" class="col-sm-2 col-form-label fw-bold">Email</label>
+      <input
+        type="email"
+        name="cEmail"
+        id="cEmailId"
+        class="form-control"
+        aria-describedby="Email"
+        formControlName="cEmail"
+      />
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!supplierForm.valid"
+      >
+        <div class="d-inline-flex">Guardar<i class="bx bxs-save ms-2"></i></div>
+      </button>
+    </div>
+  </form>
+</div>

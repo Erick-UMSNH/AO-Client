@@ -12,6 +12,7 @@ import { NavbarComponent } from './bars/navbar/navbar.component';
 import { SidebarComponent } from './bars/sidebar/sidebar.component';
 import { ResbarComponent } from './bars/resbar/resbar.component';
 import { StartComponent } from './home/start/start.component';
+import { LocationComponent } from './headers/location/location.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { StartComponent } from './home/start/start.component';
     SidebarComponent,
     ResbarComponent,
     StartComponent,
+    LocationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
