@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HeaderTab } from 'src/app/models/HeaderTab';
 
 @Component({
   selector: 'app-new-supplier',
@@ -9,8 +10,10 @@ import { Router } from '@angular/router';
 })
 export class NewSupplierComponent implements OnInit {
   supplierForm: FormGroup;
+  newSupplierTabs: HeaderTab[];
 
   constructor(private router: Router) {
+    //New Supplier Form
     this.supplierForm = new FormGroup({
       cName: new FormControl('', [Validators.required]),
       cLastName: new FormControl(''),
@@ -26,6 +29,19 @@ export class NewSupplierComponent implements OnInit {
       ]),
       cEmail: new FormControl(''),
     });
+    // Header Tabs
+    this.newSupplierTabs = [
+      {
+        active: false,
+        icon: 'bx bx-food-menu',
+        navigate: '/suppliers',
+      },
+      {
+        active: true,
+        icon: 'bx bxs-user-plus',
+        navigate: '/suppliers/new',
+      },
+    ];
   }
 
   ngOnInit(): void {}

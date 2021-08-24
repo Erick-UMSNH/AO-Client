@@ -5,6 +5,8 @@ import { NewClientComponent } from './contacts/new-client/new-client.component';
 import { NewSupplierComponent } from './contacts/new-supplier/new-supplier.component';
 import { SuppliersComponent } from './contacts/suppliers/suppliers.component';
 import { StartComponent } from './home/start/start.component';
+import { NewVehicleComponent } from './workshop/new-vehicle/new-vehicle.component';
+import { VehiclesComponent } from './workshop/vehicles/vehicles.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'clients/new', component: NewClientComponent },
   { path: 'suppliers', component: SuppliersComponent },
   { path: 'suppliers/new', component: NewSupplierComponent },
+  { path: 'vehicles', component: VehiclesComponent },
+  { path: 'vehicles/new', component: NewVehicleComponent },
   { path: '**', redirectTo: 'clients' },
 ];
 

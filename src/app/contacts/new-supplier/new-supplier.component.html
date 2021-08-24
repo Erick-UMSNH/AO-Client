@@ -1,37 +1,9 @@
-<app-location [title]="'Nuevo proveedor'"></app-location>
-<nav class="nav nav-pills flex-column flex-sm-row justify-content-end">
-  <ul class="nav nav-tabs" id="suppliersGTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="suppliers-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#suppliers"
-        type="button"
-        role="tab"
-        aria-controls="suppliers"
-        aria-selected="false"
-        [routerLink]="['/suppliers']"
-      >
-        <i class="bx bx-food-menu"></i>
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link active"
-        id="new-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#new"
-        type="button"
-        role="tab"
-        aria-controls="new"
-        aria-selected="true"
-      >
-        <i class="bx bxs-user-plus"></i>
-      </button>
-    </li>
-  </ul>
-</nav>
+<app-location
+  title="Nuevo proveedor"
+  subtitle="LLena los campos para capturar un nuevo proveedor"
+  [tabs]="newSupplierTabs"
+></app-location>
+
 <div class="container">
   <form [formGroup]="supplierForm" (ngSubmit)="submitNewSupplier()">
     <div class="mb-3">

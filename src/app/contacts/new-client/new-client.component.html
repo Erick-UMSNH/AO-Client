@@ -1,37 +1,9 @@
-<app-location [title]="'Nuevo Cliente'"></app-location>
-<nav class="nav nav-pills flex-column flex-sm-row justify-content-end">
-  <ul class="nav nav-tabs" id="clientsGTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="clients-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#clients"
-        type="button"
-        role="tab"
-        aria-controls="clients"
-        aria-selected="false"
-        [routerLink]="['/clients']"
-      >
-        <i class="bx bx-food-menu"></i>
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link active"
-        id="new-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#new"
-        type="button"
-        role="tab"
-        aria-controls="new"
-        aria-selected="true"
-      >
-        <i class="bx bxs-user-plus"></i>
-      </button>
-    </li>
-  </ul>
-</nav>
+<app-location
+  [title]="'Nuevo Cliente'"
+  subtitle="Llena los campos para agregar un nuevo cliente"
+  [tabs]="newClientsTabs"
+></app-location>
+
 <div class="container">
   <form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
     <div class="mb-3">

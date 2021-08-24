@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HeaderTab } from '../../models/HeaderTab';
 
 @Component({
   selector: 'app-location',
@@ -7,22 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LocationComponent implements OnInit {
   @Input() title: string;
-  tabs: any[];
+  @Input() subtitle: string;
+  @Input() tabs: HeaderTab[];
 
   constructor() {
     this.title = '';
-    this.tabs = [
-      {
-        active: true,
-        icon: 'bx bxl-docker',
-        navigate: '/suppliers',
-      },
-      {
-        active: false,
-        icon: 'bx bxs-hand',
-        navigate: '/suppliers/new',
-      },
-    ];
+    this.subtitle = '';
+    this.tabs = [];
   }
 
   ngOnInit(): void {}

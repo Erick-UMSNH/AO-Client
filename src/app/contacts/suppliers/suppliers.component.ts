@@ -1,15 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderTab } from 'src/app/models/HeaderTab';
 
 @Component({
   selector: 'app-suppliers',
   templateUrl: './suppliers.component.html',
-  styleUrls: ['./suppliers.component.css']
+  styleUrls: ['./suppliers.component.css'],
 })
 export class SuppliersComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  suppliersTabs: HeaderTab[];
+  constructor() {
+    this.suppliersTabs = [
+      {
+        active: true,
+        icon: 'bx bx-food-menu',
+        navigate: '/suppliers',
+      },
+      {
+        active: false,
+        icon: 'bx bxs-user-plus',
+        navigate: '/suppliers/new',
+      },
+    ];
   }
 
+  ngOnInit(): void {}
 }

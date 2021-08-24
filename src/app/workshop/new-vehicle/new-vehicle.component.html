@@ -1,0 +1,128 @@
+<app-location
+  title="Nuevo vehículo"
+  subtitle="Llena los campos para agregar un nuevo vehículo"
+  [tabs]="newVehiclesTabs"
+></app-location>
+
+<div class="container">
+  <form [formGroup]="vehicleForm" (ngSubmit)="submitNewVehicle()">
+    <div class="mb-3">
+      <label for="vName" class="form-label fw-bold">Marca*:</label>
+      <input
+        type="text"
+        name="vBrand"
+        id="vBrandId"
+        class="form-control"
+        aria-describedby="brand"
+        formControlName="vBrand"
+        autofocus
+      />
+      <div
+        class="error col-sm-3"
+        *ngIf="
+          vehicleForm.controls.vBrand.errors?.required &&
+          vehicleForm.controls.vBrand.touched
+        "
+      >
+        Se requiere una marca
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="vModel" class="form-label fw-bold">Modelo*:</label>
+      <input
+        type="text"
+        name="vModel"
+        id="vModelId"
+        class="form-control"
+        aria-describedby="model"
+        formControlName="vModel"
+      />
+      <div
+        class="error col-sm-3"
+        *ngIf="
+          vehicleForm.controls.vModel.errors?.required &&
+          vehicleForm.controls.vModel.touched
+        "
+      >
+        Se requiere un modelo
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="vYear" class="col-sm-2 col-form-label fw-bold">Año*:</label>
+      <select
+        name="vYear"
+        id="vYearId"
+        class="form-select"
+        formControlName="vYear"
+        aria-label="vYear selection"
+      >
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
+      <div
+        class="error"
+        *ngIf="
+          vehicleForm.controls.vYear.errors?.required &&
+          vehicleForm.controls.vYear.touched
+        "
+      >
+        Se requiere un año
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="vColor" class="col-sm-2 col-form-label fw-bold">Color:</label>
+      <input
+        type="text"
+        name="vColor"
+        id="vColorId"
+        class="form-control"
+        aria-describedby="Color"
+        formControlName="vColor"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="vType" class="col-sm-2 col-form-label fw-bold">Tipo:</label>
+      <input
+        type="text"
+        name="vType"
+        id="vTypeId"
+        class="form-control"
+        aria-describedby="Type"
+        formControlName="vType"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="vPlate" class="col-sm-2 col-form-label fw-bold"
+        >Placa*:</label
+      >
+      <input
+        type="text"
+        name="vPlate"
+        id="vPlateId"
+        class="form-control"
+        aria-describedby="Plate"
+        formControlName="vPlate"
+        maxlength="7"
+      />
+      <div
+        class="error col-sm-3"
+        *ngIf="
+          vehicleForm.controls.vPlate.errors?.required &&
+          vehicleForm.controls.vPlate.touched
+        "
+      >
+        Se requiere una placa
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!vehicleForm.valid"
+      >
+        <div class="d-inline-flex">Guardar<i class="bx bxs-save ms-2"></i></div>
+      </button>
+    </div>
+  </form>
+</div>

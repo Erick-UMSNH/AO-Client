@@ -13,6 +13,8 @@ import { SidebarComponent } from './bars/sidebar/sidebar.component';
 import { ResbarComponent } from './bars/resbar/resbar.component';
 import { StartComponent } from './home/start/start.component';
 import { LocationComponent } from './headers/location/location.component';
+import { VehiclesComponent } from './workshop/vehicles/vehicles.component';
+import { NewVehicleComponent } from './workshop/new-vehicle/new-vehicle.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { LocationComponent } from './headers/location/location.component';
     ResbarComponent,
     StartComponent,
     LocationComponent,
+    VehiclesComponent,
+    NewVehicleComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],

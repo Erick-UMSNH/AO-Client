@@ -1,0 +1,23 @@
+.form-control:focus {
+  border-color: gray;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0px 0px 8px rgba(21, 20, 21, 0.5);
+}
+
+.error {
+  color: tomato;
+  font-size: 12px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid tomato;
+}
+
+.btn.btn-primary {
+  background-color: #11101d;
+  border: 1px solid #1d1b31;
+}
+
+i {
+  font-size: 25px;
+}
