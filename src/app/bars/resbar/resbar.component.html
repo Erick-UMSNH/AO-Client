@@ -33,14 +33,14 @@
     </li>
     <li [ngClass]="{ showMenu: talSubmenu }">
       <div class="icon-link">
-        <a href="#">
+        <a [routerLink]="['workshop']">
           <i class="bx bxs-wrench"></i>
           <span class="link_name">Taller</span>
         </a>
         <i class="bx bxs-chevron-down arrow" (click)="toggleTalSubmenu()"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Taller</a></li>
+        <li><a class="link_name" [routerLink]="['/workshop']">Taller</a></li>
         <li><a [routerLink]="['/repairs']">Reparaciones</a></li>
         <li><a [routerLink]="['/vehicles']">Vehiculos</a></li>
         <li><a [routerLink]="['/wservices']">Servicios</a></li>
@@ -62,14 +62,14 @@
     </li>
     <li [ngClass]="{ showMenu: conSubmenu }">
       <div class="icon-link">
-        <a href="#">
+        <a [routerLink]="['/contacts']">
           <i class="bx bxs-contact"></i>
           <span class="link_name">Contactos</span>
         </a>
         <i class="bx bxs-chevron-down arrow" (click)="toggleConSubmenu()"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Contactos</a></li>
+        <li><a class="link_name" [routerLink]="['/contacts']">Contactos</a></li>
         <li><a [routerLink]="['/clients']">Clientes</a></li>
         <li><a [routerLink]="['/suppliers']">Proveedores</a></li>
       </ul>
@@ -77,15 +77,15 @@
 
     <li [ngClass]="{ showMenu: confSubmenu }">
       <div class="icon-link">
-        <a href="#">
+        <a [routerLink]="['/settings']">
           <i class="bx bx-cog"></i>
           <span class="link_name">Ajustes</span>
         </a>
         <i class="bx bxs-chevron-down arrow" (click)="toggleConfSubmenu()"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Ajustes</a></li>
-        <li><a href="#">Usuarios</a></li>
+        <li><a class="link_name" [routerLink]="['/settings']">Ajustes</a></li>
+        <li><a [routerLink]="['/users']">Usuarios</a></li>
       </ul>
     </li>
     <li>

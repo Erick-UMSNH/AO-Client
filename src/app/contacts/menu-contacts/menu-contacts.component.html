@@ -1,0 +1,28 @@
+<app-menu-title
+  title="Contactos"
+  subtitle="Ponte en contacto con tus clientes o proveedores"
+></app-menu-title>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/clients']">
+      <div class="card-header"></div>
+      <i class="bx bxs-user card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Clientes</h5>
+        <p class="card-text">Directorio de clientes</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/suppliers']">
+      <div class="card-header"></div>
+      <i class="bx bxs-user-badge card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Proveedores</h5>
+        <p class="card-text">Directorio de proveedores</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+</div>

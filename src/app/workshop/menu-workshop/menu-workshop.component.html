@@ -1,0 +1,45 @@
+<app-menu-title
+  title="Taller"
+  subtitle="¡Es hora de trabajar! - ¿Qué deseas hacer?"
+></app-menu-title>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/repairs']">
+      <div class="card-header"></div>
+      <i class="bx bxs-car-mechanic card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Reparaciones</h5>
+        <p class="card-text">
+          Administra tus reparaciones o crea una nueva orden de reparación
+        </p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/vehicles']">
+      <div class="card-header"></div>
+      <i class="bx bxs-car card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Vehículos</h5>
+        <p class="card-text">
+          Consulta los vehículos registrados o agrega uno nuevo
+        </p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/repairs']">
+      <div class="card-header"></div>
+      <i class="bx bxs-car-crash card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Servicios</h5>
+        <p class="card-text">
+          Gestiona los servicios que ofreces a tus clientes
+        </p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+.card.category {
+  cursor: pointer;
+  /* max-width: 60rem; */
+}
+
+.card-icon {
+  font-size: 60px;
+}

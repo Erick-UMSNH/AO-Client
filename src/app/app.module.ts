@@ -20,6 +20,12 @@ import { RepairsComponent } from './workshop/repairs/repairs.component';
 import { NewRepairComponent } from './workshop/new-repair/new-repair.component';
 import { WservicesComponent } from './workshop/wservices/wservices.component';
 import { NewWserviceComponent } from './workshop/new-wservice/new-wservice.component';
+import { MenuWorkshopComponent } from './workshop/menu-workshop/menu-workshop.component';
+import { MenuTitleComponent } from './headers/menu-title/menu-title.component';
+import { MenuContactsComponent } from './contacts/menu-contacts/menu-contacts.component';
+import { NewUserComponent } from './settings/new-user/new-user.component';
+import { MenuSettingsComponent } from './settings/menu-settings/menu-settings.component';
+import { UsersComponent } from './settings/users/users.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,12 @@ import { NewWserviceComponent } from './workshop/new-wservice/new-wservice.compo
     NewRepairComponent,
     WservicesComponent,
     NewWserviceComponent,
+    MenuWorkshopComponent,
+    MenuTitleComponent,
+    MenuContactsComponent,
+    UsersComponent,
+    NewUserComponent,
+    MenuSettingsComponent,
   ],
   imports: [
     BrowserModule,
