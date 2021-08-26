@@ -1,0 +1,73 @@
+<app-location
+  title="Nuevo servicio"
+  subtitle="Llena los campos para agregar un nuevo servicio"
+  [tabs]="newWserviceTabs"
+></app-location>
+
+<div class="container">
+  <form [formGroup]="wserviceForm" (ngSubmit)="submitNewWservice()">
+    <div class="mb-3">
+      <label for="wsService" class="form-label fw-bold">Servicio*:</label>
+      <input
+        type="text"
+        name="wsService"
+        id="wsServiceId"
+        class="form-control"
+        aria-describedby="wsservice"
+        formControlName="wsService"
+        autofocus
+      />
+      <div
+        class="error"
+        *ngIf="
+          wserviceForm.controls.wsService.errors?.required &&
+          wserviceForm.controls.wsService.touched
+        "
+      >
+        Introduce un servicio
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="mb-3 col-6">
+        <label for="wsCost" class="form-label fw-bold">Costo:</label>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="$0.00"
+          step="0.1"
+          min="0"
+          formControlName="wsCost"
+        />
+        <div
+          class="error"
+          *ngIf="
+            wserviceForm.controls.wsCost.errors?.required &&
+            wserviceForm.controls.wsCost.touched
+          "
+        >
+          Introduce un costo
+        </div>
+      </div>
+      <div class="mb-3 col-6">
+        <label for="wsWork" class="form-label fw-bold">Mano de Obra:</label>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="$0.00"
+          step="0.1"
+          min="0"
+          formControlName="wsWork"
+        />
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!wserviceForm.valid"
+      >
+        <div class="d-inline-flex">Guardar<i class="bx bxs-save ms-2"></i></div>
+      </button>
+    </div>
+  </form>
+</div>

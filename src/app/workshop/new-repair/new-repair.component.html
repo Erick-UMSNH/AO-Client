@@ -1,0 +1,118 @@
+<app-location
+  title="Orden de reparación"
+  subtitle="Llena los campos para agregar una nueva orden"
+  [tabs]="newRepairTabs"
+></app-location>
+
+<div class="container">
+  <form [formGroup]="repairForm" (ngSubmit)="submitNewRepair()">
+    <div class="mb-3">
+      <label for="rClient" class="form-label fw-bold">Cliente*:</label>
+      <ng-select formControlName="rClient">
+        <ng-option *ngFor="let client of clients" [value]="client.name">{{
+          client.name
+        }}</ng-option>
+      </ng-select>
+      <div
+        class="error"
+        *ngIf="
+          repairForm.controls.rClient.errors?.required &&
+          repairForm.controls.rClient.touched
+        "
+      >
+        Selecciona un cliente
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="rVehicle" class="form-label fw-bold">Vehículo*:</label>
+      <ng-select formControlName="rVehicle">
+        <ng-option *ngFor="let vehicle of vehicles" [value]="vehicle.name">{{
+          vehicle.name
+        }}</ng-option>
+      </ng-select>
+      <div
+        class="error"
+        *ngIf="
+          repairForm.controls.rVehicle.errors?.required &&
+          repairForm.controls.rVehicle.touched
+        "
+      >
+        Selecciona un vehículo
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="rConcept" class="form-label fw-bold">Concepto:</label>
+      <select
+        name="rConcept"
+        id="rConceptId"
+        class="form-select"
+        formControlName="rConcept"
+        aria-label="rConcept selection"
+      >
+        <option value="Reparación">Reparación</option>
+        <option value="Servicio">Servicio</option>
+        <option value="Mantenimiento">Mantenimiento</option>
+        <option value="Revisión">Revisión</option>
+      </select>
+    </div>
+    <div class="row mb-3">
+      <div class="mb-3 col-4">
+        <label for="rKm" class="form-label fw-bold">Km:</label>
+
+        <input
+          type="number"
+          name="rKm"
+          id="rKmId"
+          placeholder="000000"
+          step="1"
+          min="0"
+          class="form-control"
+          aria-describedby="km"
+          formControlName="rKm"
+        />
+
+        <div
+          class="error"
+          *ngIf="
+            repairForm.controls.rKm.errors && repairForm.controls.rKm.touched
+          "
+        >
+          Números solamente
+        </div>
+      </div>
+
+      <div class="mb-3 col-8">
+        <label for="rService" class="form-label fw-bold">Servicio*:</label>
+        <ng-select formControlName="rService">
+          <ng-option *ngFor="let service of services" [value]="service.name">{{
+            service.name
+          }}</ng-option>
+        </ng-select>
+
+        <div
+          class="error"
+          *ngIf="
+            repairForm.controls.rService.errors?.required &&
+            repairForm.controls.rService.touched
+          "
+        >
+          Selecciona un servicio
+        </div>
+      </div>
+    </div>
+
+    <h1 class="mb-3">Tabla de desglose</h1>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!repairForm.valid"
+      >
+        <div class="d-inline-flex">
+          Registrar orden <i class="bx bxs-wrench"></i>
+        </div>
+      </button>
+    </div>
+  </form>
+</div>

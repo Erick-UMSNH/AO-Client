@@ -5,8 +5,12 @@ import { NewClientComponent } from './contacts/new-client/new-client.component';
 import { NewSupplierComponent } from './contacts/new-supplier/new-supplier.component';
 import { SuppliersComponent } from './contacts/suppliers/suppliers.component';
 import { StartComponent } from './home/start/start.component';
+import { NewRepairComponent } from './workshop/new-repair/new-repair.component';
 import { NewVehicleComponent } from './workshop/new-vehicle/new-vehicle.component';
+import { NewWserviceComponent } from './workshop/new-wservice/new-wservice.component';
+import { RepairsComponent } from './workshop/repairs/repairs.component';
 import { VehiclesComponent } from './workshop/vehicles/vehicles.component';
+import { WservicesComponent } from './workshop/wservices/wservices.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,6 +21,10 @@ const routes: Routes = [
   { path: 'suppliers/new', component: NewSupplierComponent },
   { path: 'vehicles', component: VehiclesComponent },
   { path: 'vehicles/new', component: NewVehicleComponent },
+  { path: 'repairs', component: RepairsComponent },
+  { path: 'repairs/new', component: NewRepairComponent },
+  { path: 'wservices', component: WservicesComponent },
+  { path: 'wservices/new', component: NewWserviceComponent },
   { path: '**', redirectTo: 'clients' },
 ];
 

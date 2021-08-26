@@ -41,8 +41,9 @@
       </div>
       <ul class="sub-menu">
         <li><a class="link_name" href="#">Taller</a></li>
-        <li><a href="#">Ordenes de reparación</a></li>
+        <li><a [routerLink]="['/repairs']">Reparaciones</a></li>
         <li><a [routerLink]="['/vehicles']">Vehiculos</a></li>
+        <li><a [routerLink]="['/wservices']">Servicios</a></li>
       </ul>
     </li>
     <li [ngClass]="{ showMenu: finSubmenu }">

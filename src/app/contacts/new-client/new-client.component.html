@@ -18,7 +18,7 @@
         autofocus
       />
       <div
-        class="error col-sm-3"
+        class="error"
         *ngIf="
           clientForm.controls.cName.errors?.required &&
           clientForm.controls.cName.touched
@@ -133,7 +133,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="cEmail" class="col-sm-2 col-form-label fw-bold">Email</label>
+      <label for="cEmail" class="form-label fw-bold">Email</label>
       <input
         type="email"
         name="cEmail"
