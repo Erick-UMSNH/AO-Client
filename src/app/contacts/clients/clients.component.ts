@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ClientsService } from 'src/app/services/clients.service';
 import { Client } from '../../models/Clients';
 import { HeaderTab } from '../../models/HeaderTab';
+import { Apollo, gql } from 'apollo-angular';
 
 @Component({
   selector: 'app-clients',
@@ -10,13 +11,16 @@ import { HeaderTab } from '../../models/HeaderTab';
   styleUrls: ['./clients.component.css'],
 })
 export class ClientsComponent implements OnInit {
-  @Input() receiveToggle: boolean;
   clientsTabs: HeaderTab[];
   clients: any[] = [];
+  loading: boolean = true;
+  error: any;
 
-  constructor(private router: Router, private clientsService: ClientsService) {
-    this.receiveToggle = false;
-
+  constructor(
+    private router: Router,
+    private clientsService: ClientsService,
+    private apollo: Apollo
+  ) {
     this.clientsTabs = [
       {
         active: true,
@@ -33,19 +37,24 @@ export class ClientsComponent implements OnInit {
     ];
   }
   ngOnInit(): void {
-    this.clients = this.clientsService.getClients();
+    this.clientsService.getClients().subscribe((result) => {
+      this.clients = result?.data?.clients;
+      console.log('Inside value changes: ', this.clients);
+      this.loading = result.loading;
+      this.error = result.error;
+    });
   }
 
-  clientDetail = (id: number) => {
+  clientDetail = (id: string) => {
     console.log('You clicked the person with the name: ', id);
     this.router.navigate([`/clients/detail/${id}`]);
   };
 
-  editClient = (id: number) => {
+  editClient = (id: string) => {
     this.router.navigate([`/clients/edit/${id}`]);
   };
 
-  deleteClient = (e: any, id: number) => {
+  deleteClient = (e: any, id: string) => {
     e.stopPropagation();
     console.log('Deleting client: ', id);
   };

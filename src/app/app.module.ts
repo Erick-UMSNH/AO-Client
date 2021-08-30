@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientsComponent } from './contacts/clients/clients.component';
@@ -28,6 +28,7 @@ import { MenuSettingsComponent } from './settings/menu-settings/menu-settings.co
 import { UsersComponent } from './settings/users/users.component';
 import { EditClientComponent } from './contacts/edit-client/edit-client.component';
 import { DetailClientComponent } from './contacts/detail-client/detail-client.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,8 @@ import { DetailClientComponent } from './contacts/detail-client/detail-client.co
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    HttpClientModule,
+    GraphQLModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

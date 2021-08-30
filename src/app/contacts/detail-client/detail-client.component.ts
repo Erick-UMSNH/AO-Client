@@ -10,8 +10,10 @@ import { ClientsService } from 'src/app/services/clients.service';
 })
 export class DetailClientComponent implements OnInit {
   clientDetailTabs: HeaderTab[] = [];
-  clientId: number = 0;
+  clientId: string = '0';
   client: any;
+  loading: boolean = true;
+  error: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private clientsService: ClientsService
@@ -23,7 +25,12 @@ export class DetailClientComponent implements OnInit {
       this.clientId = params.id;
     });
     //Get the client data from the db
-    this.client = this.clientsService.getClient(this.clientId);
+    // this.client = this.clientsService.getClient(this.clientId);
+    this.clientsService.getClient(this.clientId).subscribe((result) => {
+      this.client = result?.data?.clients;
+      this.loading = result.loading;
+      this.error = result.error;
+    });
 
     this.clientDetailTabs = [
       {

@@ -14,7 +14,7 @@ export class EditClientComponent implements OnInit {
   clientForm: FormGroup = new FormGroup({});
   editClientTabs: HeaderTab[] = [];
   loading: boolean;
-  clientID: number;
+  clientID: string;
   client: any;
 
   constructor(
@@ -22,7 +22,7 @@ export class EditClientComponent implements OnInit {
     private router: Router,
     private clientsService: ClientsService
   ) {
-    this.clientID = 0;
+    this.clientID = '0';
     this.loading = false;
   }
 

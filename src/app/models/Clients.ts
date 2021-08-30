@@ -1,5 +1,5 @@
 export class Client {
-  id: number;
+  id: string;
   name: string;
   lastName: string;
   areaCode: string;
@@ -7,7 +7,7 @@ export class Client {
   email: string;
 
   constructor(
-    id: number,
+    id: string,
     name: string,
     lastName: string,
     areaCode: string,
