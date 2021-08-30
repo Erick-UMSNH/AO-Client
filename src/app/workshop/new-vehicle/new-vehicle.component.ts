@@ -20,11 +20,13 @@ export class NewVehicleComponent implements OnInit {
         active: false,
         icon: 'bx bx-food-menu',
         navigate: '/vehicles',
+        tooltip: 'Vehículos',
       },
       {
         active: true,
         icon: 'bx bxs-car',
         navigate: '/vehicles/new',
+        tooltip: 'Nuevo',
       },
     ];
 

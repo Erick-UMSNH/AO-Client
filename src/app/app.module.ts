@@ -26,6 +26,8 @@ import { MenuContactsComponent } from './contacts/menu-contacts/menu-contacts.co
 import { NewUserComponent } from './settings/new-user/new-user.component';
 import { MenuSettingsComponent } from './settings/menu-settings/menu-settings.component';
 import { UsersComponent } from './settings/users/users.component';
+import { EditClientComponent } from './contacts/edit-client/edit-client.component';
+import { DetailClientComponent } from './contacts/detail-client/detail-client.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { UsersComponent } from './settings/users/users.component';
     UsersComponent,
     NewUserComponent,
     MenuSettingsComponent,
+    EditClientComponent,
+    DetailClientComponent,
   ],
   imports: [
     BrowserModule,

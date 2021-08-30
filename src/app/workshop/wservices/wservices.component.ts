@@ -15,11 +15,13 @@ export class WservicesComponent implements OnInit {
         active: true,
         icon: 'bx bx-food-menu',
         navigate: '/wservices',
+        tooltip: 'Servicios',
       },
       {
         active: false,
         icon: 'bx bxs-car-crash',
         navigate: '/wservices/new',
+        tooltip: 'Nuevo',
       },
     ];
   }

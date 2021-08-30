@@ -39,11 +39,13 @@ export class NewRepairComponent implements OnInit {
         active: false,
         icon: 'bx bx-food-menu',
         navigate: '/repairs',
+        tooltip: 'Reparaciones',
       },
       {
         active: true,
         icon: 'bx bxs-car-mechanic',
         navigate: '/repairs/new',
+        tooltip: 'Nueva',
       },
     ];
 

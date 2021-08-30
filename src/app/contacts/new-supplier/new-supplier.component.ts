@@ -6,7 +6,7 @@ import { HeaderTab } from 'src/app/models/HeaderTab';
 @Component({
   selector: 'app-new-supplier',
   templateUrl: './new-supplier.component.html',
-  styleUrls: ['./new-supplier.component.css'],
+  styleUrls: ['./new-supplier.component.css', '../../css/forms.css'],
 })
 export class NewSupplierComponent implements OnInit {
   supplierForm: FormGroup;
@@ -35,11 +35,13 @@ export class NewSupplierComponent implements OnInit {
         active: false,
         icon: 'bx bx-food-menu',
         navigate: '/suppliers',
+        tooltip: 'Proveedores',
       },
       {
         active: true,
         icon: 'bx bxs-user-plus',
         navigate: '/suppliers/new',
+        tooltip: 'Nuevo',
       },
     ];
   }

@@ -15,11 +15,13 @@ export class VehiclesComponent implements OnInit {
         active: true,
         icon: 'bx bx-food-menu',
         navigate: '/vehicles',
+        tooltip: 'Vehículos',
       },
       {
         active: false,
         icon: 'bx bxs-car',
         navigate: '/vehicles/new',
+        tooltip: 'Nuevo',
       },
     ];
   }

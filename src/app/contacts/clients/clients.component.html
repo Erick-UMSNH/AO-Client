@@ -1,6 +1,41 @@
 <app-location
-  [title]="'Clientes'"
+  title="Clientes"
   subtitle="Listado de clientes"
   [tabs]="clientsTabs"
 ></app-location>
-<h1>listado de clientes</h1>
+
+<table class="table table-hover table-light table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let client of clients" (click)="clientDetail(client.id)">
+      <th scope="row">{{ client.id }}</th>
+      <td>{{ client.name }}</td>
+      <td>{{ client.lastName }}</td>
+      <td>{{ client.areaCode }}-{{ client.phone }}</td>
+      <td>{{ client.email }}</td>
+      <td>
+        <button
+          class="btn btn-secondary btn-sm me-1"
+          (click)="editClient(client.id)"
+        >
+          <i class="bx bxs-edit-alt"></i>
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="deleteClient($event, client.id)"
+        >
+          <i class="bx bxs-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

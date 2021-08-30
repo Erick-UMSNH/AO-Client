@@ -8,6 +8,9 @@
           type="button"
           role="tab"
           [routerLink]="[tab.navigate]"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          [title]="tab.tooltip"
         >
           <i class="{{ tab.icon }}"></i>
         </button>

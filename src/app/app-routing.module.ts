@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientsComponent } from './contacts/clients/clients.component';
+import { DetailClientComponent } from './contacts/detail-client/detail-client.component';
+import { EditClientComponent } from './contacts/edit-client/edit-client.component';
 import { MenuContactsComponent } from './contacts/menu-contacts/menu-contacts.component';
 import { NewClientComponent } from './contacts/new-client/new-client.component';
 import { NewSupplierComponent } from './contacts/new-supplier/new-supplier.component';
@@ -20,8 +22,12 @@ import { WservicesComponent } from './workshop/wservices/wservices.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: StartComponent },
+  /* Clients */
   { path: 'clients', component: ClientsComponent },
   { path: 'clients/new', component: NewClientComponent },
+  { path: 'clients/edit/:id', component: EditClientComponent },
+  { path: 'clients/detail/:id', component: DetailClientComponent },
+  /* Suppliers */
   { path: 'suppliers', component: SuppliersComponent },
   { path: 'suppliers/new', component: NewSupplierComponent },
   { path: 'vehicles', component: VehiclesComponent },

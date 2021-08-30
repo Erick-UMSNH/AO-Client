@@ -1,11 +1,10 @@
 <app-location
-  [title]="'Nuevo Cliente'"
-  subtitle="Llena los campos para agregar un nuevo cliente"
-  [tabs]="newClientsTabs"
+  title="Editando cliente"
+  subtitle="Edita los campos de tu cliente"
+  [tabs]="editClientTabs"
 ></app-location>
-
 <div class="container">
-  <form [formGroup]="clientForm" (ngSubmit)="submitNewClient()">
+  <form [formGroup]="clientForm" (ngSubmit)="updateClient()">
     <div class="mb-3">
       <label for="cName" class="form-label fw-bold">Nombre*:</label>
       <input
@@ -149,9 +148,9 @@
         class="btn btn-primary"
         [disabled]="!clientForm.valid"
       >
-        <div class="d-inline-flex align-items-center">
+        <div class="d-inline-flex">
           <div
-            class="spinner-border spinner-border-sm loading"
+            class="spinner-border spinner-border-sm loading align-items-center"
             role="status"
             *ngIf="loading"
           >

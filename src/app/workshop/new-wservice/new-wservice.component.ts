@@ -18,11 +18,13 @@ export class NewWserviceComponent implements OnInit {
         active: false,
         icon: 'bx bx-food-menu',
         navigate: '/wservices',
+        tooltip: 'Servicios',
       },
       {
         active: true,
         icon: 'bx bxs-car-crash',
         navigate: '/wservices/new',
+        tooltip: 'Nuevo',
       },
     ];
 

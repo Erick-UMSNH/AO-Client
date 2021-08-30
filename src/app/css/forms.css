@@ -12,8 +12,6 @@
 .ng-select ::ng-deep .ng-select-container {
   min-height: 38px;
 }
-.ng-select ::ng-deep .ng-select-container:focus {
-}
 .ng-select.ng-select-focused:not(.ng-select-opened)
   ::ng-deep
   > .ng-select-container {
@@ -27,6 +25,11 @@
   .ng-dropdown-panel-items
   .ng-option.ng-option-marked {
   background-color: #f5f5f5;
+}
+
+.form-check-input:checked {
+  background-color: #11101d;
+  border-color: gray;
 }
 
 .error {
@@ -45,4 +48,14 @@ input.ng-invalid.ng-touched {
 
 i {
   font-size: 25px;
+}
+
+i.upload {
+  font-size: 18px;
+  min-width: 50px;
+}
+
+.loading {
+  color: #fff;
+  margin-right: 10px;
 }

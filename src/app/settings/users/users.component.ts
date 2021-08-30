@@ -15,11 +15,13 @@ export class UsersComponent implements OnInit {
         active: true,
         icon: 'bx bx-food-menu',
         navigate: '/users',
+        tooltip: 'Usuarios',
       },
       {
         active: false,
         icon: 'bx bxs-user-circle',
         navigate: '/users/new',
+        tooltip: 'Nuevo',
       },
     ];
   }

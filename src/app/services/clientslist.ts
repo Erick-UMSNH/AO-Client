@@ -1,0 +1,42 @@
+export const clientsList = [
+  {
+    id: 1,
+    name: 'erick',
+    lastName: 'de la vega',
+    areaCode: '443',
+    phone: '2312316',
+    email: 'erick@gmail.com',
+  },
+  {
+    id: 2,
+    name: 'alberto',
+    lastName: 'osnaya',
+    areaCode: '443',
+    phone: '8879645',
+    email: 'alberto@gmail.com',
+  },
+  {
+    id: 3,
+    name: 'edgar',
+    lastName: 'gutierrez',
+    areaCode: '443',
+    phone: '5454331',
+    email: 'edgar@gmail.com',
+  },
+  {
+    id: 4,
+    name: 'santiago',
+    lastName: 'martinez',
+    areaCode: '443',
+    phone: '5552314',
+    email: 'santiago@gmail.com',
+  },
+  {
+    id: 5,
+    name: 'iker',
+    lastName: 'garcia',
+    areaCode: '443',
+    phone: '7785421',
+    email: 'iker@gmail.com',
+  },
+];

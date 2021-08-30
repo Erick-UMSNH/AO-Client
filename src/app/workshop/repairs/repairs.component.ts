@@ -15,11 +15,13 @@ export class RepairsComponent implements OnInit {
         active: true,
         icon: 'bx bx-food-menu',
         navigate: '/repairs',
+        tooltip: 'Reparaciones',
       },
       {
         active: false,
         icon: 'bx bxs-car-mechanic',
         navigate: '/repairs/new',
+        tooltip: 'Nueva',
       },
     ];
   }

@@ -1,0 +1,16 @@
+<app-location
+  title="Clientes"
+  subtitle="Detalle del cliente"
+  [tabs]="clientDetailTabs"
+></app-location>
+
+<div class="card">
+  <div class="card-header">#{{ client.id }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ client.name }} {{ client.lastName }}</h5>
+    <p class="card-text">{{ client.email }}</p>
+  </div>
+  <div class="card-footer text-muted">
+    Teléfono: {{ client.areaCode }}-{{ client.phone }}
+  </div>
+</div>

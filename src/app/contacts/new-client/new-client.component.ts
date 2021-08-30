@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderTab } from 'src/app/models/HeaderTab';
@@ -15,6 +15,7 @@ import { HeaderTab } from 'src/app/models/HeaderTab';
 export class NewClientComponent implements OnInit {
   clientForm: FormGroup;
   newClientsTabs: HeaderTab[];
+  loading: boolean = false;
 
   constructor(private router: Router) {
     //New client form
@@ -39,11 +40,13 @@ export class NewClientComponent implements OnInit {
         active: false,
         icon: 'bx bx-food-menu',
         navigate: '/clients',
+        tooltip: 'Clientes',
       },
       {
         active: true,
         icon: 'bx bxs-user-plus',
         navigate: '/clients/new',
+        tooltip: 'Nuevo',
       },
     ];
   }
@@ -51,7 +54,14 @@ export class NewClientComponent implements OnInit {
   ngOnInit(): void {}
 
   submitNewClient = () => {
-    console.log(this.clientForm.value);
-    this.router.navigate(['clients']);
+    //Check if there is a process running already (loading?)
+    if (this.loading) return;
+    //Start loading
+    this.loading = true;
+    //Submit client
+    setTimeout(() => {
+      this.loading = false;
+      this.router.navigate(['clients']);
+    }, 3000);
   };
 }
