@@ -2,6 +2,7 @@
   title="Orden de reparación"
   subtitle="Llena los campos para agregar una nueva orden"
   [tabs]="newRepairTabs"
+  [spinner]="loading"
 ></app-location>
 
 <div class="container">
@@ -9,9 +10,9 @@
     <div class="mb-3">
       <label for="rClient" class="form-label fw-bold">Cliente*:</label>
       <ng-select formControlName="rClient">
-        <ng-option *ngFor="let client of clients" [value]="client.name">{{
-          client.name
-        }}</ng-option>
+        <ng-option *ngFor="let client of clients" [value]="client.id"
+          >{{ client.name }} {{ client.lastName }}</ng-option
+        >
       </ng-select>
       <div
         class="error"

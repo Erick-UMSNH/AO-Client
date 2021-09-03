@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderTab } from 'src/app/models/HeaderTab';
+import { ClientsService } from 'src/app/services/clients.service';
 
 @Component({
   selector: 'app-new-repair',
@@ -12,12 +13,9 @@ export class NewRepairComponent implements OnInit {
   newRepairTabs: HeaderTab[];
   repairForm: FormGroup;
 
-  clients = [
-    { id: 1, name: 'Erick' },
-    { id: 2, name: 'Alberto' },
-    { id: 3, name: 'Edgar' },
-    { id: 4, name: 'Santiago' },
-  ];
+  clients: any[] = [];
+  loading: boolean = true;
+  error: any;
 
   vehicles = [
     { id: 1, name: 'Jetta' },
@@ -32,7 +30,7 @@ export class NewRepairComponent implements OnInit {
     { id: 3, name: 'Presupuesto' },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private clientsService: ClientsService) {
     //Tabs
     this.newRepairTabs = [
       {
@@ -60,7 +58,19 @@ export class NewRepairComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.clientsService.getClients().refetch();
+    this.clientsService.getClients().valueChanges.subscribe(
+      (result) => {
+        this.clients = result?.data?.getClients;
+        this.loading = result.loading;
+        this.error = result.error;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   submitNewRepair = () => {
     console.log(this.repairForm.value);

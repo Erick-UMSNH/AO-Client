@@ -1,21 +1,30 @@
 <div class="card text-center mb-5">
   <div class="card-header">
-    <ul class="nav nav-pills card-header-tabs justify-content-end">
-      <li class="nav-item" *ngFor="let tab of tabs">
-        <button
-          class="nav-link"
-          [ngClass]="{ active: tab.active }"
-          type="button"
-          role="tab"
-          [routerLink]="[tab.navigate]"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          [title]="tab.tooltip"
-        >
-          <i class="{{ tab.icon }}"></i>
-        </button>
-      </li>
-    </ul>
+    <div class="d-flex align-items-center">
+      <div
+        class="spinner-grow spinner-grow-sm me-auto"
+        role="status"
+        *ngIf="spinner"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <ul class="nav nav-pills card-header-tabs justify-content-end ms-auto">
+        <li class="nav-item" *ngFor="let tab of tabs">
+          <button
+            class="nav-link"
+            [ngClass]="{ active: tab.active }"
+            type="button"
+            role="tab"
+            [routerLink]="[tab.navigate]"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            [title]="tab.tooltip"
+          >
+            <i class="{{ tab.icon }}"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
   </div>
   <div class="card-body">
     <h5 class="card-title">{{ title }}</h5>

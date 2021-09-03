@@ -29,6 +29,10 @@ import { UsersComponent } from './settings/users/users.component';
 import { EditClientComponent } from './contacts/edit-client/edit-client.component';
 import { DetailClientComponent } from './contacts/detail-client/detail-client.component';
 import { GraphQLModule } from './graphql.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,13 @@ import { GraphQLModule } from './graphql.module';
     NgSelectModule,
     HttpClientModule,
     GraphQLModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      progressBar: true,
+    }),
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

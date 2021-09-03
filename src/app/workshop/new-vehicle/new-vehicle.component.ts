@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderTab } from 'src/app/models/HeaderTab';
+import { HeaderTab } from '../../models/HeaderTab';
+import { ToastrService } from 'ngx-toastr';
+import { VehiclesService } from '../../services/vehicles.service';
 
 @Component({
   selector: 'app-new-vehicle',
@@ -11,9 +13,17 @@ import { HeaderTab } from 'src/app/models/HeaderTab';
 export class NewVehicleComponent implements OnInit {
   newVehiclesTabs: HeaderTab[];
   vehicleForm: FormGroup;
-  years: number[];
+  years: string[];
+  submitLoading: boolean = false;
+  loading: boolean = true;
+  brands: any[] = [];
+  error: any;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private vehiclesService: VehiclesService,
+    private toastr: ToastrService
+  ) {
     //Tabs
     this.newVehiclesTabs = [
       {
@@ -46,15 +56,53 @@ export class NewVehicleComponent implements OnInit {
     let date = new Date();
     this.years = [];
     for (let i = date.getFullYear(); i > 1950; i--) {
-      this.years.push(i);
+      this.years.push(i.toString());
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.vehiclesService.getBrands().valueChanges.subscribe(
+      (result) => {
+        this.brands = result.data.getBrands;
+        this.loading = result.data.loading;
+        this.error = result.data.error;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
   submitNewVehicle = () => {
     console.log(this.vehicleForm.value);
 
-    this.router.navigate(['/vehicles']);
+    //Check if there is a process running already (submitLoading?)
+    if (this.submitLoading) return;
+    //Start submitLoading
+    this.submitLoading = true;
+    console.log(this.vehicleForm.value);
+    //Submit vehicle
+    this.vehiclesService
+      .createVehicle(
+        this.vehicleForm.controls.vBrand.value,
+        this.vehicleForm.controls.vModel.value,
+        this.vehicleForm.controls.vYear.value,
+        this.vehicleForm.controls.vColor.value,
+        this.vehicleForm.controls.vType.value,
+        this.vehicleForm.controls.vPlate.value
+      )
+      .subscribe(
+        (result) => {
+          //Send success toast
+          this.toastr.success('', 'Vehículo creado!');
+          //Redirect to vehicles list
+          this.router.navigate(['/vehicles']);
+        },
+        (error) => {
+          //Send error toast
+          this.toastr.error('', 'Ha ocurrido un error');
+          console.log('An error has ocurred:', error);
+        }
+      );
   };
 }

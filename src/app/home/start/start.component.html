@@ -1,1 +1,63 @@
-<h1 class="text-center">Bienvenido Alberto!!</h1>
+<app-menu-title
+  title="Automotriz Osnaya"
+  subtitle="¡Bienvenido!"
+></app-menu-title>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/statistics']">
+      <div class="card-header"></div>
+      <i class="bx bxs-bar-chart-alt-2 card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Estadísticas</h5>
+        <p class="card-text">Observa el desempeño de tu taller</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/workshop']">
+      <div class="card-header"></div>
+      <i class="bx bxs-wrench card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Taller</h5>
+        <p class="card-text">¡Es hora de trabajar! - ¿Qué deseas hacer?</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/finance']">
+      <div class="card-header"></div>
+      <i class="bx bxs-dollar-circle card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Finanzas</h5>
+        <p class="card-text">Administra tus finanzas principales</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/contacts']">
+      <div class="card-header"></div>
+      <i class="bx bxs-contact card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Contactos</h5>
+        <p class="card-text">
+          Ponte en contacto con tus clientes o proveedores
+        </p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/settings']">
+      <div class="card-header"></div>
+      <i class="bx bxs-cog card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Ajustes</h5>
+        <p class="card-text">Administración general</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+</div>

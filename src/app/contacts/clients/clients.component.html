@@ -2,24 +2,39 @@
   title="Clientes"
   subtitle="Listado de clientes"
   [tabs]="clientsTabs"
+  [spinner]="loading"
 ></app-location>
+<div class="bar-container">
+  <i class="bx bx-search-alt icon"></i>
+  <input
+    type="text"
+    class="form-control mb-3 search"
+    placeholder="Buscar cliente"
+    [(ngModel)]="filterClient"
+  />
+</div>
 
 <table class="table table-hover table-light table-bordered">
   <thead class="table-dark">
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Apellidos</th>
       <th scope="col">Teléfono</th>
       <th scope="col">Email</th>
       <th scope="col">Acciones</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let client of clients" (click)="clientDetail(client.id)">
-      <th scope="row">{{ client.id }}</th>
-      <td>{{ client.name }}</td>
-      <td>{{ client.lastName }}</td>
+    <tr
+      *ngFor="
+        let client of clients
+          | filter: filterClient
+          | paginate
+            : { itemsPerPage: 10, currentPage: p, totalItems: clients.length }
+      "
+      (click)="clientDetail(client.id)"
+    >
+      <td>{{ client.name }} {{ client.lastName }}</td>
+
       <td>{{ client.areaCode }}-{{ client.phone }}</td>
       <td>{{ client.email }}</td>
       <td>
@@ -31,7 +46,9 @@
         </button>
         <button
           class="btn btn-danger btn-sm"
-          (click)="deleteClient($event, client.id)"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          (click)="openConfirm($event, client.id)"
         >
           <i class="bx bxs-trash"></i>
         </button>
@@ -39,3 +56,49 @@
     </tr>
   </tbody>
 </table>
+<pagination-controls
+  (pageChange)="p = $event"
+  previousLabel="Anterior"
+  nextLabel="Siguiente"
+  [responsive]="true"
+  class="d-flex float-end controls"
+  *ngIf="!loading"
+></pagination-controls>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">¿Eliminar cliente?</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">La operación no podrá ser revertida</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteClient()"
+          data-bs-dismiss="modal"
+        >
+          Borrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

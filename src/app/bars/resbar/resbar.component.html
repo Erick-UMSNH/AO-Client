@@ -10,12 +10,12 @@
   </div>
   <ul class="nav-links">
     <li>
-      <a href="#">
-        <i class="bx bx-grid-alt"></i>
+      <a [routerLink]="['/home']">
+        <i class="bx bxs-grid-alt"></i>
         <span class="link_name">Inicio</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="#">Inicio</a></li>
+        <li><a class="link_name" [routerLink]="['/home']">Inicio</a></li>
       </ul>
     </li>
     <li [ngClass]="{ showMenu: estSubmenu }">
@@ -78,7 +78,7 @@
     <li [ngClass]="{ showMenu: confSubmenu }">
       <div class="icon-link">
         <a [routerLink]="['/settings']">
-          <i class="bx bx-cog"></i>
+          <i class="bx bxs-cog"></i>
           <span class="link_name">Ajustes</span>
         </a>
         <i class="bx bxs-chevron-down arrow" (click)="toggleConfSubmenu()"></i>

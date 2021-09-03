@@ -1,25 +1,29 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ClientsService } from 'src/app/services/clients.service';
-import { Client } from '../../models/Clients';
+import { ClientsService } from '../../services/clients.service';
 import { HeaderTab } from '../../models/HeaderTab';
-import { Apollo, gql } from 'apollo-angular';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.css'],
+  styleUrls: ['./clients.component.css', '../../css/tables.css'],
 })
 export class ClientsComponent implements OnInit {
   clientsTabs: HeaderTab[];
   clients: any[] = [];
+  clientName: string = '';
   loading: boolean = true;
   error: any;
+  showConfirm: boolean;
+  selectedClientId: string = '';
+  p: number = 1;
+  filterClient: string = '';
 
   constructor(
     private router: Router,
     private clientsService: ClientsService,
-    private apollo: Apollo
+    private toastr: ToastrService
   ) {
     this.clientsTabs = [
       {
@@ -35,18 +39,24 @@ export class ClientsComponent implements OnInit {
         tooltip: 'Nuevo',
       },
     ];
+    this.showConfirm = false;
   }
   ngOnInit(): void {
-    this.clientsService.getClients().subscribe((result) => {
-      this.clients = result?.data?.clients;
-      console.log('Inside value changes: ', this.clients);
+    this.getClients();
+  }
+
+  getClients = () => {
+    //Refetch the data (update values)
+    this.clientsService.getClients().refetch();
+    //Apply the results
+    this.clientsService.getClients().valueChanges.subscribe((result) => {
+      this.clients = result?.data?.getClients;
       this.loading = result.loading;
       this.error = result.error;
     });
-  }
+  };
 
   clientDetail = (id: string) => {
-    console.log('You clicked the person with the name: ', id);
     this.router.navigate([`/clients/detail/${id}`]);
   };
 
@@ -54,8 +64,29 @@ export class ClientsComponent implements OnInit {
     this.router.navigate([`/clients/edit/${id}`]);
   };
 
-  deleteClient = (e: any, id: string) => {
-    e.stopPropagation();
-    console.log('Deleting client: ', id);
+  deleteClient = () => {
+    //Start loading
+    this.loading = true;
+    //Delete client
+    this.clientsService.deleteClient(this.selectedClientId).subscribe(
+      (result) => {
+        //Stop loading
+        this.loading = false;
+        //Send toast
+        this.toastr.success('', 'Cliente eliminado!');
+        //Refresh clients list
+        this.getClients();
+      },
+      (error) => {
+        console.log('An error has ocurred:', error);
+      }
+    );
   };
+
+  openConfirm = (e: any, id: string) => {
+    e.stopPropagation();
+    this.selectedClientId = id;
+  };
+
+  searchClient = (event: any) => {};
 }

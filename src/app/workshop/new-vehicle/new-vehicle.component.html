@@ -2,6 +2,7 @@
   title="Nuevo vehículo"
   subtitle="Llena los campos para agregar un nuevo vehículo"
   [tabs]="newVehiclesTabs"
+  [spinner]="loading"
 ></app-location>
 
 <div class="container">
@@ -9,15 +10,11 @@
     <div class="row mb-3">
       <div class="mb-3 col-6">
         <label for="vName" class="form-label fw-bold">Marca*:</label>
-        <input
-          type="text"
-          name="vBrand"
-          id="vBrandId"
-          class="form-control"
-          aria-describedby="brand"
-          formControlName="vBrand"
-          autofocus
-        />
+        <ng-select formControlName="vBrand">
+          <ng-option *ngFor="let brand of brands" [value]="brand.name">{{
+            brand.name
+          }}</ng-option>
+        </ng-select>
         <div
           class="error"
           *ngIf="
@@ -83,14 +80,25 @@
     <div class="row mb-3">
       <div class="mb-3 col-6">
         <label for="vType" class="form-label fw-bold">Tipo:</label>
-        <input
+        <!-- <input
           type="text"
           name="vType"
           id="vTypeId"
           class="form-control"
           aria-describedby="Type"
           formControlName="vType"
-        />
+        /> -->
+        <select
+          name="vType"
+          id="vTypeId"
+          class="form-select"
+          formControlName="vType"
+          aria-label="vType selection"
+        >
+          <option value="Sedan">Sedan</option>
+          <option value="Hatchback">Hatchback</option>
+          <option value="Pickup">Pickup</option>
+        </select>
       </div>
       <div class="mb-3 col-6">
         <label for="vPlate" class="form-label fw-bold">Placa*:</label>

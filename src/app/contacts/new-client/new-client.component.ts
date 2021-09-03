@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderTab } from 'src/app/models/HeaderTab';
+import { HeaderTab } from '../../models/HeaderTab';
+import { ToastrService } from 'ngx-toastr';
+import { ClientsService } from '../../services/clients.service';
 
 @Component({
   selector: 'app-new-client',
   templateUrl: './new-client.component.html',
-  styleUrls: [
-    '../clients/clients.component.css',
-    './new-client.component.css',
-    '../../css/forms.css',
-  ],
+  styleUrls: ['./new-client.component.css', '../../css/forms.css'],
 })
 export class NewClientComponent implements OnInit {
   clientForm: FormGroup;
   newClientsTabs: HeaderTab[];
-  loading: boolean = false;
+  submitLoading: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private clientsService: ClientsService,
+    private toastr: ToastrService
+  ) {
     //New client form
     this.clientForm = new FormGroup({
       cName: new FormControl('', [Validators.required]),
@@ -54,14 +56,31 @@ export class NewClientComponent implements OnInit {
   ngOnInit(): void {}
 
   submitNewClient = () => {
-    //Check if there is a process running already (loading?)
-    if (this.loading) return;
-    //Start loading
-    this.loading = true;
+    //Check if there is a process running already (submitLoading?)
+    if (this.submitLoading) return;
+    //Start submitLoading
+    this.submitLoading = true;
     //Submit client
-    setTimeout(() => {
-      this.loading = false;
-      this.router.navigate(['clients']);
-    }, 3000);
+    this.clientsService
+      .createClient(
+        this.clientForm.controls.cName.value,
+        this.clientForm.controls.cLastName.value,
+        this.clientForm.controls.cAreaCode.value,
+        this.clientForm.controls.cPhone.value,
+        this.clientForm.controls.cEmail.value
+      )
+      .subscribe(
+        (result) => {
+          //Send success toast
+          this.toastr.success('', 'Cliente creado!');
+          //Navigate to clients list
+          this.router.navigate(['clients']);
+        },
+        (error) => {
+          //Send error toast
+          this.toastr.error('', 'Ha ocurrido un error');
+          console.log('An error has ocurred:', error);
+        }
+      );
   };
 }
