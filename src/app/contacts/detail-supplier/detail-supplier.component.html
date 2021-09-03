@@ -1,0 +1,16 @@
+<app-location
+  title="Proveedores"
+  subtitle="Detalle del provedor"
+  [tabs]="supplierDetailTabs"
+></app-location>
+
+<div class="card">
+  <div class="card-header">#{{ supplier.id }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ supplier.name }}</h5>
+    <p class="card-text">{{ supplier.email }}</p>
+  </div>
+  <div class="card-footer text-muted">
+    Teléfono: {{ supplier.areaCode }}-{{ supplier.phone }}
+  </div>
+</div>

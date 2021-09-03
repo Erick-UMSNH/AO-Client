@@ -33,6 +33,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { EditSupplierComponent } from './contacts/edit-supplier/edit-supplier.component';
+import { DetailSupplierComponent } from './contacts/detail-supplier/detail-supplier.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MenuSettingsComponent,
     EditClientComponent,
     DetailClientComponent,
+    EditSupplierComponent,
+    DetailSupplierComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderTab } from 'src/app/models/HeaderTab';
+import { HeaderTab } from '../../models/HeaderTab';
+import { ToastrService } from 'ngx-toastr';
+import { SuppliersService } from '../../services/suppliers.service';
 
 @Component({
   selector: 'app-new-supplier',
@@ -11,23 +13,27 @@ import { HeaderTab } from 'src/app/models/HeaderTab';
 export class NewSupplierComponent implements OnInit {
   supplierForm: FormGroup;
   newSupplierTabs: HeaderTab[];
+  submitLoading: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private suppliersService: SuppliersService,
+    private toastr: ToastrService
+  ) {
     //New Supplier Form
     this.supplierForm = new FormGroup({
-      cName: new FormControl('', [Validators.required]),
-      cLastName: new FormControl(''),
-      cAreaCode: new FormControl('', [
+      sName: new FormControl('', [Validators.required]),
+      sAreaCode: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.pattern(/^[0-9]*$/),
       ]),
-      cPhone: new FormControl('', [
+      sPhone: new FormControl('', [
         Validators.required,
         Validators.minLength(7),
         Validators.pattern(/^[0-9]*$/),
       ]),
-      cEmail: new FormControl(''),
+      sEmail: new FormControl(''),
     });
     // Header Tabs
     this.newSupplierTabs = [
@@ -39,7 +45,7 @@ export class NewSupplierComponent implements OnInit {
       },
       {
         active: true,
-        icon: 'bx bxs-user-plus',
+        icon: 'bx bxs-business',
         navigate: '/suppliers/new',
         tooltip: 'Nuevo',
       },
@@ -49,7 +55,30 @@ export class NewSupplierComponent implements OnInit {
   ngOnInit(): void {}
 
   submitNewSupplier = () => {
-    console.log(this.supplierForm.value);
-    this.router.navigate(['suppliers']);
+    //Check if there is a process running already (submitLoading?)
+    if (this.submitLoading) return;
+    //Start submitLoading
+    this.submitLoading = true;
+    //Submit supplier
+    this.suppliersService
+      .createSupplier(
+        this.supplierForm.controls.sName.value,
+        this.supplierForm.controls.sAreaCode.value,
+        this.supplierForm.controls.sPhone.value,
+        this.supplierForm.controls.sEmail.value
+      )
+      .subscribe(
+        (result) => {
+          //Send success toast
+          this.toastr.success('', 'Proovedor creado!');
+          //Navigate to suppliers list
+          this.router.navigate(['suppliers']);
+        },
+        (error) => {
+          //Send error toast
+          this.toastr.error('', 'Ha ocurrido un error');
+          console.log('An error has ocurred:', error);
+        }
+      );
   };
 }

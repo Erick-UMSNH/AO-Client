@@ -45,6 +45,20 @@ export class VehiclesService {
     return this.serviceQuery;
   };
 
+  getTypes = () => {
+    this.serviceQuery = this.apollo.watchQuery<any>({
+      query: gql`
+        query getTypes {
+          getTypes {
+            id
+            name
+          }
+        }
+      `,
+    });
+    return this.serviceQuery;
+  };
+
   getvehicle = (id: string) => {
     this.serviceQuery = this.apollo.watchQuery<any>({
       query: gql`

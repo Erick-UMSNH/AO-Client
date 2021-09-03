@@ -80,25 +80,11 @@
     <div class="row mb-3">
       <div class="mb-3 col-6">
         <label for="vType" class="form-label fw-bold">Tipo:</label>
-        <!-- <input
-          type="text"
-          name="vType"
-          id="vTypeId"
-          class="form-control"
-          aria-describedby="Type"
-          formControlName="vType"
-        /> -->
-        <select
-          name="vType"
-          id="vTypeId"
-          class="form-select"
-          formControlName="vType"
-          aria-label="vType selection"
-        >
-          <option value="Sedan">Sedan</option>
-          <option value="Hatchback">Hatchback</option>
-          <option value="Pickup">Pickup</option>
-        </select>
+        <ng-select formControlName="vType">
+          <ng-option *ngFor="let type of types" [value]="type.name">{{
+            type.name
+          }}</ng-option>
+        </ng-select>
       </div>
       <div class="mb-3 col-6">
         <label for="vPlate" class="form-label fw-bold">Placa*:</label>
@@ -109,7 +95,7 @@
           class="form-control"
           aria-describedby="Plate"
           formControlName="vPlate"
-          maxlength="7"
+          maxlength="9"
         />
         <div
           class="error"

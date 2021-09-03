@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { HeaderTab } from 'src/app/models/HeaderTab';
-import { ClientsService } from 'src/app/services/clients.service';
+import { HeaderTab } from '../../models/HeaderTab';
+import { ClientsService } from '../../services/clients.service';
 
 @Component({
   selector: 'app-edit-client',
@@ -25,7 +25,7 @@ export class EditClientComponent implements OnInit {
     private clientsService: ClientsService,
     private toastr: ToastrService
   ) {
-    //Edit client form (with values)
+    //Edit client form
     this.clientForm = new FormGroup({
       cName: new FormControl('', [Validators.required]),
       cLastName: new FormControl(''),
@@ -115,10 +115,5 @@ export class EditClientComponent implements OnInit {
 
     //Redirect to clients list
     this.router.navigate(['/clients']);
-
-    // setTimeout(() => {
-    //   this.loadingSubmit = false;
-    //   this.router.navigate(['/clients']);
-    // }, 3000);
   };
 }

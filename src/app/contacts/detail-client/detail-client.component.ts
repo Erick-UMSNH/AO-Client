@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HeaderTab } from 'src/app/models/HeaderTab';
-import { ClientsService } from 'src/app/services/clients.service';
+import { HeaderTab } from '../../models/HeaderTab';
+import { ClientsService } from '../../services/clients.service';
 
 @Component({
   selector: 'app-detail-client',
@@ -45,7 +45,7 @@ export class DetailClientComponent implements OnInit {
       {
         active: true,
         icon: 'bx bx-health',
-        navigate: `/clients/details/${this.clientId}`,
+        navigate: `/clients/detail/${this.clientId}`,
         tooltip: 'Detalle',
       },
     ];

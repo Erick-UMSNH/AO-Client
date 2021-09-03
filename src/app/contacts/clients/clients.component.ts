@@ -15,7 +15,7 @@ export class ClientsComponent implements OnInit {
   clientName: string = '';
   loading: boolean = true;
   error: any;
-  showConfirm: boolean;
+  showConfirm: boolean = false;
   selectedClientId: string = '';
   p: number = 1;
   filterClient: string = '';
@@ -39,7 +39,6 @@ export class ClientsComponent implements OnInit {
         tooltip: 'Nuevo',
       },
     ];
-    this.showConfirm = false;
   }
   ngOnInit(): void {
     this.getClients();
@@ -87,6 +86,4 @@ export class ClientsComponent implements OnInit {
     e.stopPropagation();
     this.selectedClientId = id;
   };
-
-  searchClient = (event: any) => {};
 }

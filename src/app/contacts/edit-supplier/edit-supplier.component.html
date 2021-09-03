@@ -1,13 +1,12 @@
 <app-location
-  title="Nuevo proveedor"
-  subtitle="LLena los campos para capturar un nuevo proveedor"
-  [tabs]="newSupplierTabs"
+  title="Editando proveedor"
+  subtitle="Edita los campos de tu proveedor"
+  [tabs]="editSupplierTabs"
 ></app-location>
-
 <div class="container">
-  <form [formGroup]="supplierForm" (ngSubmit)="submitNewSupplier()">
+  <form [formGroup]="supplierForm" (ngSubmit)="updateSupplier()">
     <div class="mb-3">
-      <label for="sName" class="form-label fw-bold">Proveedor*:</label>
+      <label for="sName" class="form-label fw-bold">Nombre*:</label>
       <input
         type="text"
         name="sName"
@@ -18,16 +17,15 @@
         autofocus
       />
       <div
-        class="error col-sm-3"
+        class="error"
         *ngIf="
           supplierForm.controls.sName.errors?.required &&
           supplierForm.controls.sName.touched
         "
       >
-        Se requiere un nombre de proveedor
+        Se requiere un nombre
       </div>
     </div>
-
     <div class="mb-3">
       <label for="sPhone" class="form-label fw-bold">Teléfono*:</label>
       <div class="input-group">
@@ -123,7 +121,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="sEmail" class="col-sm-2 col-form-label fw-bold">Email</label>
+      <label for="sEmail" class="form-label fw-bold">Email</label>
       <input
         type="email"
         name="sEmail"
@@ -139,7 +137,16 @@
         class="btn btn-primary"
         [disabled]="!supplierForm.valid"
       >
-        <div class="d-inline-flex">Guardar<i class="bx bxs-save ms-2"></i></div>
+        <div class="d-inline-flex">
+          <div
+            class="spinner-border spinner-border-sm loading align-items-center"
+            role="status"
+            *ngIf="loadingSubmit"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Guardar<i class="bx bxs-save ms-2"></i>
+        </div>
       </button>
     </div>
   </form>

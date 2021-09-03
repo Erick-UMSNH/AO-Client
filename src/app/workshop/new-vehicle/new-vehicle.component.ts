@@ -17,6 +17,7 @@ export class NewVehicleComponent implements OnInit {
   submitLoading: boolean = false;
   loading: boolean = true;
   brands: any[] = [];
+  types: any[] = [];
   error: any;
 
   constructor(
@@ -61,6 +62,7 @@ export class NewVehicleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Get the brands
     this.vehiclesService.getBrands().valueChanges.subscribe(
       (result) => {
         this.brands = result.data.getBrands;
@@ -71,16 +73,25 @@ export class NewVehicleComponent implements OnInit {
         console.log(error);
       }
     );
+
+    //Get the types
+    this.vehiclesService.getTypes().valueChanges.subscribe(
+      (result) => {
+        this.types = result.data.getTypes;
+        this.loading = result.data.loading;
+        this.error = result.data.error;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   submitNewVehicle = () => {
-    console.log(this.vehicleForm.value);
-
     //Check if there is a process running already (submitLoading?)
     if (this.submitLoading) return;
     //Start submitLoading
     this.submitLoading = true;
-    console.log(this.vehicleForm.value);
     //Submit vehicle
     this.vehiclesService
       .createVehicle(

@@ -27,9 +27,10 @@
     <div class="mb-3">
       <label for="rVehicle" class="form-label fw-bold">Vehículo*:</label>
       <ng-select formControlName="rVehicle">
-        <ng-option *ngFor="let vehicle of vehicles" [value]="vehicle.name">{{
-          vehicle.name
-        }}</ng-option>
+        <ng-option *ngFor="let vehicle of vehicles" [value]="vehicle.name"
+          >{{ vehicle.brand }} | {{ vehicle.model }} | {{ vehicle.year }} |
+          {{ vehicle.plate }}</ng-option
+        >
       </ng-select>
       <div
         class="error"

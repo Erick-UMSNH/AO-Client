@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderTab } from 'src/app/models/HeaderTab';
 import { ClientsService } from 'src/app/services/clients.service';
+import { VehiclesService } from 'src/app/services/vehicles.service';
 
 @Component({
   selector: 'app-new-repair',
@@ -14,15 +15,9 @@ export class NewRepairComponent implements OnInit {
   repairForm: FormGroup;
 
   clients: any[] = [];
+  vehicles: any[] = [];
   loading: boolean = true;
   error: any;
-
-  vehicles = [
-    { id: 1, name: 'Jetta' },
-    { id: 2, name: 'Mazda 3' },
-    { id: 3, name: 'Sentra' },
-    { id: 4, name: 'Tsuru' },
-  ];
 
   services = [
     { id: 1, name: 'Rectificación de discos' },
@@ -30,7 +25,11 @@ export class NewRepairComponent implements OnInit {
     { id: 3, name: 'Presupuesto' },
   ];
 
-  constructor(private router: Router, private clientsService: ClientsService) {
+  constructor(
+    private router: Router,
+    private clientsService: ClientsService,
+    private vehiclesService: VehiclesService
+  ) {
     //Tabs
     this.newRepairTabs = [
       {
@@ -59,10 +58,22 @@ export class NewRepairComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Get clients
     this.clientsService.getClients().refetch();
     this.clientsService.getClients().valueChanges.subscribe(
       (result) => {
         this.clients = result?.data?.getClients;
+        this.loading = result.loading;
+        this.error = result.error;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    //Get vehicles
+    this.vehiclesService.getVehicles().valueChanges.subscribe(
+      (result) => {
+        this.vehicles = result.data.getVehicles;
         this.loading = result.loading;
         this.error = result.error;
       },
