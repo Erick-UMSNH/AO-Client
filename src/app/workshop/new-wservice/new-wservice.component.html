@@ -7,48 +7,47 @@
 <div class="container">
   <form [formGroup]="wserviceForm" (ngSubmit)="submitNewWservice()">
     <div class="mb-3">
-      <label for="wsService" class="form-label fw-bold">Servicio*:</label>
+      <label for="wsName" class="form-label fw-bold">Servicio*:</label>
       <input
         type="text"
-        name="wsService"
-        id="wsServiceId"
+        name="wsName"
+        id="wsNameId"
         class="form-control"
-        aria-describedby="wsservice"
-        formControlName="wsService"
+        aria-describedby="wsname"
+        formControlName="wsName"
         autofocus
       />
       <div
         class="error"
         *ngIf="
-          wserviceForm.controls.wsService.errors?.required &&
-          wserviceForm.controls.wsService.touched
+          wserviceForm.controls.wsName.errors?.required &&
+          wserviceForm.controls.wsName.touched
         "
       >
         Introduce un servicio
       </div>
     </div>
-    <div class="row mb-3">
-      <div class="mb-3 col-6">
-        <label for="wsCost" class="form-label fw-bold">Costo:</label>
-        <input
-          type="number"
-          class="form-control"
-          placeholder="$0.00"
-          step="0.1"
-          min="0"
-          formControlName="wsCost"
-        />
-        <div
-          class="error"
-          *ngIf="
-            wserviceForm.controls.wsCost.errors?.required &&
-            wserviceForm.controls.wsCost.touched
-          "
-        >
-          Introduce un costo
-        </div>
+    <div class="mb-3">
+      <label for="wsCost" class="form-label fw-bold">Costo:</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="$0.00"
+        step="0.1"
+        min="0"
+        formControlName="wsCost"
+      />
+      <div
+        class="error"
+        *ngIf="
+          wserviceForm.controls.wsCost.errors?.required &&
+          wserviceForm.controls.wsCost.touched
+        "
+      >
+        Introduce un costo
       </div>
-      <div class="mb-3 col-6">
+
+      <!-- <div class="mb-3 col-6">
         <label for="wsWork" class="form-label fw-bold">Mano de Obra:</label>
         <input
           type="number"
@@ -58,7 +57,7 @@
           min="0"
           formControlName="wsWork"
         />
-      </div>
+      </div> -->
     </div>
     <div class="d-grid gap-2 col-6 mx-auto">
       <button

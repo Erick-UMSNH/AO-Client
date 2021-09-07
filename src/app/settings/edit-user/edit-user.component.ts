@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HeaderTab } from '../../models/HeaderTab';
 import { UsersService } from '../../services/users.service';
+import { SERVER } from '../../config';
 
 @Component({
   selector: 'app-edit-user',
@@ -24,8 +25,9 @@ export class EditUserComponent implements OnInit {
   loading: boolean = true;
   error: any;
   showPassword: boolean;
-  defaultPhoto: string;
   photoPath: string;
+  selectedPhoto: any;
+  server: string = SERVER.url + SERVER.port + '/';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -65,8 +67,6 @@ export class EditUserComponent implements OnInit {
 
     //For showing the password
     this.showPassword = false;
-    //Default photo
-    this.defaultPhoto = '../../../assets/profile.png';
     //Photo path
     this.photoPath = '';
   }
@@ -133,13 +133,13 @@ export class EditUserComponent implements OnInit {
    */
   photoPreview = (event: any) => {
     //Read the input file from the page
-    const file = event.target.files[0];
-    console.log('file: ', file);
+    this.selectedPhoto = event.target.files[0];
 
     //No selected file?
-    if (file === undefined) {
+    if (this.selectedPhoto === undefined) {
       //Preview the default photo
-      this.photoPath = this.defaultPhoto;
+      console.log('User photo;:', this.user.photo);
+      this.photoPath = this.server + this.user.photo;
       return;
     }
 
@@ -150,7 +150,7 @@ export class EditUserComponent implements OnInit {
       this.photoPath = reader.result as string;
     };
     //Read the file as data URL
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.selectedPhoto);
   };
 
   /**
@@ -160,7 +160,22 @@ export class EditUserComponent implements OnInit {
     this.showPassword = !this.showPassword;
   };
 
-  updateUser = () => {
+  updateUser = async () => {
+    //New photo?
+    if (this.selectedPhoto !== undefined) {
+      //Submit the new photo and delete the current one
+      const uploadedFile = await this.usersService.uploadPhoto(
+        this.selectedPhoto
+      );
+      //Errors?
+      if (!uploadedFile.hasOwnProperty('error')) {
+        //Update the value of the form
+        this.userForm.controls.uPhoto.setValue(uploadedFile);
+      } else {
+        console.log('Photo upload failed!');
+      }
+    }
+
     //Update the db
     //Loading?
     if (this.loadingSubmit) return;
@@ -186,6 +201,8 @@ export class EditUserComponent implements OnInit {
         (result) => {
           //Send toast
           this.toastr.success('', 'Actualizado correctamente!');
+          //Redirect to user list
+          this.router.navigate(['/users']);
         },
         (error) => {
           //Send error toast
@@ -194,8 +211,5 @@ export class EditUserComponent implements OnInit {
           console.log(error);
         }
       );
-
-    //Redirect to user list
-    this.router.navigate(['/users']);
   };
 }

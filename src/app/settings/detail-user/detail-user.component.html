@@ -11,7 +11,7 @@
     <p class="card-text">{{ user.email }}</p>
     <p>{{ user.role }}</p>
     <img
-      [src]="'http://localhost:5656/' + user.photo"
+      [src]="server + user.photo"
       [alt]="user.name"
       width="200px"
       height="200px"

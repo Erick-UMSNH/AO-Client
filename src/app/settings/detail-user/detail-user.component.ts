@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeaderTab } from '../../models/HeaderTab';
 import { UsersService } from '../../services/users.service';
+import { SERVER } from '../../config';
 
 @Component({
   selector: 'app-detail-user',
@@ -14,6 +15,7 @@ export class DetailUserComponent implements OnInit {
   user: any = {};
   loading: boolean = true;
   error: any;
+  server: string = SERVER.url + SERVER.port + '/';
 
   constructor(
     private activatedRoute: ActivatedRoute,

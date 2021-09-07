@@ -30,9 +30,9 @@ export class NewWserviceComponent implements OnInit {
 
     //Vehicle form
     this.wserviceForm = new FormGroup({
-      wsService: new FormControl('', [Validators.required]),
+      wsName: new FormControl('', [Validators.required]),
       wsCost: new FormControl('', [Validators.required]),
-      wsWork: new FormControl(''),
+      // wsWork: new FormControl(''),
     });
   }
 

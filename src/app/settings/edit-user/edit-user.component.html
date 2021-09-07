@@ -10,9 +10,10 @@
     >
       <div class="img-container img-fluid img-thumbnail mb-2">
         <img
-          [src]="photoPath === '' ? defaultPhoto : photoPath"
+          [src]="photoPath === '' ? server + user.photo : photoPath"
           alt="profile"
           class="img-fluid"
+          *ngIf="user.photo"
         />
       </div>
 
@@ -31,12 +32,6 @@
       >
         <i class="bx bxs-camera upload"></i>
       </label>
-      <!-- <span
-        id="file-chosen"
-        class="badge bg-light text-dark"
-        *ngIf="selectedPhoto.name !== ''"
-        >{{ selectedPhoto.name }}</span
-      > -->
     </div>
     <div class="mb-3">
       <label for="cName" class="form-label fw-bold">Nombre*:</label>

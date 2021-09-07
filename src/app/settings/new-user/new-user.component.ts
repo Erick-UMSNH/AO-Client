@@ -94,6 +94,8 @@ export class NewUserComponent implements OnInit {
       //Errors?
       if (!uploadedFile.hasOwnProperty('error')) {
         this.userForm.controls.uPhoto.setValue(uploadedFile);
+      } else {
+        console.log('Photo upload failed!');
       }
     }
 
@@ -120,6 +122,7 @@ export class NewUserComponent implements OnInit {
         (error) => {
           //Send error toast
           this.toastr.error('', 'Ha ocurrido un error');
+          //Send error
           console.log(error);
         }
       );
