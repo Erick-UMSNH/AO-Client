@@ -1,13 +1,15 @@
+// import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderTab } from 'src/app/models/HeaderTab';
+import { UsersService } from '../../services/users.service';
+import { HeaderTab } from '../../models/HeaderTab';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-user',
@@ -20,8 +22,19 @@ export class NewUserComponent implements OnInit {
   showPassword: boolean;
   defaultPhoto: string;
   photoPath: string;
+  selectedPhoto: any;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private usersService: UsersService,
+    private toastr: ToastrService
+  ) {
+    //For showing the password
+    this.showPassword = false;
+    //Default photo
+    this.defaultPhoto = '../../../assets/profile.png';
+    //Photo path
+    this.photoPath = '';
     //New user form
     this.userForm = new FormGroup(
       {
@@ -47,7 +60,7 @@ export class NewUserComponent implements OnInit {
           Validators.minLength(8),
         ]),
         uRole: new FormControl('Administrador'),
-        uPhoto: new FormControl(''),
+        uPhoto: new FormControl('users/default-user.png'),
       },
       { validators: this.passwordMatchValidator }
     );
@@ -67,21 +80,49 @@ export class NewUserComponent implements OnInit {
         tooltip: 'Nuevo',
       },
     ];
-
-    //For showing the password
-    this.showPassword = false;
-    //Default photo
-    this.defaultPhoto = '../../../assets/profile.png';
-    //Photo path
-    this.photoPath = '';
-    //For the photo
   }
 
   ngOnInit(): void {}
 
-  submitNewUser = () => {
-    console.log(this.userForm.value);
-    this.router.navigate(['users']);
+  submitNewUser = async () => {
+    //No selected file?
+    if (this.selectedPhoto !== undefined) {
+      //Submit the file
+      const uploadedFile = await this.usersService.uploadPhoto(
+        this.selectedPhoto
+      );
+      //Errors?
+      if (!uploadedFile.hasOwnProperty('error')) {
+        this.userForm.controls.uPhoto.setValue(uploadedFile);
+      }
+    }
+
+    //Submit user
+    this.usersService
+      .createUser(
+        this.userForm.controls.uName.value,
+        this.userForm.controls.uLastName.value,
+        this.userForm.controls.uAreaCode.value,
+        this.userForm.controls.uPhone.value,
+        this.userForm.controls.uEmail.value,
+        this.userForm.controls.uRole.value,
+        this.userForm.controls.uPassword.value,
+        this.userForm.controls.uRPassword.value,
+        this.userForm.controls.uPhoto.value
+      )
+      .subscribe(
+        (result) => {
+          //Send success toast
+          this.toastr.success('', 'Cliente creado!');
+          //Navigate to the users list
+          this.router.navigate(['users']);
+        },
+        (error) => {
+          //Send error toast
+          this.toastr.error('', 'Ha ocurrido un error');
+          console.log(error);
+        }
+      );
   };
 
   handleShowPassword = () => {
@@ -104,15 +145,17 @@ export class NewUserComponent implements OnInit {
    * @param event Select image from input
    * @returns void
    */
-  photoPreview = (event: any) => {
+  photoPreview = async (event: any) => {
     //Read the input file from the page
-    const file = event.target.files[0];
-    console.log('file: ', file);
-
+    this.selectedPhoto = event.target.files[0];
+    //Submit the file
+    // const result = await this.usersService.uploadPhoto(this.selectedPhoto);
+    // console.log(result);
     //No selected file?
-    if (file === undefined) {
+    if (this.selectedPhoto === undefined) {
       //Preview the default photo
       this.photoPath = this.defaultPhoto;
+      this.userForm.controls.uPhoto.setValue('users/default-user.png');
       return;
     }
 
@@ -123,6 +166,6 @@ export class NewUserComponent implements OnInit {
       this.photoPath = reader.result as string;
     };
     //Read the file as data URL
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(this.selectedPhoto);
   };
 }

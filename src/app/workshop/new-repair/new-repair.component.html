@@ -4,9 +4,18 @@
   [tabs]="newRepairTabs"
   [spinner]="loading"
 ></app-location>
-
 <div class="container">
   <form [formGroup]="repairForm" (ngSubmit)="submitNewRepair()">
+    <div class="mb-3">
+      <label for="rDate" class="form-label fw-bold">Fecha de Ingreso:</label>
+      <input
+        type="datetime-local"
+        id="rDateId"
+        name="rDate"
+        formControlName="rDate"
+        class="form-control"
+      />
+    </div>
     <div class="mb-3">
       <label for="rClient" class="form-label fw-bold">Cliente*:</label>
       <ng-select formControlName="rClient">

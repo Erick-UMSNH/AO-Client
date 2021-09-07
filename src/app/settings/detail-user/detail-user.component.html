@@ -1,0 +1,23 @@
+<app-location
+  title="Usuarios"
+  subtitle="Detalle del usuario"
+  [tabs]="userDetailTabs"
+></app-location>
+
+<div class="card">
+  <div class="card-header">#{{ user.id }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ user.name }} {{ user.lastName }}</h5>
+    <p class="card-text">{{ user.email }}</p>
+    <p>{{ user.role }}</p>
+    <img
+      [src]="'http://localhost:5656/' + user.photo"
+      [alt]="user.name"
+      width="200px"
+      height="200px"
+      *ngIf="user.photo"
+    />
+    <p>{{ user.photo }}</p>
+  </div>
+  <div class="card-footer text-muted">{{ user.areaCode }}-{{ user.phone }}</div>
+</div>

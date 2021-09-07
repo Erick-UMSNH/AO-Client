@@ -35,6 +35,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EditSupplierComponent } from './contacts/edit-supplier/edit-supplier.component';
 import { DetailSupplierComponent } from './contacts/detail-supplier/detail-supplier.component';
+import { EditVehicleComponent } from './workshop/edit-vehicle/edit-vehicle.component';
+import { DetailVehicleComponent } from './workshop/detail-vehicle/detail-vehicle.component';
+import { EditUserComponent } from './settings/edit-user/edit-user.component';
+import { DetailUserComponent } from './settings/detail-user/detail-user.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +68,10 @@ import { DetailSupplierComponent } from './contacts/detail-supplier/detail-suppl
     DetailClientComponent,
     EditSupplierComponent,
     DetailSupplierComponent,
+    EditVehicleComponent,
+    DetailVehicleComponent,
+    EditUserComponent,
+    DetailUserComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+.password {
+  position: relative;
+}
+.password .icon {
+  position: absolute;
+  margin: 5px 5px 0px 0px;
+  right: 0;
+  cursor: pointer;
+}
+
+.img-container {
+  border: 4px solid gray;
+  max-width: 250px;
+}

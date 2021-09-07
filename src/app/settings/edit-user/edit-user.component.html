@@ -1,0 +1,286 @@
+<app-location
+  title="Editando usuario"
+  subtitle="Edita los campos de tu usuario"
+  [tabs]="editUserTabs"
+></app-location>
+<div class="container">
+  <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+    <div
+      class="mb-3 d-flex flex-column justify-content-center align-items-center"
+    >
+      <div class="img-container img-fluid img-thumbnail mb-2">
+        <img
+          [src]="photoPath === '' ? defaultPhoto : photoPath"
+          alt="profile"
+          class="img-fluid"
+        />
+      </div>
+
+      <input
+        type="file"
+        accept="image/png, image/jpeg"
+        name="uPhoto"
+        id="photo"
+        hidden
+        (change)="photoPreview($event)"
+      />
+      <label
+        class="btn btn-secondary d-block mx-auto mb-1"
+        type="button"
+        for="photo"
+      >
+        <i class="bx bxs-camera upload"></i>
+      </label>
+      <!-- <span
+        id="file-chosen"
+        class="badge bg-light text-dark"
+        *ngIf="selectedPhoto.name !== ''"
+        >{{ selectedPhoto.name }}</span
+      > -->
+    </div>
+    <div class="mb-3">
+      <label for="cName" class="form-label fw-bold">Nombre*:</label>
+      <input
+        type="text"
+        name="uName"
+        id="uNameId"
+        class="form-control"
+        aria-describedby="name"
+        formControlName="uName"
+      />
+      <div
+        class="error"
+        *ngIf="
+          userForm.controls.uName.errors?.required &&
+          userForm.controls.uName.touched
+        "
+      >
+        Se requiere un nombre
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="cLastName" class="form-label fw-bold">Apellidos:</label>
+      <input
+        type="text"
+        name="uLastName"
+        id="uLastNameId"
+        class="form-control"
+        aria-describedby="lastName"
+        formControlName="uLastName"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="uPhone" class="form-label fw-bold">Teléfono*:</label>
+      <div class="input-group">
+        <div class="row g-0">
+          <div class="col-4">
+            <input
+              type="text"
+              name="uAreaCode"
+              id="uAreaCodeId"
+              class="form-control"
+              aria-describedby="areaCode"
+              maxlength="3"
+              formControlName="uAreaCode"
+            />
+          </div>
+          <div class="col-2">
+            <span class="input-group-text justify-content-center fw-bold"
+              >-</span
+            >
+          </div>
+          <div class="col-6">
+            <input
+              type="text"
+              name="uPhone"
+              id="uPhoneId"
+              class="form-control"
+              aria-describedby="phone"
+              maxlength="7"
+              formControlName="uPhone"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="error-list">
+        <div
+          class="error"
+          *ngIf="
+            userForm.controls.uAreaCode.errors?.required &&
+            userForm.controls.uAreaCode.touched
+          "
+        >
+          Se requiere una lada
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            userForm.controls.uAreaCode.errors?.minlength &&
+            userForm.controls.uAreaCode.touched
+          "
+        >
+          La lada debe ser de
+          {{ userForm.controls.uAreaCode.errors?.minlength.requiredLength }}
+          dígitos
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            userForm.controls.uAreaCode.errors &&
+            userForm.controls.uAreaCode.touched
+          "
+        >
+          Escribe dígitos solamente
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            userForm.controls.uPhone.errors?.required &&
+            userForm.controls.uPhone.touched
+          "
+        >
+          Se requiere un teléfono
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            userForm.controls.uPhone.errors?.minlength &&
+            userForm.controls.uPhone.touched
+          "
+        >
+          El número de teléfono debe ser de
+          {{ userForm.controls.uPhone.errors?.minlength.requiredLength }}
+          dígitos
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            userForm.controls.uPhone.errors && userForm.controls.uPhone.touched
+          "
+        >
+          Escribe dígitos solamente
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="uEmail" class="form-label fw-bold">Email:</label>
+      <input
+        type="email"
+        name="uEmail"
+        id="uEmailId"
+        class="form-control"
+        aria-describedby="Email"
+        formControlName="uEmail"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="uRole" class="form-label fw-bold me-3">Rol*:</label>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="Administrador"
+          id="admin-role-id"
+          formControlName="uRole"
+        />
+        <label class="form-check-label" for="admin-role"> Administrador </label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          value="Usuario"
+          id="user-role-id"
+          formControlName="uRole"
+        />
+        <label class="form-check-label" for="user-role"> Usuario </label>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-6">
+        <label for="uPassword" class="form-label fw-bold">Contraseña*:</label>
+        <div class="password">
+          <i
+            [class]="showPassword ? 'bx bxs-show icon' : 'bx bxs-hide icon'"
+            (click)="handleShowPassword()"
+          ></i>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            name="uPassword"
+            id="uPasswordId"
+            class="form-control"
+            aria-describedby="password"
+            formControlName="uPassword"
+          />
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="uRPassword" class="form-label fw-bold"
+          >Repite contraseña*:</label
+        >
+        <div class="password">
+          <i
+            [class]="showPassword ? 'bx bxs-show icon' : 'bx bxs-hide icon'"
+            (click)="handleShowPassword()"
+          ></i>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            name="uRPassword"
+            id="uRPasswordId"
+            class="form-control"
+            aria-describedby="rpassword"
+            formControlName="uRPassword"
+          />
+        </div>
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          userForm.controls.uPassword.errors?.required &&
+          userForm.controls.uPassword.touched
+        "
+      >
+        Se requiere una contraseña
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          userForm.controls.uRPassword.errors?.required &&
+          userForm.controls.uRPassword.touched
+        "
+      >
+        Por favor repite la contraseña
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          userForm.controls.uPassword.errors?.minlength &&
+          userForm.controls.uPassword.touched
+        "
+      >
+        La contraseña debe de ser de
+        {{ userForm.controls.uPassword.errors?.minlength.requiredLength }}
+        caracteres
+      </div>
+      <div
+        class="error"
+        *ngIf="userForm.errors?.mustMatch && userForm.controls.uRPassword.dirty"
+      >
+        Las contraseñas no coinciden
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!userForm.valid"
+      >
+        <div class="d-inline-flex">Guardar<i class="bx bxs-save ms-2"></i></div>
+      </button>
+    </div>
+  </form>
+</div>

@@ -59,7 +59,7 @@ export class VehiclesService {
     return this.serviceQuery;
   };
 
-  getvehicle = (id: string) => {
+  getVehicle = (id: string) => {
     this.serviceQuery = this.apollo.watchQuery<any>({
       query: gql`
         query getVehicle($id: ID!) {
@@ -160,7 +160,8 @@ export class VehiclesService {
   ) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
-        mutation updatevehicle(
+        mutation updateVehicle(
+          $updateVehicleId: ID!
           $updateVehicleBrand: String!
           $updateVehicleModel: String!
           $updateVehicleYear: String!
@@ -169,12 +170,13 @@ export class VehiclesService {
           $updateVehiclePlate: String!
         ) {
           updateVehicle(
-            brand: $createVehicleBrand
-            model: $createVehicleModel
-            year: $createVehicleYear
-            color: $createVehicleColor
-            type: $createVehicleType
-            plate: $createVehiclePlate
+            id: $updateVehicleId
+            brand: $updateVehicleBrand
+            model: $updateVehicleModel
+            year: $updateVehicleYear
+            color: $updateVehicleColor
+            type: $updateVehicleType
+            plate: $updateVehiclePlate
           ) {
             id
             brand

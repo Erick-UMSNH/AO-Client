@@ -10,9 +10,13 @@ import { NewClientComponent } from './contacts/new-client/new-client.component';
 import { NewSupplierComponent } from './contacts/new-supplier/new-supplier.component';
 import { SuppliersComponent } from './contacts/suppliers/suppliers.component';
 import { StartComponent } from './home/start/start.component';
+import { DetailUserComponent } from './settings/detail-user/detail-user.component';
+import { EditUserComponent } from './settings/edit-user/edit-user.component';
 import { MenuSettingsComponent } from './settings/menu-settings/menu-settings.component';
 import { NewUserComponent } from './settings/new-user/new-user.component';
 import { UsersComponent } from './settings/users/users.component';
+import { DetailVehicleComponent } from './workshop/detail-vehicle/detail-vehicle.component';
+import { EditVehicleComponent } from './workshop/edit-vehicle/edit-vehicle.component';
 import { MenuWorkshopComponent } from './workshop/menu-workshop/menu-workshop.component';
 import { NewRepairComponent } from './workshop/new-repair/new-repair.component';
 import { NewVehicleComponent } from './workshop/new-vehicle/new-vehicle.component';
@@ -37,6 +41,8 @@ const routes: Routes = [
   /*Vehicles */
   { path: 'vehicles', component: VehiclesComponent },
   { path: 'vehicles/new', component: NewVehicleComponent },
+  { path: 'vehicles/edit/:id', component: EditVehicleComponent },
+  { path: 'vehicles/detail/:id', component: DetailVehicleComponent },
   /* Repairs */
   { path: 'repairs', component: RepairsComponent },
   { path: 'repairs/new', component: NewRepairComponent },
@@ -45,8 +51,11 @@ const routes: Routes = [
   { path: 'workshop', component: MenuWorkshopComponent },
   { path: 'contacts', component: MenuContactsComponent },
   { path: 'settings', component: MenuSettingsComponent },
+  /* Users */
   { path: 'users', component: UsersComponent },
   { path: 'users/new', component: NewUserComponent },
+  { path: 'users/edit/:id', component: EditUserComponent },
+  { path: 'users/detail/:id', component: DetailUserComponent },
   { path: '**', redirectTo: 'clients' },
 ];
 

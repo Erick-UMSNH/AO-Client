@@ -77,6 +77,8 @@ export class ClientsComponent implements OnInit {
         this.getClients();
       },
       (error) => {
+        //Send toast
+        this.toastr.error('', 'Un error ha ocurrido!');
         console.log('An error has ocurred:', error);
       }
     );

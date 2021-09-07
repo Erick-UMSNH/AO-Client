@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HeaderTab } from 'src/app/models/HeaderTab';
-import { ClientsService } from 'src/app/services/clients.service';
-import { VehiclesService } from 'src/app/services/vehicles.service';
+import { HeaderTab } from '../../models/HeaderTab';
+import { ClientsService } from '../../services/clients.service';
+import { VehiclesService } from '../../services/vehicles.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-new-repair',
@@ -18,7 +19,7 @@ export class NewRepairComponent implements OnInit {
   vehicles: any[] = [];
   loading: boolean = true;
   error: any;
-
+  date: Date = new Date();
   services = [
     { id: 1, name: 'Rectificación de discos' },
     { id: 2, name: 'Mano de Obra' },
@@ -48,7 +49,9 @@ export class NewRepairComponent implements OnInit {
 
     //Repair form
     this.repairForm = new FormGroup({
-      rDate: new FormControl(''),
+      rDate: new FormControl(
+        formatDate(this.date, 'yyyy-MM-ddTHH:mm:ss', 'en')
+      ),
       rClient: new FormControl('', [Validators.required]),
       rVehicle: new FormControl('', [Validators.required]),
       rConcept: new FormControl('', [Validators.required]),

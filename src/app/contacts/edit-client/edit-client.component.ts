@@ -106,9 +106,12 @@ export class EditClientComponent implements OnInit {
       )
       .subscribe(
         (result) => {
+          //Send toast
           this.toastr.success('', 'Actualizado correctamente!');
         },
         (error) => {
+          //Send error toast
+          this.toastr.error('', 'Ha ocurrido un error!');
           console.log(error);
         }
       );
