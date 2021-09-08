@@ -39,7 +39,7 @@ export class DetailSupplierComponent implements OnInit {
         active: false,
         icon: 'bx bx-food-menu',
         navigate: '/suppliers',
-        tooltip: 'supplieres',
+        tooltip: 'Proveedores',
       },
       {
         active: true,

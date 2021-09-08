@@ -1,0 +1,15 @@
+<app-location
+  title="Servicios"
+  subtitle="Detalle del servicio"
+  [tabs]="wserviceDetailTabs"
+></app-location>
+
+<div class="card">
+  <div class="card-header">#{{ wservice.id }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ wservice.name }}</h5>
+  </div>
+  <div class="card-footer text-muted">
+    Costo: {{ wservice.cost | currency: "MXN":"symbol-narrow" }}
+  </div>
+</div>

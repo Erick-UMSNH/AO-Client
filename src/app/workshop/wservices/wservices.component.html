@@ -2,5 +2,105 @@
   title="Servicios"
   subtitle="Listado de servicios"
   [tabs]="wservicesTabs"
+  [spinner]="loading"
 ></app-location>
-<h1>Servicios</h1>
+
+<div class="bar-container">
+  <i class="bx bx-search-alt icon"></i>
+  <input
+    type="text"
+    class="form-control mb-3 search"
+    placeholder="Buscar servicio"
+    [(ngModel)]="filterWservice"
+  />
+</div>
+
+<table class="table table-hover table-light table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Servicio</th>
+      <th scope="col">Costo</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let wservice of wservices
+          | filter: filterWservice
+          | paginate
+            : { itemsPerPage: 10, currentPage: p, totalItems: wservices.length }
+      "
+      (click)="wserviceDetail(wservice.id)"
+    >
+      <td>{{ wservice.name }}</td>
+
+      <td>{{ wservice.cost | currency: "MXN":"symbol-narrow" }}</td>
+
+      <td>
+        <button
+          class="btn btn-secondary btn-sm me-1"
+          (click)="editWservice(wservice.id)"
+        >
+          <i class="bx bxs-edit-alt"></i>
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          (click)="openConfirm($event, wservice.id)"
+        >
+          <i class="bx bxs-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls
+  (pageChange)="p = $event"
+  previousLabel="Anterior"
+  nextLabel="Siguiente"
+  [responsive]="true"
+  class="d-flex float-end controls"
+  *ngIf="!loading"
+></pagination-controls>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          ¿Eliminar Servicio?
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">La operación no podrá ser revertida</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteWservice()"
+          data-bs-dismiss="modal"
+        >
+          Borrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,6 +39,8 @@ import { EditVehicleComponent } from './workshop/edit-vehicle/edit-vehicle.compo
 import { DetailVehicleComponent } from './workshop/detail-vehicle/detail-vehicle.component';
 import { EditUserComponent } from './settings/edit-user/edit-user.component';
 import { DetailUserComponent } from './settings/detail-user/detail-user.component';
+import { EditWserviceComponent } from './workshop/edit-wservice/edit-wservice.component';
+import { DetailWserviceComponent } from './workshop/detail-wservice/detail-wservice.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { DetailUserComponent } from './settings/detail-user/detail-user.componen
     DetailVehicleComponent,
     EditUserComponent,
     DetailUserComponent,
+    EditWserviceComponent,
+    DetailWserviceComponent,
   ],
   imports: [
     BrowserModule,

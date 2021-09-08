@@ -103,14 +103,17 @@ export class EditSupplierComponent implements OnInit {
       )
       .subscribe(
         (result) => {
+          //Send success toast
           this.toastr.success('', 'Actualizado correctamente!');
+          //Redirect to suppliers list
+          this.router.navigate(['/suppliers']);
         },
         (error) => {
+          //Send error toast
+          this.toastr.error('', 'Ha ocurrido un error!');
+          //Send console error
           console.log(error);
         }
       );
-
-    //Redirect to suppliers list
-    this.router.navigate(['/suppliers']);
   };
 }

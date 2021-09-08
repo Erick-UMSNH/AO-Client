@@ -1,0 +1,60 @@
+<app-location
+  title="Editando servicio"
+  subtitle="Edita los campos de tu servicio"
+  [tabs]="editWserviceTabs"
+></app-location>
+
+<div class="container">
+  <form [formGroup]="wserviceForm" (ngSubmit)="updateWservice()">
+    <div class="mb-3">
+      <label for="wsName" class="form-label fw-bold">Servicio*:</label>
+      <input
+        type="text"
+        name="wsName"
+        id="wsNameId"
+        class="form-control"
+        aria-describedby="wsname"
+        formControlName="wsName"
+        autofocus
+      />
+      <div
+        class="error"
+        *ngIf="
+          wserviceForm.controls.wsName.errors?.required &&
+          wserviceForm.controls.wsName.touched
+        "
+      >
+        Introduce un servicio
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="wsCost" class="form-label fw-bold">Costo:</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="$0.00"
+        step="0.1"
+        min="0"
+        formControlName="wsCost"
+      />
+      <div
+        class="error"
+        *ngIf="
+          wserviceForm.controls.wsCost.errors?.required &&
+          wserviceForm.controls.wsCost.touched
+        "
+      >
+        Introduce un costo
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!wserviceForm.valid"
+      >
+        <div class="d-inline-flex">Guardar<i class="bx bxs-save ms-2"></i></div>
+      </button>
+    </div>
+  </form>
+</div>

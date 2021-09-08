@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HeaderTab } from 'src/app/models/HeaderTab';
+import { WservicesService } from 'src/app/services/wservices.service';
 
 @Component({
   selector: 'app-new-wservice',
@@ -10,8 +13,15 @@ import { HeaderTab } from 'src/app/models/HeaderTab';
 export class NewWserviceComponent implements OnInit {
   newWserviceTabs: HeaderTab[];
   wserviceForm: FormGroup;
+  submitLoading: boolean = false;
+  loading: boolean = true;
+  error: any;
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private wservicesService: WservicesService,
+    private toastr: ToastrService
+  ) {
     //Tabs
     this.newWserviceTabs = [
       {
@@ -28,7 +38,7 @@ export class NewWserviceComponent implements OnInit {
       },
     ];
 
-    //Vehicle form
+    //wservice form
     this.wserviceForm = new FormGroup({
       wsName: new FormControl('', [Validators.required]),
       wsCost: new FormControl('', [Validators.required]),
@@ -39,6 +49,28 @@ export class NewWserviceComponent implements OnInit {
   ngOnInit(): void {}
 
   submitNewWservice = () => {
-    console.log(this.wserviceForm.value);
+    //Check if there is a process running already (submitLoading?)
+    if (this.submitLoading) return;
+    //Start submitLoading
+    this.submitLoading = true;
+    //Submit wservice
+    this.wservicesService
+      .createWservice(
+        this.wserviceForm.controls.wsName.value,
+        this.wserviceForm.controls.wsCost.value
+      )
+      .subscribe(
+        (result) => {
+          //Send success toast
+          this.toastr.success('', 'Servicio creado!');
+          //Redirect to wservices list
+          this.router.navigate(['/wservices']);
+        },
+        (error) => {
+          //Send error toast
+          this.toastr.error('', 'Ha ocurrido un error');
+          console.log('An error has ocurred:', error);
+        }
+      );
   };
 }
