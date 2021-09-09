@@ -41,6 +41,8 @@ import { EditUserComponent } from './settings/edit-user/edit-user.component';
 import { DetailUserComponent } from './settings/detail-user/detail-user.component';
 import { EditWserviceComponent } from './workshop/edit-wservice/edit-wservice.component';
 import { DetailWserviceComponent } from './workshop/detail-wservice/detail-wservice.component';
+import { EditRepairComponent } from './workshop/edit-repair/edit-repair.component';
+import { DetailRepairComponent } from './workshop/detail-repair/detail-repair.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { DetailWserviceComponent } from './workshop/detail-wservice/detail-wserv
     DetailUserComponent,
     EditWserviceComponent,
     DetailWserviceComponent,
+    EditRepairComponent,
+    DetailRepairComponent,
   ],
   imports: [
     BrowserModule,

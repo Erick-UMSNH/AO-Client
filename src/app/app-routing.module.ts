@@ -15,8 +15,10 @@ import { EditUserComponent } from './settings/edit-user/edit-user.component';
 import { MenuSettingsComponent } from './settings/menu-settings/menu-settings.component';
 import { NewUserComponent } from './settings/new-user/new-user.component';
 import { UsersComponent } from './settings/users/users.component';
+import { DetailRepairComponent } from './workshop/detail-repair/detail-repair.component';
 import { DetailVehicleComponent } from './workshop/detail-vehicle/detail-vehicle.component';
 import { DetailWserviceComponent } from './workshop/detail-wservice/detail-wservice.component';
+import { EditRepairComponent } from './workshop/edit-repair/edit-repair.component';
 import { EditVehicleComponent } from './workshop/edit-vehicle/edit-vehicle.component';
 import { EditWserviceComponent } from './workshop/edit-wservice/edit-wservice.component';
 import { MenuWorkshopComponent } from './workshop/menu-workshop/menu-workshop.component';
@@ -48,6 +50,8 @@ const routes: Routes = [
   /* Repairs */
   { path: 'repairs', component: RepairsComponent },
   { path: 'repairs/new', component: NewRepairComponent },
+  { path: 'repairs/edit/:id', component: EditRepairComponent },
+  { path: 'repairs/detail/:id', component: DetailRepairComponent },
   /* Services */
   { path: 'wservices', component: WservicesComponent },
   { path: 'wservices/new', component: NewWserviceComponent },
