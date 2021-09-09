@@ -36,7 +36,7 @@
     <div class="mb-3">
       <label for="rVehicle" class="form-label fw-bold">Vehículo*:</label>
       <ng-select formControlName="rVehicle">
-        <ng-option *ngFor="let vehicle of vehicles" [value]="vehicle.name"
+        <ng-option *ngFor="let vehicle of vehicles" [value]="vehicle.plate"
           >{{ vehicle.brand }} | {{ vehicle.model }} | {{ vehicle.year }} |
           {{ vehicle.plate }}</ng-option
         >
@@ -49,6 +49,73 @@
         "
       >
         Selecciona un vehículo
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">
+        <label for="rKm" class="form-label fw-bold">Km:</label>
+
+        <input
+          type="number"
+          name="rKm"
+          id="rKmId"
+          placeholder="000000"
+          step="1"
+          min="0"
+          class="form-control"
+          aria-describedby="km"
+          formControlName="rKm"
+        />
+      </div>
+      <div class="col-4">
+        <label for="rRims" class="form-label fw-bold">Rines:</label>
+
+        <input
+          type="number"
+          name="rRims"
+          id="rRimsId"
+          placeholder="0"
+          step="1"
+          min="0"
+          max="4"
+          class="form-control"
+          aria-describedby="rines"
+          formControlName="rRims"
+        />
+      </div>
+      <div class="col-4">
+        <label for="rCovers" class="form-label fw-bold">Tapas:</label>
+
+        <input
+          type="number"
+          name="rCovers"
+          id="rCoversId"
+          placeholder="0"
+          step="1"
+          min="0"
+          max="4"
+          class="form-control"
+          aria-describedby="tapas"
+          formControlName="rCovers"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="rService" class="form-label fw-bold">Servicio*:</label>
+      <ng-select formControlName="rService">
+        <ng-option *ngFor="let service of services" [value]="service.name">{{
+          service.name
+        }}</ng-option>
+      </ng-select>
+
+      <div
+        class="error"
+        *ngIf="
+          repairForm.controls.rService.errors?.required &&
+          repairForm.controls.rService.touched
+        "
+      >
+        Selecciona un servicio
       </div>
     </div>
 
@@ -66,51 +133,6 @@
         <option value="Mantenimiento">Mantenimiento</option>
         <option value="Revisión">Revisión</option>
       </select>
-    </div>
-    <div class="row mb-3">
-      <div class="mb-3 col-4">
-        <label for="rKm" class="form-label fw-bold">Km:</label>
-
-        <input
-          type="number"
-          name="rKm"
-          id="rKmId"
-          placeholder="000000"
-          step="1"
-          min="0"
-          class="form-control"
-          aria-describedby="km"
-          formControlName="rKm"
-        />
-
-        <div
-          class="error"
-          *ngIf="
-            repairForm.controls.rKm.errors && repairForm.controls.rKm.touched
-          "
-        >
-          Números solamente
-        </div>
-      </div>
-
-      <div class="mb-3 col-8">
-        <label for="rService" class="form-label fw-bold">Servicio*:</label>
-        <ng-select formControlName="rService">
-          <ng-option *ngFor="let service of services" [value]="service.name">{{
-            service.name
-          }}</ng-option>
-        </ng-select>
-
-        <div
-          class="error"
-          *ngIf="
-            repairForm.controls.rService.errors?.required &&
-            repairForm.controls.rService.touched
-          "
-        >
-          Selecciona un servicio
-        </div>
-      </div>
     </div>
 
     <h1 class="mb-3">Tabla de desglose</h1>

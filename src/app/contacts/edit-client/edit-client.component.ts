@@ -108,6 +108,8 @@ export class EditClientComponent implements OnInit {
         (result) => {
           //Send toast
           this.toastr.success('', 'Actualizado correctamente!');
+          //Redirect to clients list
+          this.router.navigate(['/clients']);
         },
         (error) => {
           //Send error toast
@@ -115,8 +117,5 @@ export class EditClientComponent implements OnInit {
           console.log(error);
         }
       );
-
-    //Redirect to clients list
-    this.router.navigate(['/clients']);
   };
 }

@@ -25,6 +25,7 @@ export class ClientsComponent implements OnInit {
     private clientsService: ClientsService,
     private toastr: ToastrService
   ) {
+    //Tabs
     this.clientsTabs = [
       {
         active: true,
@@ -78,7 +79,7 @@ export class ClientsComponent implements OnInit {
       },
       (error) => {
         //Send toast
-        this.toastr.error('', 'Un error ha ocurrido!');
+        this.toastr.error('', 'Ha ocurrido un error!');
         console.log('An error has ocurred:', error);
       }
     );

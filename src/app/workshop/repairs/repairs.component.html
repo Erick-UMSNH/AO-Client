@@ -2,5 +2,121 @@
   [title]="'Reparaciones'"
   subtitle="Listado de reparaciones"
   [tabs]="repairsTabs"
+  [spinner]="loading"
 >
 </app-location>
+
+<div class="bar-container">
+  <i class="bx bx-search-alt icon"></i>
+  <input
+    type="text"
+    class="form-control mb-3 search"
+    placeholder="Buscar orden de reparación"
+    [(ngModel)]="filterRepair"
+  />
+</div>
+
+<table class="table table-hover table-light table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Orden</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Vehículo</th>
+      <th scope="col">Concepto</th>
+      <th scope="col">Servicio</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Total</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let repair of repairs
+          | filter: filterRepair
+          | paginate
+            : { itemsPerPage: 10, currentPage: p, totalItems: repairs.length }
+      "
+      (click)="repairDetail(repair.id)"
+    >
+      <td>{{ repair.order }}</td>
+      <td>{{ repair.date }}</td>
+      <td>{{ repair.time }}</td>
+      <!-- <td [routerLink]="['/clients/detail/' + repair.client]">
+        {{ repair.client }}
+      </td> -->
+      <td>{{ repair.client }}</td>
+      <td>{{ repair.vehicle }}</td>
+      <td>{{ repair.concept }}</td>
+      <td>{{ repair.service }}</td>
+      <td>{{ repair.status }}</td>
+      <td>{{ repair.total | currency: "MXN":"symbol-narrow" }}</td>
+      <td>
+        <button
+          class="btn btn-secondary btn-sm me-1"
+          (click)="editRepair(repair.id)"
+        >
+          <i class="bx bxs-edit-alt"></i>
+        </button>
+        <button
+          class="btn btn-danger btn-sm"
+          data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop"
+          (click)="openConfirm($event, repair.id)"
+        >
+          <i class="bx bxs-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<pagination-controls
+  (pageChange)="p = $event"
+  previousLabel="Anterior"
+  nextLabel="Siguiente"
+  [responsive]="true"
+  class="d-flex float-end controls"
+  *ngIf="!loading"
+></pagination-controls>
+
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          ¿Eliminar orden de reparación?
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">La operación no podrá ser revertida</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteRepair()"
+          data-bs-dismiss="modal"
+        >
+          Borrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

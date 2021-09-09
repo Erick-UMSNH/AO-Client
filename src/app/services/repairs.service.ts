@@ -75,7 +75,7 @@ export class RepairsService {
     concept: string,
     service: string,
     status: string,
-    total: string
+    total: number
   ) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
@@ -83,14 +83,14 @@ export class RepairsService {
           $createRepairDate: String!
           $createRepairTime: String!
           $createRepairClient: String!
-          $createRepairVehicle: String
+          $createRepairVehicle: String!
           $createRepairKm: Int
           $createRepairRims: Int
           $createRepairCovers: Int
           $createRepairConcept: String
           $createRepairService: String!
           $createRepairStatus: String!
-          $createRepairTotal: Int!
+          $createRepairTotal: Float!
         ) {
           createRepair(
             date: $createRepairDate
@@ -138,71 +138,107 @@ export class RepairsService {
     return mutation;
   };
 
-  deleterepair = (id: string) => {
+  deleteRepair = (id: string) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
-        mutation deleterepair($deleterepairId: ID!) {
-          deleterepair(id: $deleterepairId) {
+        mutation deleteRepair($deleteRepairId: ID!) {
+          deleteRepair(id: $deleteRepairId) {
             id
-            brand
-            model
-            year
-            plate
+            order
+            date
+            time
+            client
+            vehicle
+            km
+            rims
+            covers
+            concept
+            service
+            status
+            total
           }
         }
       `,
       variables: {
-        deleterepairId: id,
+        deleteRepairId: id,
       },
     });
     return mutation;
   };
 
-  updaterepair = (
+  updateRepair = (
     id: string,
-    brand: string,
-    model: string,
-    year: string,
-    color: string,
-    type: string,
-    plate: string
+    date: string,
+    time: string,
+    client: string,
+    vehicle: string,
+    km: number,
+    rims: number,
+    covers: number,
+    concept: string,
+    service: string,
+    status: string,
+    total: number
   ) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
-        mutation updaterepair(
-          $updaterepairId: ID!
-          $updaterepairBrand: String!
-          $updaterepairModel: String!
-          $updaterepairYear: String!
-          $updaterepairColor: String
-          $updaterepairType: String
-          $updaterepairPlate: String!
+        mutation updateRepair(
+          $updateRepairId: ID!
+          $updateRepairDate: String!
+          $updateRepairTime: String!
+          $updateRepairClient: String!
+          $updateRepairVehicle: String!
+          $updateRepairKm: Int
+          $updateRepairRims: Int
+          $updateRepairCovers: Int
+          $updateRepairConcept: String
+          $updateRepairService: String!
+          $updateRepairStatus: String!
+          $updateRepairTotal: Float!
         ) {
-          updaterepair(
-            id: $updaterepairId
-            brand: $updaterepairBrand
-            model: $updaterepairModel
-            year: $updaterepairYear
-            color: $updaterepairColor
-            type: $updaterepairType
-            plate: $updaterepairPlate
+          updateRepair(
+            id: $updateRepairId
+            date: $updateRepairDate
+            time: $updateRepairTime
+            client: $updateRepairClient
+            vehicle: $updateRepairVehicle
+            km: $updateRepairKm
+            rims: $updateRepairRims
+            covers: $updateRepairCovers
+            concept: $updateRepairConcept
+            service: $updateRepairService
+            status: $updateRepairStatus
+            total: $updateRepairTotal
           ) {
             id
-            brand
-            model
-            year
-            plate
+            order
+            date
+            time
+            client
+            vehicle
+            km
+            rims
+            covers
+            concept
+            service
+            status
+            total
           }
         }
       `,
       variables: {
-        updaterepairId: id,
-        updaterepairBrand: brand,
-        updaterepairModel: model,
-        updaterepairYear: year,
-        updaterepairColor: color,
-        updaterepairType: type,
-        updaterepairPlate: plate,
+        updateRepairId: id,
+        updateRepairDate: date,
+        updateRepairTime: time,
+        updateRepairClient: client,
+        updateRepairVehicle: vehicle,
+        updateRepairKm: km,
+        updateRepairRims: rims,
+        updateRepairCovers: covers,
+        updateRepairConcept: concept,
+        updateRepairService: service,
+        updateRepairStatus: status,
+        updateRepairTotal: total,
       },
     });
     return mutation;
