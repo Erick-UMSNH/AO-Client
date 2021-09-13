@@ -7,7 +7,7 @@
 <div class="container">
   <form [formGroup]="repairForm" (ngSubmit)="updateRepair()">
     <div class="mb-3">
-      <label for="rDate" class="form-label fw-bold">Fecha de Ingreso:</label>
+      <label for="rDate" class="form-label fw-bold">Fecha de Ingreso*:</label>
       <input
         type="datetime-local"
         id="rDateId"
@@ -15,6 +15,15 @@
         formControlName="rDate"
         class="form-control"
       />
+      <div
+        class="error"
+        *ngIf="
+          repairForm.controls.rDate.errors?.required &&
+          repairForm.controls.rDate.touched
+        "
+      >
+        Selecciona una fecha y una hora
+      </div>
     </div>
     <div class="mb-3">
       <label for="rClient" class="form-label fw-bold">Cliente*:</label>
@@ -100,6 +109,32 @@
         />
       </div>
     </div>
+
+    <div class="mb-3">
+      <label for="rConcept" class="form-label fw-bold">Concepto*:</label>
+      <select
+        name="rConcept"
+        id="rConceptId"
+        class="form-select"
+        formControlName="rConcept"
+        aria-label="rConcept selection"
+      >
+        <option value="Reparación">Reparación</option>
+        <option value="Servicio">Servicio</option>
+        <option value="Mantenimiento">Mantenimiento</option>
+        <option value="Revisión">Revisión</option>
+      </select>
+      <div
+        class="error"
+        *ngIf="
+          repairForm.controls.rConcept.errors?.required &&
+          repairForm.controls.rConcept.touched
+        "
+      >
+        Selecciona un concepto
+      </div>
+    </div>
+
     <div class="mb-3">
       <label for="rService" class="form-label fw-bold">Servicio*:</label>
       <ng-select formControlName="rService">
@@ -117,22 +152,6 @@
       >
         Selecciona un servicio
       </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="rConcept" class="form-label fw-bold">Concepto:</label>
-      <select
-        name="rConcept"
-        id="rConceptId"
-        class="form-select"
-        formControlName="rConcept"
-        aria-label="rConcept selection"
-      >
-        <option value="Reparación">Reparación</option>
-        <option value="Servicio">Servicio</option>
-        <option value="Mantenimiento">Mantenimiento</option>
-        <option value="Revisión">Revisión</option>
-      </select>
     </div>
 
     <h1 class="mb-3">Tabla de desglose</h1>

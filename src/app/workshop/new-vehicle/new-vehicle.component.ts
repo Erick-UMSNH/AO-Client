@@ -17,7 +17,7 @@ export class NewVehicleComponent implements OnInit {
   submitLoading: boolean = false;
   loading: boolean = true;
   brands: any[] = [];
-  types: any[] = [];
+  categories: any[] = [];
   error: any;
 
   constructor(
@@ -47,7 +47,7 @@ export class NewVehicleComponent implements OnInit {
       vModel: new FormControl('', [Validators.required]),
       vYear: new FormControl('', [Validators.required]),
       vColor: new FormControl(''),
-      vType: new FormControl(''),
+      vCategory: new FormControl(''),
       vPlate: new FormControl('', [
         Validators.required,
         Validators.minLength(7),
@@ -74,10 +74,10 @@ export class NewVehicleComponent implements OnInit {
       }
     );
 
-    //Get the types
-    this.vehiclesService.getTypes().valueChanges.subscribe(
+    //Get the categories
+    this.vehiclesService.getCategories().valueChanges.subscribe(
       (result) => {
-        this.types = result.data.getTypes;
+        this.categories = result.data.getCategories;
         this.loading = result.data.loading;
         this.error = result.data.error;
       },
@@ -99,7 +99,7 @@ export class NewVehicleComponent implements OnInit {
         this.vehicleForm.controls.vModel.value,
         this.vehicleForm.controls.vYear.value,
         this.vehicleForm.controls.vColor.value,
-        this.vehicleForm.controls.vType.value,
+        this.vehicleForm.controls.vCategory.value,
         this.vehicleForm.controls.vPlate.value
       )
       .subscribe(

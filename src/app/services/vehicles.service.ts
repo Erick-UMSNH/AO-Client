@@ -22,7 +22,7 @@ export class VehiclesService {
             model
             year
             color
-            type
+            category
             plate
           }
         }
@@ -45,11 +45,11 @@ export class VehiclesService {
     return this.serviceQuery;
   };
 
-  getTypes = () => {
+  getCategories = () => {
     this.serviceQuery = this.apollo.watchQuery<any>({
       query: gql`
-        query getTypes {
-          getTypes {
+        query getCategories {
+          getCategories {
             id
             name
           }
@@ -69,7 +69,7 @@ export class VehiclesService {
             model
             year
             color
-            type
+            category
             plate
           }
         }
@@ -86,7 +86,7 @@ export class VehiclesService {
     model: string,
     year: string,
     color: string,
-    type: string,
+    category: string,
     plate: string
   ) => {
     const mutation = this.apollo.mutate({
@@ -96,7 +96,7 @@ export class VehiclesService {
           $createVehicleModel: String!
           $createVehicleYear: String!
           $createVehicleColor: String
-          $createVehicleType: String
+          $createVehicleCategory: String
           $createVehiclePlate: String!
         ) {
           createVehicle(
@@ -104,7 +104,7 @@ export class VehiclesService {
             model: $createVehicleModel
             year: $createVehicleYear
             color: $createVehicleColor
-            type: $createVehicleType
+            category: $createVehicleCategory
             plate: $createVehiclePlate
           ) {
             id
@@ -112,7 +112,7 @@ export class VehiclesService {
             model
             year
             color
-            type
+            category
             plate
           }
         }
@@ -122,7 +122,7 @@ export class VehiclesService {
         createVehicleModel: model,
         createVehicleYear: year,
         createVehicleColor: color,
-        createVehicleType: type,
+        createVehicleCategory: category,
         createVehiclePlate: plate,
       },
     });
@@ -155,7 +155,7 @@ export class VehiclesService {
     model: string,
     year: string,
     color: string,
-    type: string,
+    category: string,
     plate: string
   ) => {
     const mutation = this.apollo.mutate({
@@ -166,7 +166,7 @@ export class VehiclesService {
           $updateVehicleModel: String!
           $updateVehicleYear: String!
           $updateVehicleColor: String
-          $updateVehicleType: String
+          $updateVehicleCategory: String
           $updateVehiclePlate: String!
         ) {
           updateVehicle(
@@ -175,7 +175,7 @@ export class VehiclesService {
             model: $updateVehicleModel
             year: $updateVehicleYear
             color: $updateVehicleColor
-            type: $updateVehicleType
+            category: $updateVehicleCategory
             plate: $updateVehiclePlate
           ) {
             id
@@ -192,7 +192,7 @@ export class VehiclesService {
         updateVehicleModel: model,
         updateVehicleYear: year,
         updateVehicleColor: color,
-        updateVehicleType: type,
+        updateVehicleCategory: category,
         updateVehiclePlate: plate,
       },
     });

@@ -54,6 +54,8 @@ export class RepairsComponent implements OnInit {
       this.repairs = result.data.getRepairs;
       this.loading = result.loading;
       this.error = result.error;
+
+      console.log('RESULT: ', result);
     });
   };
 

@@ -1,13 +1,13 @@
 <app-location
-  title="Nuevo servicio"
-  subtitle="Llena los campos para agregar un nuevo servicio"
+  title="Nuevo servicio o repuesto"
+  subtitle="Llena los campos para agregar un nuevo servicio o repuesto"
   [tabs]="newWserviceTabs"
 ></app-location>
 
 <div class="container">
   <form [formGroup]="wserviceForm" (ngSubmit)="submitNewWservice()">
     <div class="mb-3">
-      <label for="wsName" class="form-label fw-bold">Servicio*:</label>
+      <label for="wsName" class="form-label fw-bold">Nombre*:</label>
       <input
         type="text"
         name="wsName"
@@ -24,40 +24,52 @@
           wserviceForm.controls.wsName.touched
         "
       >
-        Introduce un servicio
+        Introduce un nombre de servicio o repuesto
       </div>
     </div>
-    <div class="mb-3">
-      <label for="wsCost" class="form-label fw-bold">Costo:</label>
-      <input
-        type="number"
-        class="form-control"
-        placeholder="$0.00"
-        step="0.1"
-        min="0"
-        formControlName="wsCost"
-      />
-      <div
-        class="error"
-        *ngIf="
-          wserviceForm.controls.wsCost.errors?.required &&
-          wserviceForm.controls.wsCost.touched
-        "
-      >
-        Introduce un costo
-      </div>
-
-      <!-- <div class="mb-3 col-6">
-        <label for="wsWork" class="form-label fw-bold">Mano de Obra:</label>
+    <div class="row mb-3">
+      <div class="col-6">
+        <label for="wsCost" class="form-label fw-bold">Costo*:</label>
         <input
           type="number"
           class="form-control"
           placeholder="$0.00"
           step="0.1"
           min="0"
-          formControlName="wsWork"
+          formControlName="wsCost"
         />
-      </div> -->
+        <div
+          class="error"
+          *ngIf="
+            wserviceForm.controls.wsCost.errors?.required &&
+            wserviceForm.controls.wsCost.touched
+          "
+        >
+          Introduce un costo
+        </div>
+      </div>
+      <div class="col-6">
+        <label for="wsType" class="form-label fw-bold">Tipo*:</label>
+        <select
+          name="wsType"
+          id="wsTypeId"
+          class="form-select"
+          formControlName="wsType"
+          aria-label="wsType selection"
+        >
+          <option value="Servicio">Servicio</option>
+          <option value="Repuesto">Repuesto</option>
+        </select>
+        <div
+          class="error"
+          *ngIf="
+            wserviceForm.controls.wsType.errors?.required &&
+            wserviceForm.controls.wsType.touched
+          "
+        >
+          Selecciona un concepto
+        </div>
+      </div>
     </div>
     <div class="d-grid gap-2 col-6 mx-auto">
       <button

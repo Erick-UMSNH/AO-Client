@@ -6,7 +6,9 @@
 <div class="card">
   <div class="card-header">#{{ repair.id }} || {{ repair.order }}</div>
   <div class="card-body">
-    <h5 class="card-title">{{ repair.client }}</h5>
+    <h5 class="card-title">
+      {{ repair.client?.name }} {{ repair.client?.lastName }}
+    </h5>
     <h3 class="cart-title">{{ repair.vehicle }}</h3>
     <p class="card-text">Km:{{ repair.km }}</p>
     <p class="card-text">Rines: {{ repair.rims }}</p>

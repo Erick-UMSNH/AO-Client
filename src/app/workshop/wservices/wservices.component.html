@@ -1,6 +1,6 @@
 <app-location
-  title="Servicios"
-  subtitle="Listado de servicios"
+  title="Servicios o Repuestos"
+  subtitle="Listado de servicios o repuestos"
   [tabs]="wservicesTabs"
   [spinner]="loading"
 ></app-location>
@@ -10,7 +10,7 @@
   <input
     type="text"
     class="form-control mb-3 search"
-    placeholder="Buscar servicio"
+    placeholder="Buscar servicio o repuesto"
     [(ngModel)]="filterWservice"
   />
 </div>
@@ -18,8 +18,9 @@
 <table class="table table-hover table-light table-bordered">
   <thead class="table-dark">
     <tr>
-      <th scope="col">Servicio</th>
+      <th scope="col">Nombre</th>
       <th scope="col">Costo</th>
+      <th scope="col">Tipo</th>
       <th scope="col">Acciones</th>
     </tr>
   </thead>
@@ -36,6 +37,7 @@
       <td>{{ wservice.name }}</td>
 
       <td>{{ wservice.cost | currency: "MXN":"symbol-narrow" }}</td>
+      <td>{{ wservice.type }}</td>
 
       <td>
         <button

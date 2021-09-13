@@ -11,6 +11,11 @@ export class RepairsService {
   serviceQuery?: QueryRef<any>;
 
   constructor(private apollo: Apollo) {}
+
+  getTotal = (rows: any[]) => {
+    return rows.map(({ amount }) => amount).reduce((sum, i) => sum + i, 0);
+  };
+
   getRepairs = () => {
     this.serviceQuery = this.apollo.watchQuery<any>({
       query: gql`
@@ -20,8 +25,23 @@ export class RepairsService {
             order
             date
             time
-            client
-            vehicle
+            client {
+              id
+              name
+              lastName
+              areaCode
+              phone
+              email
+            }
+            vehicle {
+              id
+              brand
+              model
+              year
+              color
+              category
+              plate
+            }
             km
             rims
             covers
@@ -45,8 +65,23 @@ export class RepairsService {
             order
             date
             time
-            client
-            vehicle
+            client {
+              id
+              name
+              lastName
+              areaCode
+              phone
+              email
+            }
+            vehicle {
+              id
+              brand
+              model
+              year
+              color
+              category
+              plate
+            }
             km
             rims
             covers
@@ -67,8 +102,23 @@ export class RepairsService {
   createRepair = (
     date: string,
     time: string,
-    client: string,
-    vehicle: string,
+    client: {
+      id: string;
+      name: string;
+      lastName: string;
+      areaCode: string;
+      phone: string;
+      email: string;
+    },
+    vehicle: {
+      id: string;
+      brand: string;
+      model: string;
+      year: string;
+      color: string;
+      category: string;
+      plate: string;
+    },
     km: number,
     rims: number,
     covers: number,
@@ -77,13 +127,14 @@ export class RepairsService {
     status: string,
     total: number
   ) => {
+    console.log('client:', client);
     const mutation = this.apollo.mutate({
       mutation: gql`
         mutation createRepair(
           $createRepairDate: String!
           $createRepairTime: String!
-          $createRepairClient: String!
-          $createRepairVehicle: String!
+          $createRepairClient: ClientInput!
+          $createRepairVehicle: VehicleInput!
           $createRepairKm: Int
           $createRepairRims: Int
           $createRepairCovers: Int
@@ -109,8 +160,23 @@ export class RepairsService {
             order
             date
             time
-            client
-            vehicle
+            client {
+              id
+              name
+              lastName
+              areaCode
+              phone
+              email
+            }
+            vehicle {
+              id
+              brand
+              model
+              year
+              color
+              category
+              plate
+            }
             km
             rims
             covers
@@ -147,8 +213,23 @@ export class RepairsService {
             order
             date
             time
-            client
-            vehicle
+            client {
+              id
+              name
+              lastName
+              areaCode
+              phone
+              email
+            }
+            vehicle {
+              id
+              brand
+              model
+              year
+              color
+              category
+              plate
+            }
             km
             rims
             covers
@@ -170,8 +251,23 @@ export class RepairsService {
     id: string,
     date: string,
     time: string,
-    client: string,
-    vehicle: string,
+    client: {
+      id: string;
+      name: string;
+      lastName: string;
+      areaCode: string;
+      phone: string;
+      email: string;
+    },
+    vehicle: {
+      id: string;
+      brand: string;
+      model: string;
+      year: string;
+      color: string;
+      category: string;
+      plate: string;
+    },
     km: number,
     rims: number,
     covers: number,
@@ -186,8 +282,8 @@ export class RepairsService {
           $updateRepairId: ID!
           $updateRepairDate: String!
           $updateRepairTime: String!
-          $updateRepairClient: String!
-          $updateRepairVehicle: String!
+          $updateRepairClient: ClientInput!
+          $updateRepairVehicle: VehicleInput!
           $updateRepairKm: Int
           $updateRepairRims: Int
           $updateRepairCovers: Int
@@ -214,8 +310,23 @@ export class RepairsService {
             order
             date
             time
-            client
-            vehicle
+            client {
+              id
+              name
+              lastName
+              areaCode
+              phone
+              email
+            }
+            vehicle {
+              id
+              brand
+              model
+              year
+              color
+              category
+              plate
+            }
             km
             rims
             covers

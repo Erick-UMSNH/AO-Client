@@ -28,6 +28,7 @@ export class EditWserviceComponent implements OnInit {
     this.wserviceForm = new FormGroup({
       wsName: new FormControl('', [Validators.required]),
       wsCost: new FormControl('', [Validators.required]),
+      wsType: new FormControl('', [Validators.required]),
     });
   }
 
@@ -50,6 +51,7 @@ export class EditWserviceComponent implements OnInit {
         this.wserviceForm.setValue({
           wsName: this.wservice.name,
           wsCost: this.wservice.cost,
+          wsType: this.wservice.type,
         });
         this.wserviceForm.updateValueAndValidity();
       });
@@ -84,7 +86,8 @@ export class EditWserviceComponent implements OnInit {
       .updateWservice(
         this.wserviceId,
         this.wserviceForm.controls.wsName.value,
-        this.wserviceForm.controls.wsCost.value
+        this.wserviceForm.controls.wsCost.value,
+        this.wserviceForm.controls.wsType.value
       )
       .subscribe(
         (result) => {

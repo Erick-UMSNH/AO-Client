@@ -47,8 +47,8 @@
       <!-- <td [routerLink]="['/clients/detail/' + repair.client]">
         {{ repair.client }}
       </td> -->
-      <td>{{ repair.client }}</td>
-      <td>{{ repair.vehicle }}</td>
+      <td>{{ repair.client.name }}</td>
+      <td>{{ repair.vehicle?.brand }}-{{ repair.vehicle?.model }}</td>
       <td>{{ repair.concept }}</td>
       <td>{{ repair.service }}</td>
       <td>{{ repair.status }}</td>

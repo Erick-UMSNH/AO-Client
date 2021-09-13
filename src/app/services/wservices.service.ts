@@ -19,6 +19,7 @@ export class WservicesService {
             id
             name
             cost
+            type
           }
         }
       `,
@@ -34,6 +35,7 @@ export class WservicesService {
             id
             name
             cost
+            type
           }
         }
       `,
@@ -44,23 +46,30 @@ export class WservicesService {
     return this.serviceQuery;
   };
 
-  createWservice = (name: string, cost: number) => {
+  createWservice = (name: string, cost: number, wtype: string) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
         mutation createWservice(
           $createWserviceName: String!
           $createWserviceCost: Float!
+          $createWserviceType: String!
         ) {
-          createWservice(name: $createWserviceName, cost: $createWserviceCost) {
+          createWservice(
+            name: $createWserviceName
+            cost: $createWserviceCost
+            type: $createWserviceType
+          ) {
             id
             name
             cost
+            type
           }
         }
       `,
       variables: {
         createWserviceName: name,
         createWserviceCost: cost,
+        createWserviceType: wtype,
       },
     });
     return mutation;
@@ -74,6 +83,7 @@ export class WservicesService {
             id
             name
             cost
+            type
           }
         }
       `,
@@ -84,22 +94,25 @@ export class WservicesService {
     return mutation;
   };
 
-  updateWservice = (id: string, name: string, cost: number) => {
+  updateWservice = (id: string, name: string, cost: number, wtype: string) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
         mutation updateWservice(
           $updateWserviceId: ID!
           $updateWserviceName: String!
           $updateWserviceCost: Float!
+          $updateWserviceType: String!
         ) {
           updateWservice(
             id: $updateWserviceId
             name: $updateWserviceName
             cost: $updateWserviceCost
+            type: $updateWserviceType
           ) {
             id
             name
             cost
+            type
           }
         }
       `,
@@ -107,6 +120,7 @@ export class WservicesService {
         updateWserviceId: id,
         updateWserviceName: name,
         updateWserviceCost: cost,
+        updateWserviceType: wtype,
       },
     });
     return mutation;

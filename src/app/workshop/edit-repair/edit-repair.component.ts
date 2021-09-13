@@ -93,6 +93,28 @@ export class EditRepairComponent implements OnInit {
         console.log(error);
       }
     );
+    //Get the repair data from the db
+    this.repairsService.getRepair(this.repairId).refetch();
+
+    this.repairsService
+      .getRepair(this.repairId)
+      .valueChanges.subscribe((result) => {
+        this.repair = result?.data?.getRepair;
+        this.loading = result.loading;
+        this.error = result.error;
+        //Update the form values
+        this.repairForm.setValue({
+          rDate: this.repair.date + 'T' + this.repair.time,
+          rClient: this.repair.client,
+          rVehicle: this.repair.vehicle,
+          rKm: this.repair.km,
+          rRims: this.repair.rims,
+          rCovers: this.repair.covers,
+          rConcept: this.repair.concept,
+          rService: this.repair.service,
+        });
+        this.repairForm.updateValueAndValidity();
+      });
 
     //Navigation tabs
     this.editRepairTabs = [

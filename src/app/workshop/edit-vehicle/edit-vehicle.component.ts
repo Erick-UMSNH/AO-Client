@@ -17,7 +17,7 @@ export class EditVehicleComponent implements OnInit {
   vehicleId: string = '';
   vehicle: any = {};
   brands: any[] = [];
-  types: any[] = [];
+  categories: any[] = [];
   years: string[];
   loading: boolean = true;
   error: any;
@@ -50,7 +50,7 @@ export class EditVehicleComponent implements OnInit {
       vModel: new FormControl('', [Validators.required]),
       vYear: new FormControl('', [Validators.required]),
       vColor: new FormControl(''),
-      vType: new FormControl(''),
+      vCategory: new FormControl(''),
       vPlate: new FormControl('', [
         Validators.required,
         Validators.minLength(7),
@@ -82,10 +82,10 @@ export class EditVehicleComponent implements OnInit {
       }
     );
 
-    //Get the types
-    this.vehiclesService.getTypes().valueChanges.subscribe(
+    //Get the categories
+    this.vehiclesService.getCategories().valueChanges.subscribe(
       (result) => {
-        this.types = result.data.getTypes;
+        this.categories = result.data.getCategories;
         this.loading = result.data.loading;
         this.error = result.data.error;
       },
@@ -109,7 +109,7 @@ export class EditVehicleComponent implements OnInit {
           vModel: this.vehicle.model,
           vYear: this.vehicle.year,
           vColor: this.vehicle.color,
-          vType: this.vehicle.type,
+          vCategory: this.vehicle.category,
           vPlate: this.vehicle.plate,
         });
         this.vehicleForm.updateValueAndValidity();
@@ -146,7 +146,7 @@ export class EditVehicleComponent implements OnInit {
         this.vehicleForm.controls.vModel.value,
         this.vehicleForm.controls.vYear.value,
         this.vehicleForm.controls.vColor.value,
-        this.vehicleForm.controls.vType.value,
+        this.vehicleForm.controls.vCategory.value,
         this.vehicleForm.controls.vPlate.value
       )
       .subscribe(

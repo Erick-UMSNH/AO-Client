@@ -79,11 +79,13 @@
     </div>
     <div class="row mb-3">
       <div class="mb-3 col-6">
-        <label for="vType" class="form-label fw-bold">Tipo:</label>
-        <ng-select formControlName="vType">
-          <ng-option *ngFor="let type of types" [value]="type.name">{{
-            type.name
-          }}</ng-option>
+        <label for="vCategory" class="form-label fw-bold">Categoría:</label>
+        <ng-select formControlName="vCategory">
+          <ng-option
+            *ngFor="let category of categories"
+            [value]="category.name"
+            >{{ category.name }}</ng-option
+          >
         </ng-select>
       </div>
       <div class="mb-3 col-6">
