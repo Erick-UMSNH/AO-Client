@@ -8,6 +8,7 @@
   <div class="card-header">#{{ wservice.id }}</div>
   <div class="card-body">
     <h5 class="card-title">{{ wservice.name }}</h5>
+    <p>{{ wservice.category }}</p>
   </div>
   <div class="card-footer text-muted">
     Costo: {{ wservice.cost | currency: "MXN":"symbol-narrow" }}

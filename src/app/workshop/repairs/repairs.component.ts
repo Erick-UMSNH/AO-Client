@@ -54,8 +54,6 @@ export class RepairsComponent implements OnInit {
       this.repairs = result.data.getRepairs;
       this.loading = result.loading;
       this.error = result.error;
-
-      console.log('RESULT: ', result);
     });
   };
 
@@ -91,5 +89,16 @@ export class RepairsComponent implements OnInit {
   openConfirm = (e: any, id: string) => {
     e.stopPropagation();
     this.selectedRepairId = id;
+  };
+
+  openDropdownState = (e: any) => {
+    e.stopPropagation();
+    console.log('Clicking dropdown');
+  };
+
+  setState = (e: any, state: string) => {
+    e.stopPropagation();
+    console.log('Setting state to: ', state);
+    this.getRepairs();
   };
 }

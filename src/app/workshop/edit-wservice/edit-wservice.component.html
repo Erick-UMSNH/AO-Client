@@ -49,13 +49,13 @@
         </div>
       </div>
       <div class="col-6">
-        <label for="wsType" class="form-label fw-bold">Tipo*:</label>
+        <label for="wsCategory" class="form-label fw-bold">Categoría*:</label>
         <select
-          name="wsType"
-          id="wsTypeId"
+          name="wsCategory"
+          id="wsCategoryId"
           class="form-select"
-          formControlName="wsType"
-          aria-label="wsType selection"
+          formControlName="wsCategory"
+          aria-label="wsCategory selection"
         >
           <option value="Servicio">Servicio</option>
           <option value="Repuesto">Repuesto</option>
@@ -63,11 +63,11 @@
         <div
           class="error"
           *ngIf="
-            wserviceForm.controls.wsType.errors?.required &&
-            wserviceForm.controls.wsType.touched
+            wserviceForm.controls.wsCategory.errors?.required &&
+            wserviceForm.controls.wsCategory.touched
           "
         >
-          Selecciona un concepto
+          Selecciona una categoría
         </div>
       </div>
     </div>

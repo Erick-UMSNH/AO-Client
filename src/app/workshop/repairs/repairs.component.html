@@ -25,7 +25,6 @@
       <th scope="col">Cliente</th>
       <th scope="col">Vehículo</th>
       <th scope="col">Concepto</th>
-      <th scope="col">Servicio</th>
       <th scope="col">Estado</th>
       <th scope="col">Total</th>
       <th scope="col">Acciones</th>
@@ -50,8 +49,69 @@
       <td>{{ repair.client.name }}</td>
       <td>{{ repair.vehicle?.brand }}-{{ repair.vehicle?.model }}</td>
       <td>{{ repair.concept }}</td>
-      <td>{{ repair.service }}</td>
-      <td>{{ repair.status }}</td>
+      <!-- <td>{{ repair.status }}</td> -->
+      <td>
+        <ng-select
+          appereance="outline"
+          [searchable]="false"
+          [clearable]="false"
+          (click)="openDropdownState($event)"
+        >
+          <ng-option value="Ingresado" (click)="setState($event, 'Ingresado')">
+            Ingresado
+          </ng-option>
+          <ng-option
+            value="Esperando repuesto"
+            (click)="setState($event, 'Esperando repuesto')"
+          >
+            Esperando repuesto
+          </ng-option>
+          <ng-option value="Reparando" (click)="setState($event, 'Reparando')">
+            Reparando
+          </ng-option>
+          <ng-option value="Entregado" (click)="setState($event, 'Entregado')">
+            Entregado
+          </ng-option>
+        </ng-select>
+      </td>
+      <!-- <td>
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            (click)="openDropdownState($event)"
+          >
+            {{ repair.status }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <a class="dropdown-item" href="" (click)="setState($event, 'Ingresado')"
+                >Ingresado</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="setState($event, 'Esperando repuesto')"
+                >Esperando repuesto</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="setState($event, 'Reparando')"
+                >Reparando</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="setState($event, 'Entregado')"
+                >Entregado</a
+              >
+            </li>
+          </ul>
+        </div>
+      </td> -->
       <td>{{ repair.total | currency: "MXN":"symbol-narrow" }}</td>
       <td>
         <button

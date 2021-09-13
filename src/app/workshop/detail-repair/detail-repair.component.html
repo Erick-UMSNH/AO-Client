@@ -4,19 +4,77 @@
   [tabs]="repairDetailTabs"
 ></app-location>
 <div class="card">
-  <div class="card-header">#{{ repair.id }} || {{ repair.order }}</div>
+  <div class="card-header">
+    <h3>#{{ repair.order }}</h3>
+  </div>
   <div class="card-body">
     <h5 class="card-title">
       {{ repair.client?.name }} {{ repair.client?.lastName }}
     </h5>
-    <h3 class="cart-title">{{ repair.vehicle }}</h3>
+    <h3 class="cart-title">
+      {{ repair.vehicle?.brand }} {{ repair.vehicle?.model }}
+      {{ repair.vehicle?.year }}
+    </h3>
     <p class="card-text">Km:{{ repair.km }}</p>
     <p class="card-text">Rines: {{ repair.rims }}</p>
     <p class="card-text">Tapas: {{ repair.covers }}</p>
-    <p class="card-text">Estado: {{ repair.status }}</p>
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <a
+          class="nav-link disabled"
+          [ngClass]="{ active: repair.status === 'Ingresado' }"
+          aria-current="page"
+          >Ingresado</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link disabled"
+          [ngClass]="{ active: repair.status === 'Esperando repuesto' }"
+          >Esperando repuesto</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link disabled"
+          [ngClass]="{ active: repair.status === 'Reparando' }"
+          >Reparando</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link disabled"
+          [ngClass]="{ active: repair.status === 'Entregado' }"
+          >Entregado</a
+        >
+      </li>
+    </ul>
     <p class="card-text">{{ repair.concept }}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Importe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of repair.service; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ item.name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.cost }}</td>
+          <td>{{ item.amount }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="card-footer text-muted">
-    Total: {{ repair.total | currency: "MXN":"symbol-narrow" }}
+  <div class="card-footer text-muted text-end">
+    <h3>Total: {{ repair.total | currency: "MXN":"symbol-narrow" }}</h3>
   </div>
 </div>

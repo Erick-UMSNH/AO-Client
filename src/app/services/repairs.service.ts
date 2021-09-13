@@ -46,7 +46,14 @@ export class RepairsService {
             rims
             covers
             concept
-            service
+            service {
+              id
+              name
+              category
+              quantity
+              cost
+              amount
+            }
             status
             total
           }
@@ -86,7 +93,14 @@ export class RepairsService {
             rims
             covers
             concept
-            service
+            service {
+              id
+              name
+              category
+              quantity
+              cost
+              amount
+            }
             status
             total
           }
@@ -123,11 +137,11 @@ export class RepairsService {
     rims: number,
     covers: number,
     concept: string,
-    service: string,
+    service: any[],
     status: string,
     total: number
   ) => {
-    console.log('client:', client);
+    console.log('COVERS:', covers);
     const mutation = this.apollo.mutate({
       mutation: gql`
         mutation createRepair(
@@ -139,7 +153,7 @@ export class RepairsService {
           $createRepairRims: Int
           $createRepairCovers: Int
           $createRepairConcept: String
-          $createRepairService: String!
+          $createRepairService: [WserviceItemInput!]
           $createRepairStatus: String!
           $createRepairTotal: Float!
         ) {
@@ -181,7 +195,14 @@ export class RepairsService {
             rims
             covers
             concept
-            service
+            service {
+              id
+              name
+              category
+              quantity
+              cost
+              amount
+            }
             status
             total
           }
@@ -234,7 +255,14 @@ export class RepairsService {
             rims
             covers
             concept
-            service
+            service {
+              id
+              name
+              category
+              quantity
+              cost
+              amount
+            }
             status
             total
           }
@@ -272,7 +300,7 @@ export class RepairsService {
     rims: number,
     covers: number,
     concept: string,
-    service: string,
+    service: any[],
     status: string,
     total: number
   ) => {
@@ -288,7 +316,7 @@ export class RepairsService {
           $updateRepairRims: Int
           $updateRepairCovers: Int
           $updateRepairConcept: String
-          $updateRepairService: String!
+          $updateRepairService: [WserviceItemInput!]
           $updateRepairStatus: String!
           $updateRepairTotal: Float!
         ) {
@@ -331,7 +359,14 @@ export class RepairsService {
             rims
             covers
             concept
-            service
+            service {
+              id
+              name
+              category
+              quantity
+              cost
+              amount
+            }
             status
             total
           }

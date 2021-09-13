@@ -42,7 +42,7 @@ export class NewWserviceComponent implements OnInit {
     this.wserviceForm = new FormGroup({
       wsName: new FormControl('', [Validators.required]),
       wsCost: new FormControl('', [Validators.required]),
-      wsType: new FormControl('', [Validators.required]),
+      wsCategory: new FormControl('', [Validators.required]),
     });
   }
 

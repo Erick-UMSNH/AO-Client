@@ -132,7 +132,7 @@ export class NewRepairComponent implements OnInit {
     //   total: this.total,
     // };
 
-    // console.log('This is the repair form: ', repair);
+    console.log('This is the repair form: ', this.rows);
     //Destructuring client
     const {
       id: cId,
@@ -161,7 +161,7 @@ export class NewRepairComponent implements OnInit {
       .createRepair(
         sepDateTime[0],
         sepDateTime[1],
-        //this.repairForm.controls.rClient.value,
+        //Client
         {
           id: cId,
           name: cName,
@@ -170,7 +170,7 @@ export class NewRepairComponent implements OnInit {
           phone: cPhone,
           email: cEmail,
         },
-        //this.repairForm.controls.rVehicle.value.brand,
+        //Vehicle
         {
           id: vId,
           brand: vBrand,
@@ -184,9 +184,11 @@ export class NewRepairComponent implements OnInit {
         this.repairForm.controls.rRims.value,
         this.repairForm.controls.rCovers.value,
         this.repairForm.controls.rConcept.value,
-        'Deep service for now!',
-        // this.repairForm.controls.rService.value,
+        //Service
+        this.rows,
+        //Status
         'Ingresado',
+        //Total
         this.total
       )
       .subscribe(
@@ -219,7 +221,7 @@ export class NewRepairComponent implements OnInit {
     }
 
     //Destructure the  selected service
-    const { id, name, cost, type } = service;
+    const { id, name, cost, category } = service;
 
     //Service already selected?
     if (this.rows.find((element) => element.id === id)) {
@@ -228,11 +230,11 @@ export class NewRepairComponent implements OnInit {
       return;
     }
 
-    //Everything ok
+    //Everything ok, add the row
     this.rows.push({
       id,
       name,
-      type,
+      category,
       quantity: 1,
       cost,
       amount: cost,
