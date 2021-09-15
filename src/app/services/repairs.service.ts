@@ -389,4 +389,25 @@ export class RepairsService {
     });
     return mutation;
   };
+
+  updateStatusRepair = (id: string, status: string) => {
+    const mutation = this.apollo.mutate({
+      mutation: gql`
+        mutation updateStatusRepair(
+          $updateRepairId: ID!
+          $updateRepairStatus: String!
+        ) {
+          updateStatusRepair(id: $updateRepairId, status: $updateRepairStatus) {
+            id
+            status
+          }
+        }
+      `,
+      variables: {
+        updateRepairId: id,
+        updateRepairStatus: status,
+      },
+    });
+    return mutation;
+  };
 }

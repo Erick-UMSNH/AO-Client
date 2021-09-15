@@ -28,7 +28,7 @@
     <div class="mb-3">
       <label for="rClient" class="form-label fw-bold">Cliente*:</label>
       <ng-select formControlName="rClient">
-        <ng-option *ngFor="let client of clients" [value]="client.id"
+        <ng-option *ngFor="let client of clients" [value]="client"
           >{{ client.name }} {{ client.lastName }}</ng-option
         >
       </ng-select>
@@ -45,7 +45,7 @@
     <div class="mb-3">
       <label for="rVehicle" class="form-label fw-bold">Vehículo*:</label>
       <ng-select formControlName="rVehicle">
-        <ng-option *ngFor="let vehicle of vehicles" [value]="vehicle.plate"
+        <ng-option *ngFor="let vehicle of vehicles" [value]="vehicle"
           >{{ vehicle.brand }} | {{ vehicle.model }} | {{ vehicle.year }} |
           {{ vehicle.plate }}</ng-option
         >
@@ -134,27 +134,87 @@
         Selecciona un concepto
       </div>
     </div>
-
-    <div class="mb-3">
-      <label for="rService" class="form-label fw-bold">Servicio*:</label>
-      <ng-select formControlName="rService">
-        <ng-option *ngFor="let service of services" [value]="service.name">{{
-          service.name
-        }}</ng-option>
-      </ng-select>
-
-      <div
-        class="error"
-        *ngIf="
-          repairForm.controls.rService.errors?.required &&
-          repairForm.controls.rService.touched
-        "
+    <div class="row mb-3">
+      <label for="rService" class="form-label fw-bold"
+        >Servicio o repuesto:</label
       >
-        Selecciona un servicio
+      <div class="col-9">
+        <ng-select formControlName="rService">
+          <ng-option *ngFor="let service of services" [value]="service">{{
+            service.name
+          }}</ng-option>
+        </ng-select>
+      </div>
+
+      <div class="col-3 d-grid">
+        <button type="button" class="btn btn-secondary" (click)="addRow()">
+          <i class="bx bxs-plus-square"></i>
+        </button>
       </div>
     </div>
 
-    <h1 class="mb-3">Tabla de desglose</h1>
+    <h3 class="text-center mb-3"><i class="bx bxs-car-mechanic repair"></i></h3>
+
+    <table class="table bg-white table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Tipo</th>
+          <th scope="col" class="text-center">Cantidad</th>
+          <th scope="col" class="text-center">Precio</th>
+          <th scope="col" class="text-center">Importe</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of rows; index as i">
+          <th>{{ row.name }}</th>
+          <td>{{ row.type }}</td>
+          <td>
+            <div class="d-flex justify-content-evenly">
+              <i
+                type="button"
+                class="bx bxs-caret-down-circle"
+                (click)="delQuantity(i)"
+              ></i>
+              {{ row.quantity }}
+              <i
+                class="bx bxs-caret-up-circle"
+                type="button"
+                (click)="addQuantity(i)"
+              ></i>
+            </div>
+          </td>
+          <td class="text-center">
+            {{ row.cost | currency: "MXN":"symbol-narrow" }}
+          </td>
+          <td class="text-center">
+            {{ row.amount | currency: "MXN":"symbol-narrow" }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="deleteRow(i)"
+            >
+              <i class="bx bxs-trash repair-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <h1>Total: {{ total }}</h1> -->
+    <div class="d-flex justify-content-end">
+      <div class="card text-center text-white bg-danger mb-3">
+        <!-- <div class="card-header">Total</div> -->
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ total | currency: "MXN":"symbol-narrow" }}
+          </h5>
+        </div>
+      </div>
+    </div>
+
     <div class="d-grid gap-2 col-6 mx-auto">
       <button
         type="submit"

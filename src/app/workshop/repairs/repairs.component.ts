@@ -86,19 +86,55 @@ export class RepairsComponent implements OnInit {
     );
   };
 
+  /**
+   *
+   * @param e Click event
+   * @param id Id of the repair (to delete)
+   */
   openConfirm = (e: any, id: string) => {
     e.stopPropagation();
     this.selectedRepairId = id;
   };
 
+  /**
+   * To open the dropdown menu and stop propagation
+   * @param e Click event
+   */
   openDropdownState = (e: any) => {
     e.stopPropagation();
-    console.log('Clicking dropdown');
   };
 
-  setState = (e: any, state: string) => {
+  /**
+   * Change the state of a repair
+   * @param e Click event
+   * @param id Id of the repair
+   * @param state New state
+   */
+  setState = (e: any, id: string, current: string, state: string) => {
     e.stopPropagation();
-    console.log('Setting state to: ', state);
-    this.getRepairs();
+    //Check if the current status is the selected one
+    if (current === state) {
+      //Send toast
+      this.toastr.warning('Selecciona otro estado');
+    } else {
+      this.loading = true;
+      //Update the field
+      this.repairsService.updateStatusRepair(id, state).subscribe(
+        (result) => {
+          //Stop loading
+          this.loading = false;
+          //Send success toast
+          this.toastr.success(`Estado cambiado a: ${state}`);
+        },
+        (error) => {
+          //Stop loading
+          this.loading = false;
+          //Send error toast
+          this.toastr.error('No se cambio el estado');
+          console.log('Changing state error: ', error);
+        }
+      );
+      this.getRepairs();
+    }
   };
 }

@@ -15,17 +15,19 @@ import { RepairsService } from '../../services/repairs.service';
   styleUrls: ['./edit-repair.component.css', '../../css/forms.css'],
 })
 export class EditRepairComponent implements OnInit {
-  repairForm: FormGroup = new FormGroup({});
   editRepairTabs: HeaderTab[] = [];
-  loadingSubmit: boolean = false;
+  repairForm: FormGroup = new FormGroup({});
   clients: any[] = [];
   vehicles: any[] = [];
   services: any[] = [];
-  repairId: string = '';
-  repair: any = {};
   loading: boolean = true;
   error: any;
   date: Date = new Date();
+  loadingSubmit: boolean = false;
+  repairId: string = '';
+  repair: any = {};
+  rows: any[] = [];
+  total: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -102,6 +104,16 @@ export class EditRepairComponent implements OnInit {
         this.repair = result?.data?.getRepair;
         this.loading = result.loading;
         this.error = result.error;
+
+        //Get the service rows, make a deep copy of the array
+        this.rows = JSON.parse(JSON.stringify(this.repair.service));
+        //Delete typename property
+        for (let index = 0; index < this.rows.length; index++) {
+          delete this.rows[index].__typename;
+        }
+        //Get the total
+        this.total = this.repair.total;
+
         //Update the form values
         this.repairForm.setValue({
           rDate: this.repair.date + 'T' + this.repair.time,
@@ -143,21 +155,62 @@ export class EditRepairComponent implements OnInit {
 
     //Split date and time
     let sepDateTime = this.repairForm.controls.rDate.value.split('T');
+    //Destructuring client
+    const {
+      id: cId,
+      name: cName,
+      lastName: cLastName,
+      areaCode: cAreaCode,
+      phone: cPhone,
+      email: cEmail,
+    } = this.repairForm.controls.rClient.value;
+
+    //Destructuring vehicle
+    const {
+      id: vId,
+      brand: vBrand,
+      model: vModel,
+      year: vYear,
+      color: vColor,
+      category: vCategory,
+      plate: vPlate,
+    } = this.repairForm.controls.rVehicle.value;
+
     //Update repair
     this.repairsService
       .updateRepair(
         this.repairId,
         sepDateTime[0], //This should be changed?
         sepDateTime[1], //same above
-        this.repairForm.controls.rClient.value,
-        this.repairForm.controls.rVehicle.value,
+        //Client
+        {
+          id: cId,
+          name: cName,
+          lastName: cLastName,
+          areaCode: cAreaCode,
+          phone: cPhone,
+          email: cEmail,
+        },
+        //Vehicle
+        {
+          id: vId,
+          brand: vBrand,
+          model: vModel,
+          year: vYear,
+          color: vColor,
+          category: vCategory,
+          plate: vPlate,
+        },
         this.repairForm.controls.rKm.value,
         this.repairForm.controls.rRims.value,
         this.repairForm.controls.rCovers.value,
         this.repairForm.controls.rConcept.value,
-        this.repairForm.controls.rService.value,
-        'Ingresado', //This should be changed in another component
-        5000 //This is computed
+        //Service
+        this.rows,
+        //Status
+        this.repair.status,
+        //Total
+        this.total //This is computed
       )
       .subscribe(
         (result) => {
@@ -172,5 +225,67 @@ export class EditRepairComponent implements OnInit {
           console.log(error);
         }
       );
+  };
+
+  addRow = () => {
+    const service = this.repairForm.controls.rService.value;
+    console.log('Service: ', service);
+    //No service selected?
+    if (service === '' || service === null || Array.isArray(service)) {
+      //Send toast
+      this.toastr.warning('', 'No se ha seleccionado un servicio que agregar');
+      return;
+    }
+
+    //Destructure the  selected service
+    const { id, name, cost, category } = service;
+
+    //Service already selected?
+    if (this.rows.find((element) => element.id === id)) {
+      //Send toast
+      this.toastr.warning('', 'El servicio ya ha sido agregado');
+      return;
+    }
+    console.log('Rows: ', this.rows);
+    //Everything ok, add the row
+    this.rows.push({
+      id,
+      name,
+      category,
+      quantity: 1,
+      cost,
+      amount: cost,
+    });
+    //Computes the total of the table amount
+    this.total = this.repairsService.getTotal(this.rows);
+  };
+
+  deleteRow = (index: number) => {
+    //Delete the row at the index
+    this.rows.splice(index, 1);
+    //Computes the total of the table amount
+    this.total = this.repairsService.getTotal(this.rows);
+  };
+
+  addQuantity = (index: number) => {
+    console.log('ROWS: ', this.rows);
+    //Increase quantity by one
+    this.rows[index].quantity += 1;
+    //Increase the amount (add cost)
+    this.rows[index].amount = this.rows[index].amount + this.rows[index].cost;
+    //Recompute the total
+    this.total = this.repairsService.getTotal(this.rows);
+  };
+
+  delQuantity = (index: number) => {
+    //Check if the quantity is greater than 1
+    if (this.rows[index].quantity > 1) {
+      //Decrease the quantity by one
+      this.rows[index].quantity -= 1;
+      //Decrease the amount (reduce cost)
+      this.rows[index].amount = this.rows[index].amount - this.rows[index].cost;
+      //Recompute the total
+      this.total = this.repairsService.getTotal(this.rows);
+    }
   };
 }

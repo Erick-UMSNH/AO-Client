@@ -17,7 +17,6 @@ import { ToastrService } from 'ngx-toastr';
 export class NewRepairComponent implements OnInit {
   newRepairTabs: HeaderTab[];
   repairForm: FormGroup;
-
   clients: any[] = [];
   vehicles: any[] = [];
   services: any[] = [];
@@ -117,22 +116,6 @@ export class NewRepairComponent implements OnInit {
     //Split date and time
     let sepDateTime = this.repairForm.controls.rDate.value.split('T');
 
-    //Create repair
-
-    // let repair = {
-    //   date: sepDateTime[0],
-    //   time: sepDateTime[1],
-    //   client: this.repairForm.controls.rClient.value,
-    //   vehicle: this.repairForm.controls.rVehicle.value.brand,
-    //   km: this.repairForm.controls.rKm.value,
-    //   rims: this.repairForm.controls.rRims.value,
-    //   covers: this.repairForm.controls.rCovers.value,
-    //   concept: this.repairForm.controls.rConcept.value,
-    //   service: this.rows,
-    //   total: this.total,
-    // };
-
-    console.log('This is the repair form: ', this.rows);
     //Destructuring client
     const {
       id: cId,
