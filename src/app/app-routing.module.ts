@@ -10,6 +10,7 @@ import { NewClientComponent } from './contacts/new-client/new-client.component';
 import { NewSupplierComponent } from './contacts/new-supplier/new-supplier.component';
 import { SuppliersComponent } from './contacts/suppliers/suppliers.component';
 import { StartComponent } from './home/start/start.component';
+import { LoginComponent } from './login/login/login.component';
 import { DetailUserComponent } from './settings/detail-user/detail-user.component';
 import { EditUserComponent } from './settings/edit-user/edit-user.component';
 import { MenuSettingsComponent } from './settings/menu-settings/menu-settings.component';
@@ -32,6 +33,8 @@ import { WservicesComponent } from './workshop/wservices/wservices.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: StartComponent },
+  { path: 'login', component: LoginComponent },
+
   /* Clients */
   { path: 'clients', component: ClientsComponent },
   { path: 'clients/new', component: NewClientComponent },
@@ -66,7 +69,7 @@ const routes: Routes = [
   { path: 'users/new', component: NewUserComponent },
   { path: 'users/edit/:id', component: EditUserComponent },
   { path: 'users/detail/:id', component: DetailUserComponent },
-  { path: '**', redirectTo: 'clients' },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

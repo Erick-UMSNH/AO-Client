@@ -400,6 +400,10 @@ export class RepairsService {
           updateStatusRepair(id: $updateRepairId, status: $updateRepairStatus) {
             id
             status
+            vehicle {
+              brand
+              model
+            }
           }
         }
       `,

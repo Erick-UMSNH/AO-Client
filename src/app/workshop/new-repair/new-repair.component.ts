@@ -107,7 +107,6 @@ export class NewRepairComponent implements OnInit {
   }
 
   submitNewRepair = () => {
-    console.log(this.repairForm.value);
     //Check if there is a process running already (submitLoading?)
     if (this.submitLoading) return;
     //Start submitLoading
@@ -136,8 +135,6 @@ export class NewRepairComponent implements OnInit {
       category: vCategory,
       plate: vPlate,
     } = this.repairForm.controls.rVehicle.value;
-
-    console.log(this.repairForm.controls.rVehicle.value);
 
     //Submit repair
     this.repairsService
@@ -195,7 +192,6 @@ export class NewRepairComponent implements OnInit {
 
   addRow = () => {
     const service = this.repairForm.controls.rService.value;
-    console.log('Service: ', service);
     //No service selected?
     if (service === '' || service === null) {
       //Send toast

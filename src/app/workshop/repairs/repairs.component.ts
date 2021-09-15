@@ -121,10 +121,14 @@ export class RepairsComponent implements OnInit {
       //Update the field
       this.repairsService.updateStatusRepair(id, state).subscribe(
         (result) => {
+          //Get the data
+          const data: any = result.data;
           //Stop loading
           this.loading = false;
           //Send success toast
-          this.toastr.success(`Estado cambiado a: ${state}`);
+          this.toastr.success(
+            `${data.updateStatusRepair.vehicle.brand}-${data.updateStatusRepair.vehicle.model} cambiado a: ${state}`
+          );
         },
         (error) => {
           //Stop loading

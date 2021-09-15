@@ -115,7 +115,7 @@ export class NewUserComponent implements OnInit {
       .subscribe(
         (result) => {
           //Send success toast
-          this.toastr.success('', 'Cliente creado!');
+          this.toastr.success('', 'Usuario creado!');
           //Navigate to the users list
           this.router.navigate(['users']);
         },
@@ -123,7 +123,7 @@ export class NewUserComponent implements OnInit {
           //Send error toast
           this.toastr.error('', 'Ha ocurrido un error');
           //Send error
-          console.log(error);
+          console.error(error);
         }
       );
   };

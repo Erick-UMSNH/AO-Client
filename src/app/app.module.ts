@@ -43,6 +43,7 @@ import { EditWserviceComponent } from './workshop/edit-wservice/edit-wservice.co
 import { DetailWserviceComponent } from './workshop/detail-wservice/detail-wservice.component';
 import { EditRepairComponent } from './workshop/edit-repair/edit-repair.component';
 import { DetailRepairComponent } from './workshop/detail-repair/detail-repair.component';
+import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { DetailRepairComponent } from './workshop/detail-repair/detail-repair.co
     DetailWserviceComponent,
     EditRepairComponent,
     DetailRepairComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
