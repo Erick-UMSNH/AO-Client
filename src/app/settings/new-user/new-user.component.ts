@@ -120,10 +120,21 @@ export class NewUserComponent implements OnInit {
           this.router.navigate(['users']);
         },
         (error) => {
-          //Send error toast
-          this.toastr.error('', 'Ha ocurrido un error');
-          //Send error
-          console.error(error);
+          if (error.message === 'Email already used') {
+            this.toastr.error('', 'El email ya esta siendo utilizado');
+          } else {
+            //Send error toast
+            this.toastr.error('', 'Ha ocurrido un error');
+          }
+
+          //Error types console.log(Object.getOwnPropertyNames(error));
+
+          // console.log(error.stack);
+          // console.log(error.graphqlErrors);
+          // console.log(error.clientErrors);
+          // console.log(error.networkError);
+          // console.log(error.message);
+          // console.log(error.extraInfo);
         }
       );
   };

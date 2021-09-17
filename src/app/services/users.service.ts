@@ -57,6 +57,27 @@ export class UsersService {
     return this.serviceQuery;
   };
 
+  checkLogin = (email: string, password: string) => {
+    this.serviceQuery = this.apollo.watchQuery<any>({
+      query: gql`
+        query checkLogin($checkEmail: String!, $checkPassword: String!) {
+          checkLogin(email: $checkEmail, password: $checkPassword) {
+            id
+            name
+            lastName
+            role
+            photo
+          }
+        }
+      `,
+      variables: {
+        checkEmail: email,
+        checkPassword: password,
+      },
+    });
+    return this.serviceQuery;
+  };
+
   createUser = (
     name: string,
     lastName: string,
