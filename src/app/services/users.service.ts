@@ -57,22 +57,25 @@ export class UsersService {
     return this.serviceQuery;
   };
 
-  checkLogin = (email: string, password: string) => {
+  authenticateUser = (email: string, password: string) => {
     this.serviceQuery = this.apollo.watchQuery<any>({
       query: gql`
-        query checkLogin($checkEmail: String!, $checkPassword: String!) {
-          checkLogin(email: $checkEmail, password: $checkPassword) {
-            id
-            name
-            lastName
-            role
-            photo
+        query authenticateUser($authEmail: String!, $authPassword: String!) {
+          authenticateUser(email: $authEmail, password: $authPassword) {
+            user {
+              id
+              name
+              lastName
+              role
+              photo
+            }
+            token
           }
         }
       `,
       variables: {
-        checkEmail: email,
-        checkPassword: password,
+        authEmail: email,
+        authPassword: password,
       },
     });
     return this.serviceQuery;
@@ -113,13 +116,16 @@ export class UsersService {
             rpassword: $createUserRpassword
             photo: $createUserPhoto
           ) {
-            id
-            name
-            areaCode
-            phone
-            email
-            role
-            photo
+            user {
+              id
+              name
+              areaCode
+              phone
+              email
+              role
+              photo
+            }
+            token
           }
         }
       `,

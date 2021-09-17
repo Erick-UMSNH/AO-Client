@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   submitLogin = () => {
     const { lEmail, lPass } = this.loginForm.value;
-    this.usersService.checkLogin(lEmail, lPass).valueChanges.subscribe(
+    this.usersService.authenticateUser(lEmail, lPass).valueChanges.subscribe(
       (result) => {
         console.log(result);
         this.router.navigate(['/home']);
