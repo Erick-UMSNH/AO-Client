@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderTab } from '../../models/HeaderTab';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RepairsService } from 'src/app/services/repairs.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-repairs',
   templateUrl: './repairs.component.html',
   styleUrls: ['./repairs.component.css', '../../css/tables.css'],
 })
-export class RepairsComponent implements OnInit {
+export class RepairsComponent implements OnInit, OnDestroy {
   repairsTabs: HeaderTab[];
   repairs: any[] = [];
   repairName: string = '';
@@ -19,6 +20,8 @@ export class RepairsComponent implements OnInit {
   selectedRepairId: string = '';
   p: number = 1;
   filterRepair: string = '';
+  private repairsSuscription: Subscription = new Subscription();
+  listState: string = 'Todos';
 
   constructor(
     private router: Router,
@@ -44,18 +47,95 @@ export class RepairsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRepairs();
+    //this.getRepairsByState(this.listState);
+  }
+
+  ngOnDestroy() {
+    this.repairsSuscription?.unsubscribe();
   }
 
   getRepairs = () => {
     //Refetch the data (update values)
     this.repairsService.getRepairs().refetch();
     //Apply the results
-    this.repairsService.getRepairs().valueChanges.subscribe((result) => {
-      this.repairs = result.data.getRepairs;
-      this.loading = result.loading;
-      this.error = result.error;
-    });
+    this.repairsSuscription = this.repairsService
+      .getRepairs()
+      .valueChanges.subscribe((result) => {
+        this.repairs = result.data.getRepairs;
+        this.loading = result.loading;
+        this.error = result.error;
+        //console.log('Result from getRepairs:', this.repairs);
+      });
   };
+
+  // getRepairs = () => {
+  //   //Refetch the data (update values)
+  //   //this.repairsService.getRepairs().refetch();
+  //   //Apply the results
+  //   this.repairsSuscription = this.repairsService
+  //     .getRepairs()
+  //     .subscribe((result: any) => {
+  //       this.repairs = result?.data.getRepairs;
+  //       this.loading = result?.loading;
+  //       this.error = result.error;
+  //       console.log('Result from getRepairs:', result.data.getRepairs);
+  //     });
+  // };
+
+  // getDelivers = () => {
+  //   //Refetch the data (update values)
+  //   //this.repairsService.getDelivers().refetch();
+  //   //Apply the results
+  //   this.repairsSuscription = this.repairsService
+  //     .getDelivers()
+  //     .valueChanges.subscribe((result) => {
+  //       console.log('Get Delivers was called...');
+  //       this.repairs = result.data.getDelivers;
+  //       this.loading = result.loading;
+  //       this.error = result.error;
+  //       console.log('Result from getDelivers:', this.repairs);
+  //     });
+  // };
+
+  // getDelivers = () => {
+  //   //Refetch the data (update values)
+  //   //this.repairsService.getDelivers().refetch();
+  //   //Apply the results
+  //   this.repairsSuscription = this.repairsService
+  //     .getDelivers()
+  //     .subscribe((result: any) => {
+  //       console.log('Get Delivers was called...');
+  //       this.repairs = result.data.getDelivers;
+  //       this.loading = result.loading;
+  //       this.error = result.error;
+  //       console.log('Result from getDelivers:', result.data.getDelivers);
+  //     });
+  // };
+
+  getRepairsByState = (state: string) => {
+    //Refetch the data (update values)
+    this.repairsService.getRepairsByState(state).refetch();
+    //Apply the results
+    this.repairsSuscription = this.repairsService
+      .getRepairsByState(state)
+      .valueChanges.subscribe((result) => {
+        this.repairs = result.data.getRepairsByState;
+        this.loading = result.loading;
+        this.error = result.error;
+        //console.log(`Result getRepairsByState - ${state}:`, this.repairs);
+      });
+  };
+  // getRepairsByState = (state: string) => {
+  //   //Apply the results
+  //   this.repairsSuscription = this.repairsService
+  //     .getRepairsByState(state)
+  //     .subscribe((result: any) => {
+  //       this.repairs = result.data.getRepairsByState;
+  //       this.loading = result.loading;
+  //       this.error = result.error;
+  //       console.log('Result from getRepairsByState:', this.repairs);
+  //     });
+  // };
 
   repairDetail = (id: string) => {
     this.router.navigate([`/repairs/detail/${id}`]);
@@ -81,7 +161,7 @@ export class RepairsComponent implements OnInit {
       (error) => {
         //Send toast
         this.toastr.error('', 'Ha ocurrido un error!');
-        console.log('An error has ocurred:', error);
+        console.error('An error has ocurred:', error);
       }
     );
   };
@@ -129,16 +209,30 @@ export class RepairsComponent implements OnInit {
           this.toastr.success(
             `${data.updateStatusRepair.vehicle.brand}-${data.updateStatusRepair.vehicle.model} cambiado a: ${state}`
           );
+          //Move to the default table
+          this.changeTable('Todos');
+          // //Refetch repairs
+          //this.getRepairs();
         },
         (error) => {
           //Stop loading
           this.loading = false;
           //Send error toast
           this.toastr.error('No se cambio el estado');
-          console.log('Changing state error: ', error);
+          console.error('Changing state error: ', error);
         }
       );
-      this.getRepairs();
+      //this.getRepairs();
     }
   };
+
+  changeTable = (state: string) => {
+    //Store list state
+    this.listState = state;
+    state === 'Todos' ? this.getRepairs() : this.getRepairsByState(state);
+  };
+
+  // changeDelivered = () => {
+  //   this.getDelivers();
+  // };
 }

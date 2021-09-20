@@ -30,6 +30,13 @@
       <li class="nav-item">
         <a
           class="nav-link disabled"
+          [ngClass]="{ active: repair.status === 'Diagnosticando' }"
+          >Diagnosticando</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link disabled"
           [ngClass]="{ active: repair.status === 'Esperando repuesto' }"
           >Esperando repuesto</a
         >

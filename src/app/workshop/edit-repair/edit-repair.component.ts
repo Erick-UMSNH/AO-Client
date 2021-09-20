@@ -108,9 +108,9 @@ export class EditRepairComponent implements OnInit {
         //Get the service rows, make a deep copy of the array
         this.rows = JSON.parse(JSON.stringify(this.repair.service));
         //Delete typename property
-        for (let index = 0; index < this.rows.length; index++) {
-          delete this.rows[index].__typename;
-        }
+        // for (let index = 0; index < this.rows.length; index++) {
+        //   delete this.rows[index].__typename;
+        // }
         //Get the total
         this.total = this.repair.total;
 

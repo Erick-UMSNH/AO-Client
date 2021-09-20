@@ -18,7 +18,17 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
             },
           },
         },
+        Query: {
+          fields: {
+            getRepairsByState: {
+              merge(existing = [], incoming: any[]) {
+                return [...incoming];
+              },
+            },
+          },
+        },
       },
+      addTypename: false,
     }),
   };
 }
