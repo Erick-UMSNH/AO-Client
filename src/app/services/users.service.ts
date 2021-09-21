@@ -236,4 +236,21 @@ export class UsersService {
       .toPromise();
     // console.log('Result upload: ', resultUpload);
   };
+
+  loginUser = async (email: string, password: string) => {
+    //Go to the server
+    const result = await this.httpClient
+      .post<any>(
+        'http://localhost:5656/users/login',
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      )
+      .toPromise();
+
+    console.log('Result: ', result);
+    return result;
+  };
 }

@@ -49,6 +49,12 @@ export class LoginComponent implements OnInit {
     );
   };
 
+  submitLogin2 = async () => {
+    const { lEmail, lPass } = this.loginForm.value;
+    const result = await this.usersService.loginUser(lEmail, lPass);
+    console.log('Resultado del login: ', result);
+  };
+
   handleShowPassword = () => {
     this.showPassword = !this.showPassword;
   };
