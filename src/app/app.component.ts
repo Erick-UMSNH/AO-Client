@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,12 @@ export class AppComponent {
   //For handling the state of the sidebar (open or close)
   toggleState: boolean;
 
-  constructor() {
+  constructor(private cookieService: CookieService) {
     //Initialize variables
     this.toggleState = false;
   }
   ngOnInit() {
+    console.log('Cookies: ', this.cookieService.getAll());
     //Bar is closed (by default)
     this.toggleState = true;
   }
