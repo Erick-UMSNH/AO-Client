@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 export class ResbarComponent implements OnInit {
   //Receive action from parent
   @Input() receiveAction: boolean;
-  @Input() user: any;
+  user: any;
   //loggedIn: boolean = false;
 
   //For the estadisticas submenu
@@ -31,6 +31,10 @@ export class ResbarComponent implements OnInit {
     this.finSubmenu = false;
     this.conSubmenu = false;
     this.confSubmenu = false;
+    //Get the user info from the service
+    this.authService.userInfo.subscribe((result) => {
+      this.user = result;
+    });
   }
 
   ngOnInit(): void {
@@ -72,5 +76,9 @@ export class ResbarComponent implements OnInit {
    */
   toggleConfSubmenu = () => {
     this.confSubmenu = !this.confSubmenu;
+  };
+
+  logout = () => {
+    this.authService.logoutUser();
   };
 }

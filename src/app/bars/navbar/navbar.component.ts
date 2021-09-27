@@ -8,12 +8,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   @Output() toggle: EventEmitter<boolean>;
-  @Input() user: any;
+  user: any;
   isToggle: boolean;
 
   constructor(public authService: AuthService) {
     this.toggle = new EventEmitter();
     this.isToggle = true;
+    //Get the user info from the service
+    this.authService.userInfo.subscribe((result) => {
+      this.user = result;
+    });
   }
 
   ngOnInit(): void {}
@@ -24,5 +28,9 @@ export class NavbarComponent implements OnInit {
   toggleSidebar = () => {
     this.isToggle = !this.isToggle;
     this.toggle.emit(this.isToggle);
+  };
+
+  logout = () => {
+    this.authService.logoutUser();
   };
 }

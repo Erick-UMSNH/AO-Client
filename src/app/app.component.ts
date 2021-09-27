@@ -16,6 +16,7 @@ export class AppComponent {
   constructor(public authService: AuthService) {
     //Initialize variables
     this.toggleState = false;
+    this.authService.checkSession();
   }
   ngOnInit() {
     //Bar is closed (by default)

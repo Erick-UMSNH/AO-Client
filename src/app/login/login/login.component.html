@@ -1,60 +1,63 @@
-<div class="container text-center mb-5">
-  <h1>Automotriz Osnaya</h1>
-  <h5>Bienvenido! Si quieres acceder, por favor ingresa tus datos</h5>
-</div>
-
 <div class="container text-center">
-  <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
-    <div class="form-floating mb-3">
-      <input
-        type="email"
-        class="form-control"
-        id="lEmailId"
-        placeholder="Correo electrónico"
-        formControlName="lEmail"
-      />
-      <label for="lEmailId">Correo electrónico</label>
-      <div
-        class="error text-start"
-        *ngIf="
-          loginForm.controls.lEmail.errors?.required &&
-          loginForm.controls.lEmail.touched
-        "
-      >
-        Se requiere tu correo
-      </div>
+  <div class="card text-center">
+    <div class="card-title">
+      <i class="bx bxs-lock lock-icon mt-2 mb-2"></i>
+      <h5>Para acceder por favor ingresa tus datos</h5>
     </div>
-    <div class="form-floating">
-      <input
-        [type]="showPassword ? 'text' : 'password'"
-        class="form-control"
-        id="lPassId"
-        placeholder="Contraseña"
-        formControlName="lPass"
-      />
-      <label for="lPassId">Contraseña</label>
-      <i
-        [class]="showPassword ? 'bx bxs-show icon' : 'bx bxs-hide icon'"
-        (click)="handleShowPassword()"
-      ></i>
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <div class="form-floating mb-3">
+          <input
+            type="email"
+            class="form-control"
+            id="lEmailId"
+            placeholder="Correo electrónico"
+            formControlName="lEmail"
+          />
+          <label for="lEmailId">Correo electrónico</label>
+          <div
+            class="error text-start"
+            *ngIf="
+              loginForm.controls.lEmail.errors?.required &&
+              loginForm.controls.lEmail.touched
+            "
+          >
+            Se requiere tu correo
+          </div>
+        </div>
+        <div class="form-floating">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control"
+            id="lPassId"
+            placeholder="Contraseña"
+            formControlName="lPass"
+          />
+          <label for="lPassId">Contraseña</label>
+          <i
+            [class]="showPassword ? 'bx bxs-show icon' : 'bx bxs-hide icon'"
+            (click)="handleShowPassword()"
+          ></i>
+        </div>
+        <div
+          class="error text-start"
+          *ngIf="
+            loginForm.controls.lPass.errors?.required &&
+            loginForm.controls.lPass.touched
+          "
+        >
+          Se requiere una contraseña
+        </div>
+        <div class="d-grid gap-2 col-6 mt-5 mx-auto">
+          <button
+            type="submit"
+            class="btn btn-danger"
+            [disabled]="!loginForm.valid"
+          >
+            <div class="d-inline-flex align-items-center">Entrar</div>
+          </button>
+        </div>
+      </form>
     </div>
-    <div
-      class="error text-start"
-      *ngIf="
-        loginForm.controls.lPass.errors?.required &&
-        loginForm.controls.lPass.touched
-      "
-    >
-      Se requiere una contraseña
-    </div>
-    <div class="d-grid gap-2 col-6 mt-5 mx-auto">
-      <button
-        type="submit"
-        class="btn btn-danger"
-        [disabled]="!loginForm.valid"
-      >
-        <div class="d-inline-flex align-items-center">Entrar</div>
-      </button>
-    </div>
-  </form>
+  </div>
 </div>

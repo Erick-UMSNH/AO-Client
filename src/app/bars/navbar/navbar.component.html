@@ -8,7 +8,10 @@
   "
 >
   <div class="container-fluid">
-    <a class="navbar-brand">
+    <a
+      class="navbar-brand"
+      *ngIf="authService.isLogged | async; else noClickableLogo"
+    >
       <img
         src="../../../assets/AOLogo.jpg"
         alt="Logo"
@@ -16,6 +19,16 @@
         (click)="toggleSidebar()"
       />
     </a>
+    <ng-template #noClickableLogo>
+      <a class="navbar-brand">
+        <img
+          src="../../../assets/AOLogo.jpg"
+          alt="Logo"
+          class="no-cursor-logo"
+        />
+      </a>
+    </ng-template>
+
     <span class="navbar-brand mb-0 h1">Automotriz Osnaya</span>
     <button
       class="navbar-toggler"
@@ -29,7 +42,10 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-1">
+      <ul
+        class="navbar-nav ms-auto mb-2 mb-lg-0 me-1"
+        *ngIf="authService.isLogged | async"
+      >
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -39,14 +55,20 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <!-- {{ user?.name | titlecase }} {{ user?.lastName | titlecase }} -->
-            {{ authService.userInfo | async | json }}
-            Nombre
+            {{ user?.name | titlecase }} {{ user?.lastName | titlecase }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/users/detail/' + user.id]"
+                >Mi perfil</a
+              >
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+            </li>
           </ul>
         </li>
       </ul>

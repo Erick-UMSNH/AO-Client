@@ -4,9 +4,8 @@
 ></app-menu-title>
 <div
   class="row row-cols-1 row-cols-md-2 g-4"
-  *ngIf="authService.isLogged | async"
+  *ngIf="authService.isLogged | async; else loginForm"
 >
-  <h1>{{ authService.userInfo | async | json }}</h1>
   <div class="col">
     <div class="card text-center category" [routerLink]="['/statistics']">
       <div class="card-header"></div>
@@ -65,3 +64,6 @@
     </div>
   </div>
 </div>
+<ng-template #loginForm>
+  <app-login></app-login>
+</ng-template>

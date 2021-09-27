@@ -10,14 +10,5 @@ import { AuthService } from '../../services/auth.service';
 export class StartComponent implements OnInit {
   constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {
-    // this.usersService.checkSession().valueChanges.subscribe(
-    //   (result) => {
-    //     console.log('result: ', result);
-    //   },
-    //   (error) => {
-    //     this.router.navigate(['/login']);
-    //   }
-    // );
-  }
+  ngOnInit(): void {}
 }

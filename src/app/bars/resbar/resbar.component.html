@@ -8,7 +8,7 @@
       class="logo_name"
     /> -->
   </div>
-  <ul class="nav-links">
+  <ul class="nav-links" *ngIf="authService.isLogged | async">
     <li>
       <a [routerLink]="['/home']">
         <i class="bx bxs-grid-alt"></i>
@@ -91,25 +91,23 @@
     <li>
       <div class="profile-details">
         <div class="profile-content">
-          <img
+          <!-- <img
             src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/06/04/15912219730543.jpg"
             alt="profileImg"
-          />
-          <!-- <img
+          /> -->
+          <img
             [src]="'http://localhost:5656/' + user.photo"
             alt="profileImg"
-            *ngIf="user"
-          /> -->
+            *ngIf="user?.photo"
+          />
         </div>
         <div class="name-job">
-          <div class="profile_name">Nombre</div>
-          <!-- <div class="profile_name">{{ user.name | titlecase }}</div> -->
-          <!-- <div class="job">{{ user.role | titlecase }}</div> -->
-          <div class="job">Admin</div>
-          <!-- {{ authService.isLogged | async }}
-          {{ authService.userInfo | async | json }} -->
+          <!-- <div class="profile_name">Nombre</div> -->
+          <!-- <div class="job">Admin</div> -->
+          <div class="profile_name">{{ user?.name | titlecase }}</div>
+          <div class="job">{{ user?.role | titlecase }}</div>
         </div>
-        <i class="bx bx-log-out"></i>
+        <i class="bx bx-log-out" (click)="logout()"></i>
       </div>
     </li>
   </ul>
