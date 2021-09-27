@@ -81,6 +81,23 @@ export class UsersService {
     return this.serviceQuery;
   };
 
+  checkSession = () => {
+    this.serviceQuery = this.apollo.watchQuery<any>({
+      query: gql`
+        query checkSession {
+          checkSession {
+            id
+            name
+            lastName
+            role
+            photo
+          }
+        }
+      `,
+    });
+    return this.serviceQuery;
+  };
+
   createUser = (
     name: string,
     lastName: string,

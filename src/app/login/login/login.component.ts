@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   showPassword: boolean = false;
 
   constructor(
+    private authService: AuthService,
     private usersService: UsersService,
     private toastr: ToastrService,
     private router: Router
@@ -28,25 +30,27 @@ export class LoginComponent implements OnInit {
 
   submitLogin = () => {
     const { lEmail, lPass } = this.loginForm.value;
-    this.usersService.authenticateUser(lEmail, lPass).valueChanges.subscribe(
-      (result) => {
-        console.log(result);
-        this.router.navigate(['/home']);
-      },
-      (error) => {
-        if (error.message === 'Wrong password') {
-          //Send toast
-          this.toastr.warning('Contraseña incorrecta');
-        } else if (error.message === 'User not found') {
-          //Send toast
-          this.toastr.warning('El usuario no existe');
-        } else {
-          //Send toast
-          this.toastr.error('Ha ocurrido un error');
-          console.log(error);
-        }
-      }
-    );
+    this.authService.authenticateUser(lEmail, lPass);
+    this.router.navigate(['/home']);
+    // this.usersService.authenticateUser(lEmail, lPass).valueChanges.subscribe(
+    //   (result) => {
+    //     console.log(result);
+    //     this.router.navigate(['/home']);
+    //   },
+    //   (error) => {
+    //     if (error.message === 'Wrong password') {
+    //       //Send toast
+    //       this.toastr.warning('Contraseña incorrecta');
+    //     } else if (error.message === 'User not found') {
+    //       //Send toast
+    //       this.toastr.warning('El usuario no existe');
+    //     } else {
+    //       //Send toast
+    //       this.toastr.error('Ha ocurrido un error');
+    //       console.log(error);
+    //     }
+    //   }
+    // );
   };
 
   submitLogin2 = async () => {

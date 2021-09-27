@@ -39,7 +39,9 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Alberto Osnaya
+            <!-- {{ user?.name | titlecase }} {{ user?.lastName | titlecase }} -->
+            {{ authService.userInfo | async | json }}
+            Nombre
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Mi perfil</a></li>

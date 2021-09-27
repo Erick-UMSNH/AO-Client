@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-resbar',
@@ -8,6 +9,8 @@ import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 export class ResbarComponent implements OnInit {
   //Receive action from parent
   @Input() receiveAction: boolean;
+  @Input() user: any;
+  //loggedIn: boolean = false;
 
   //For the estadisticas submenu
   estSubmenu: boolean;
@@ -20,7 +23,7 @@ export class ResbarComponent implements OnInit {
   //For the fin submenu
   confSubmenu: boolean;
 
-  constructor() {
+  constructor(public authService: AuthService) {
     //Initialize variables
     this.receiveAction = false;
     this.estSubmenu = false;

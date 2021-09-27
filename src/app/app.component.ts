@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,10 @@ export class AppComponent {
   title = 'AO';
   //For handling the state of the sidebar (open or close)
   toggleState: boolean;
+  //User
+  user: any;
 
-  constructor() {
+  constructor(public authService: AuthService) {
     //Initialize variables
     this.toggleState = false;
   }

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @Output() toggle: EventEmitter<boolean>;
+  @Input() user: any;
   isToggle: boolean;
 
-  constructor() {
+  constructor(public authService: AuthService) {
     this.toggle = new EventEmitter();
     this.isToggle = true;
   }

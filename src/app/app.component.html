@@ -1,5 +1,8 @@
-<app-resbar [receiveAction]="toggleState"></app-resbar>
-<app-navbar (toggle)="handleToggle($event)"></app-navbar>
+<app-resbar [receiveAction]="toggleState" [user]="user"></app-resbar>
+<app-navbar (toggle)="handleToggle($event)" [user]="user"></app-navbar>
+<!-- <app-resbar [receiveAction]="toggleState"></app-resbar>
+<app-navbar (toggle)="handleToggle($event)"></app-navbar> -->
 <div class="home-section" [ngClass]="{ close: toggleState }">
   <router-outlet> </router-outlet>
 </div>
+<h1>***************{{ authService.isLogged | async | json }}</h1>

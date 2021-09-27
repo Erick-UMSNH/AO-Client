@@ -95,10 +95,19 @@
             src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/06/04/15912219730543.jpg"
             alt="profileImg"
           />
+          <!-- <img
+            [src]="'http://localhost:5656/' + user.photo"
+            alt="profileImg"
+            *ngIf="user"
+          /> -->
         </div>
         <div class="name-job">
-          <div class="profile_name">Alberto</div>
-          <div class="job">Administrador</div>
+          <div class="profile_name">Nombre</div>
+          <!-- <div class="profile_name">{{ user.name | titlecase }}</div> -->
+          <!-- <div class="job">{{ user.role | titlecase }}</div> -->
+          <div class="job">Admin</div>
+          <!-- {{ authService.isLogged | async }}
+          {{ authService.userInfo | async | json }} -->
         </div>
         <i class="bx bx-log-out"></i>
       </div>
