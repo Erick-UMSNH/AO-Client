@@ -1,0 +1,25 @@
+<app-location
+  title="Reparaciones y servicios"
+  subtitle="Cantidades"
+  [tabs]="repservTabs"
+></app-location>
+
+<div class="card text-center">
+  <div class="card-header">Reparaciones y servicios</div>
+  <div class="card-body d-flex justify-content-center">
+    <ngx-charts-pie-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="single"
+      [gradient]="gradient"
+      [legend]="showLegend"
+      [legendPosition]="legendPosition"
+      [labels]="showLabels"
+      [doughnut]="isDoughnut"
+      (select)="onSelect($event)"
+      (activate)="onActivate($event)"
+      (deactivate)="onDeactivate($event)"
+    >
+    </ngx-charts-pie-chart>
+  </div>
+</div>

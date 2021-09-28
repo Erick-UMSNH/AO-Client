@@ -27,8 +27,10 @@
         <i class="bx bxs-chevron-down arrow" (click)="toggleEstSubmenu()"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Estadísticas</a></li>
-        <li><a href="#">Ventas</a></li>
+        <li><a class="link_name" [routerLink]="['/stats']">Estadísticas</a></li>
+        <li><a [routerLink]="['/stats/sales']">Ventas</a></li>
+        <li><a [routerLink]="['/stats/sales']">Ordenes</a></li>
+        <li><a [routerLink]="['/stats/repserv']">Cantidades</a></li>
       </ul>
     </li>
     <li [ngClass]="{ showMenu: talSubmenu }">

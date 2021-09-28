@@ -16,6 +16,10 @@ import { EditUserComponent } from './settings/edit-user/edit-user.component';
 import { MenuSettingsComponent } from './settings/menu-settings/menu-settings.component';
 import { NewUserComponent } from './settings/new-user/new-user.component';
 import { UsersComponent } from './settings/users/users.component';
+import { MenuStatsComponent } from './stats/menu-stats/menu-stats.component';
+import { OrdersComponent } from './stats/orders/orders.component';
+import { RepservComponent } from './stats/repserv/repserv.component';
+import { SalesComponent } from './stats/sales/sales.component';
 import { DetailRepairComponent } from './workshop/detail-repair/detail-repair.component';
 import { DetailVehicleComponent } from './workshop/detail-vehicle/detail-vehicle.component';
 import { DetailWserviceComponent } from './workshop/detail-wservice/detail-wservice.component';
@@ -142,6 +146,23 @@ const routes: Routes = [
   {
     path: 'settings',
     component: MenuSettingsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'stats',
+    component: MenuStatsComponent,
+    canActivate: [AuthGuard],
+  },
+  /* Stats */
+  { path: 'stats/sales', component: SalesComponent, canActivate: [AuthGuard] },
+  {
+    path: 'stats/orders',
+    component: OrdersComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'stats/repserv',
+    component: RepservComponent,
     canActivate: [AuthGuard],
   },
   /* Users */

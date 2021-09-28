@@ -44,6 +44,11 @@ import { DetailWserviceComponent } from './workshop/detail-wservice/detail-wserv
 import { EditRepairComponent } from './workshop/edit-repair/edit-repair.component';
 import { DetailRepairComponent } from './workshop/detail-repair/detail-repair.component';
 import { LoginComponent } from './login/login/login.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MenuStatsComponent } from './stats/menu-stats/menu-stats.component';
+import { SalesComponent } from './stats/sales/sales.component';
+import { OrdersComponent } from './stats/orders/orders.component';
+import { RepservComponent } from './stats/repserv/repserv.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +87,10 @@ import { LoginComponent } from './login/login/login.component';
     EditRepairComponent,
     DetailRepairComponent,
     LoginComponent,
+    MenuStatsComponent,
+    SalesComponent,
+    OrdersComponent,
+    RepservComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,6 +107,7 @@ import { LoginComponent } from './login/login/login.component';
     }),
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

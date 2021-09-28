@@ -1,0 +1,39 @@
+<app-menu-title
+  title="Estadísticas"
+  subtitle="Conoce las métricas de tu negocio"
+></app-menu-title>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/stats/sales']">
+      <div class="card-header"></div>
+      <i class="bx bxs-chart card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Ventas</h5>
+        <p class="card-text">¿Cuanto se ha vendido?</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/stats/orders']">
+      <div class="card-header"></div>
+      <i class="bx bxs-bar-chart-square card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Ordenes</h5>
+        <p class="card-text">En proceso de trabajo</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card text-center category" [routerLink]="['/stats/repserv']">
+      <div class="card-header"></div>
+      <i class="bx bxs-pie-chart card-img-top card-icon"></i>
+      <div class="card-body">
+        <h5 class="card-title">Reparaciones y servicios</h5>
+        <p class="card-text">Cantidades</p>
+      </div>
+      <div class="card-footer text-muted"></div>
+    </div>
+  </div>
+</div>

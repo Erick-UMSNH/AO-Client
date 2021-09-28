@@ -1,0 +1,25 @@
+<app-location
+  title="Ventas"
+  subtitle="Gráfico de tus ventas"
+  [tabs]="salesTabs"
+></app-location>
+
+<div class="card text-center">
+  <div class="card-header">Ventas</div>
+  <div class="card-body d-flex justify-content-center">
+    <ngx-charts-line-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [legend]="legend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [timeline]="timeline"
+      [results]="multi"
+    >
+    </ngx-charts-line-chart>
+  </div>
+</div>

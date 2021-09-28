@@ -63,52 +63,6 @@ export class RepairsService {
     return this.serviceQuery;
   };
 
-  // getRepairs = () => {
-  //   return this.apollo.query({
-  //     query: gql`
-  //       query getRepairs {
-  //         getRepairs {
-  //           id
-  //           order
-  //           date
-  //           time
-  //           client {
-  //             id
-  //             name
-  //             lastName
-  //             areaCode
-  //             phone
-  //             email
-  //           }
-  //           vehicle {
-  //             id
-  //             brand
-  //             model
-  //             year
-  //             color
-  //             category
-  //             plate
-  //           }
-  //           km
-  //           rims
-  //           covers
-  //           concept
-  //           service {
-  //             id
-  //             name
-  //             category
-  //             quantity
-  //             cost
-  //             amount
-  //           }
-  //           status
-  //           total
-  //         }
-  //       }
-  //     `,
-  //   });
-  // };
-
   getRepair = (id: string) => {
     this.serviceQuery = this.apollo.watchQuery<any>({
       query: gql`
@@ -208,147 +162,23 @@ export class RepairsService {
     });
     return this.serviceQuery;
   };
-  // getRepairsByState = (state: string) => {
-  //   return this.apollo.query<any>({
-  //     query: gql`
-  //       query getRepairsByState($repairState: String!) {
-  //         getRepairsByState(state: $repairState) {
-  //           id
-  //           order
-  //           date
-  //           time
-  //           client {
-  //             id
-  //             name
-  //             lastName
-  //             areaCode
-  //             phone
-  //             email
-  //           }
-  //           vehicle {
-  //             id
-  //             brand
-  //             model
-  //             year
-  //             color
-  //             category
-  //             plate
-  //           }
-  //           km
-  //           rims
-  //           covers
-  //           concept
-  //           service {
-  //             id
-  //             name
-  //             category
-  //             quantity
-  //             cost
-  //             amount
-  //           }
-  //           status
-  //           total
-  //         }
-  //       }
-  //     `,
-  //     variables: {
-  //       repairState: state,
-  //     },
-  //   });
-  // };
 
-  // getDelivers = () => {
-  //   this.serviceQuery = this.apollo.watchQuery<any>({
-  //     query: gql`
-  //       query getDelivers {
-  //         getDelivers {
-  //           id
-  //           order
-  //           date
-  //           time
-  //           client {
-  //             id
-  //             name
-  //             lastName
-  //             areaCode
-  //             phone
-  //             email
-  //           }
-  //           vehicle {
-  //             id
-  //             brand
-  //             model
-  //             year
-  //             color
-  //             category
-  //             plate
-  //           }
-  //           km
-  //           rims
-  //           covers
-  //           concept
-  //           service {
-  //             id
-  //             name
-  //             category
-  //             quantity
-  //             cost
-  //             amount
-  //           }
-  //           status
-  //           total
-  //         }
-  //       }
-  //     `,
-  //   });
-  //   return this.serviceQuery;
-  // };
-
-  // getDelivers = () => {
-  //   return this.apollo.query<any>({
-  //     query: gql`
-  //       query getDelivers {
-  //         getDelivers {
-  //           id
-  //           order
-  //           date
-  //           time
-  //           client {
-  //             id
-  //             name
-  //             lastName
-  //             areaCode
-  //             phone
-  //             email
-  //           }
-  //           vehicle {
-  //             id
-  //             brand
-  //             model
-  //             year
-  //             color
-  //             category
-  //             plate
-  //           }
-  //           km
-  //           rims
-  //           covers
-  //           concept
-  //           service {
-  //             id
-  //             name
-  //             category
-  //             quantity
-  //             cost
-  //             amount
-  //           }
-  //           status
-  //           total
-  //         }
-  //       }
-  //     `,
-  //   });
-  // };
+  getRepairsStats = (state: string) => {
+    this.serviceQuery = this.apollo.watchQuery<any>({
+      query: gql`
+        query getRepairsByState($repairState: String!) {
+          getRepairsByState(state: $repairState) {
+            name: date
+            value: total
+          }
+        }
+      `,
+      variables: {
+        repairState: state,
+      },
+    });
+    return this.serviceQuery;
+  };
 
   createRepair = (
     date: string,
