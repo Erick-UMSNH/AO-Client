@@ -91,12 +91,8 @@
     <li>
       <div class="profile-details">
         <div class="profile-content">
-          <!-- <img
-            src="https://e00-marca.uecdn.es/assets/multimedia/imagenes/2020/06/04/15912219730543.jpg"
-            alt="profileImg"
-          /> -->
           <img
-            [src]="'http://localhost:5656/' + user.photo"
+            [src]="serverURL + user.photo"
             alt="profileImg"
             *ngIf="user?.photo"
           />
@@ -107,7 +103,7 @@
           <div class="profile_name">{{ user?.name | titlecase }}</div>
           <div class="job">{{ user?.role | titlecase }}</div>
         </div>
-        <i class="bx bx-log-out" (click)="logout()"></i>
+        <i class="bx bx-log-out" style="visibility: hidden"></i>
       </div>
     </li>
   </ul>

@@ -22,16 +22,19 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
+    //Create logged variable
     let logged: boolean = false;
-
+    //Check if the user is logged via auth service
     this.authService.isLogged.subscribe((result) => {
-      console.log('inside auth guard: ', result);
+      //Assign the result to logged
       logged = result;
     });
-
+    //not logged?
     if (!logged) {
+      //Navigate to home
       this.router.navigate(['/home']);
     }
+    //Return logged
     return logged;
   }
 }

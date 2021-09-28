@@ -68,50 +68,6 @@ export class RepairsComponent implements OnInit, OnDestroy {
       });
   };
 
-  // getRepairs = () => {
-  //   //Refetch the data (update values)
-  //   //this.repairsService.getRepairs().refetch();
-  //   //Apply the results
-  //   this.repairsSuscription = this.repairsService
-  //     .getRepairs()
-  //     .subscribe((result: any) => {
-  //       this.repairs = result?.data.getRepairs;
-  //       this.loading = result?.loading;
-  //       this.error = result.error;
-  //       console.log('Result from getRepairs:', result.data.getRepairs);
-  //     });
-  // };
-
-  // getDelivers = () => {
-  //   //Refetch the data (update values)
-  //   //this.repairsService.getDelivers().refetch();
-  //   //Apply the results
-  //   this.repairsSuscription = this.repairsService
-  //     .getDelivers()
-  //     .valueChanges.subscribe((result) => {
-  //       console.log('Get Delivers was called...');
-  //       this.repairs = result.data.getDelivers;
-  //       this.loading = result.loading;
-  //       this.error = result.error;
-  //       console.log('Result from getDelivers:', this.repairs);
-  //     });
-  // };
-
-  // getDelivers = () => {
-  //   //Refetch the data (update values)
-  //   //this.repairsService.getDelivers().refetch();
-  //   //Apply the results
-  //   this.repairsSuscription = this.repairsService
-  //     .getDelivers()
-  //     .subscribe((result: any) => {
-  //       console.log('Get Delivers was called...');
-  //       this.repairs = result.data.getDelivers;
-  //       this.loading = result.loading;
-  //       this.error = result.error;
-  //       console.log('Result from getDelivers:', result.data.getDelivers);
-  //     });
-  // };
-
   getRepairsByState = (state: string) => {
     //Refetch the data (update values)
     this.repairsService.getRepairsByState(state).refetch();
@@ -125,17 +81,6 @@ export class RepairsComponent implements OnInit, OnDestroy {
         //console.log(`Result getRepairsByState - ${state}:`, this.repairs);
       });
   };
-  // getRepairsByState = (state: string) => {
-  //   //Apply the results
-  //   this.repairsSuscription = this.repairsService
-  //     .getRepairsByState(state)
-  //     .subscribe((result: any) => {
-  //       this.repairs = result.data.getRepairsByState;
-  //       this.loading = result.loading;
-  //       this.error = result.error;
-  //       console.log('Result from getRepairsByState:', this.repairs);
-  //     });
-  // };
 
   repairDetail = (id: string) => {
     this.router.navigate([`/repairs/detail/${id}`]);
@@ -231,8 +176,4 @@ export class RepairsComponent implements OnInit, OnDestroy {
     this.listState = state;
     state === 'Todos' ? this.getRepairs() : this.getRepairsByState(state);
   };
-
-  // changeDelivered = () => {
-  //   this.getDelivers();
-  // };
 }

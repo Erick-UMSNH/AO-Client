@@ -25,6 +25,11 @@ export class AuthService {
     return this.user.asObservable();
   }
 
+  /**
+   * Authenticate user with email and password
+   * @param email
+   * @param password
+   */
   authenticateUser = (email: string, password: string) => {
     this.apollo
       .watchQuery<any>({
@@ -49,9 +54,11 @@ export class AuthService {
       })
       .valueChanges.subscribe(
         (result) => {
-          console.log('Inside Autenthicate: ', result);
+          //Set logged in to true
           this.loggedIn.next(true);
+          //Set the user data
           this.user.next(result.data.authenticateUser.user);
+          //Navigate to home
           this.router.navigate(['/home']);
         },
         (error) => {
@@ -70,6 +77,9 @@ export class AuthService {
       );
   };
 
+  /**
+   * Check if the session is still active
+   */
   checkSession = () => {
     this.apollo
       .watchQuery<any>({
@@ -86,14 +96,18 @@ export class AuthService {
         `,
       })
       .valueChanges.subscribe((result) => {
-        console.log('Inside service check session: ', result);
         if (result.data.checkSession) {
+          //Set logged in to true
           this.loggedIn.next(true);
+          //Set the user value
           this.user.next(result.data.checkSession);
         }
       });
   };
 
+  /**
+   * End user session (logout)
+   */
   logoutUser = () => {
     this.apollo
       .watchQuery<any>({
@@ -105,6 +119,7 @@ export class AuthService {
       })
       .valueChanges.subscribe(
         (result) => {
+          //Query went well?
           if (result.data.logoutUser) {
             //Set service to not logged
             this.loggedIn.next(false);

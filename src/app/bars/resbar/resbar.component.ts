@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { SERVER } from '../../config';
 
 @Component({
   selector: 'app-resbar',
@@ -10,6 +11,7 @@ export class ResbarComponent implements OnInit {
   //Receive action from parent
   @Input() receiveAction: boolean;
   user: any;
+  serverURL = SERVER.url + SERVER.port + '/';
   //loggedIn: boolean = false;
 
   //For the estadisticas submenu

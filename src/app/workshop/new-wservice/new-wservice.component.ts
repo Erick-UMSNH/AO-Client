@@ -58,7 +58,7 @@ export class NewWserviceComponent implements OnInit {
       .createWservice(
         this.wserviceForm.controls.wsName.value,
         this.wserviceForm.controls.wsCost.value,
-        this.wserviceForm.controls.wsType.value
+        this.wserviceForm.controls.wsCategory.value
       )
       .subscribe(
         (result) => {

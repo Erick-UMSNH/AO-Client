@@ -33,3 +33,7 @@
 .overlay {
   z-index: 101;
 }
+
+.logout {
+  cursor: pointer;
+}
