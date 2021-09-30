@@ -33,54 +33,54 @@ export class SalesComponent implements OnInit {
       ],
     },
 
-    {
-      name: 'USA',
-      series: [
-        {
-          name: '1990',
-          value: 250000000,
-        },
-        {
-          name: '2010',
-          value: 309000000,
-        },
-        {
-          name: '2011',
-          value: 311000000,
-        },
-      ],
-    },
+    // {
+    //   name: 'USA',
+    //   series: [
+    //     {
+    //       name: '1990',
+    //       value: 250000000,
+    //     },
+    //     {
+    //       name: '2010',
+    //       value: 309000000,
+    //     },
+    //     {
+    //       name: '2011',
+    //       value: 311000000,
+    //     },
+    //   ],
+    // },
 
-    {
-      name: 'France',
-      series: [
-        {
-          name: '1990',
-          value: 58000000,
-        },
-        {
-          name: '2010',
-          value: 50000020,
-        },
-        {
-          name: '2011',
-          value: 58000000,
-        },
-      ],
-    },
-    {
-      name: 'UK',
-      series: [
-        {
-          name: '1990',
-          value: 57000000,
-        },
-        {
-          name: '2010',
-          value: 62000000,
-        },
-      ],
-    },
+    // {
+    //   name: 'France',
+    //   series: [
+    //     {
+    //       name: '1990',
+    //       value: 58000000,
+    //     },
+    //     {
+    //       name: '2010',
+    //       value: 50000020,
+    //     },
+    //     {
+    //       name: '2011',
+    //       value: 58000000,
+    //     },
+    //   ],
+    // },
+    // {
+    //   name: 'UK',
+    //   series: [
+    //     {
+    //       name: '1990',
+    //       value: 57000000,
+    //     },
+    //     {
+    //       name: '2010',
+    //       value: 62000000,
+    //     },
+    //   ],
+    // },
   ];
   view: [number, number] = [1000, 400];
 
@@ -100,7 +100,7 @@ export class SalesComponent implements OnInit {
     name: 'Personalized',
     selectable: true,
     group: ScaleType.Linear,
-    domain: ['#5AA454'],
+    domain: ['#ed2f21'],
   };
 
   constructor(private repairsService: RepairsService) {
@@ -123,10 +123,15 @@ export class SalesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.repairsService.getRepairsStats('Entregados').refetch();
     this.repairsService.getRepairsStats('Entregados').valueChanges.subscribe(
       (result) => {
-        console.log('RESULT: ', result);
-        this.repairData = result.data.getRepairsByState;
+        this.repairData = [
+          {
+            name: 'Ventas',
+            series: result.data.getRepairsByStateUnsorted,
+          },
+        ];
         console.log('DB', this.repairData);
         this.loading = result.loading;
         this.error = result.error;

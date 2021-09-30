@@ -166,8 +166,8 @@ export class RepairsService {
   getRepairsStats = (state: string) => {
     this.serviceQuery = this.apollo.watchQuery<any>({
       query: gql`
-        query getRepairsByState($repairState: String!) {
-          getRepairsByState(state: $repairState) {
+        query getRepairsByStateUnsorted($repairState: String!) {
+          getRepairsByStateUnsorted(state: $repairState) {
             name: date
             value: total
           }
