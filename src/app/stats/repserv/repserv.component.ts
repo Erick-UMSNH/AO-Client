@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 import { HeaderTab } from 'src/app/models/HeaderTab';
+import { RepairsService } from 'src/app/services/repairs.service';
 
 @Component({
   selector: 'app-repserv',
@@ -9,6 +10,9 @@ import { HeaderTab } from 'src/app/models/HeaderTab';
 })
 export class RepservComponent implements OnInit {
   repservTabs: HeaderTab[];
+  pieData: any[] = [];
+  loading: boolean = false;
+  error: any;
   single = [
     {
       name: 'Germany',
@@ -38,13 +42,22 @@ export class RepservComponent implements OnInit {
   legendPosition: LegendPosition = LegendPosition.Below;
 
   colorScheme = {
-    name: 'green',
+    name: 'Pie',
     selectable: true,
     group: ScaleType.Linear,
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
+    domain: [
+      'green',
+      'yellow',
+      'orange',
+      'brown',
+      'purple',
+      'blue',
+      'pink',
+      'red',
+    ],
   };
 
-  constructor() {
+  constructor(private repairsService: RepairsService) {
     //Tabs
     this.repservTabs = [
       {
@@ -62,7 +75,19 @@ export class RepservComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.repairsService.getQuantityStats().refetch();
+    this.repairsService.getQuantityStats().valueChanges.subscribe(
+      (result) => {
+        this.pieData = result.data.getQuantityStats;
+        this.loading = result.loading;
+        this.error = result.error;
+      },
+      (error) => {
+        console.log('PieChart Error:', error);
+      }
+    );
+  }
 
   onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));

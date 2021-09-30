@@ -180,6 +180,20 @@ export class RepairsService {
     return this.serviceQuery;
   };
 
+  getQuantityStats = () => {
+    this.serviceQuery = this.apollo.watchQuery<any>({
+      query: gql`
+        query getQuantityStats {
+          getQuantityStats {
+            name
+            value
+          }
+        }
+      `,
+    });
+    return this.serviceQuery;
+  };
+
   createRepair = (
     date: string,
     time: string,
