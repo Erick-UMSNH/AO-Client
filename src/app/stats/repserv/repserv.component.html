@@ -5,18 +5,33 @@
 ></app-location>
 
 <div class="card text-center">
-  <div class="card-header">Reparaciones y servicios</div>
+  <div class="card-header">
+    <button class="btn btn-danger" (click)="toggleChart()">
+      {{ toggleStatus }}
+    </button>
+  </div>
+
   <div class="card-body d-flex justify-content-center">
     <ngx-charts-pie-chart
       [view]="view"
       [scheme]="colorScheme"
       [results]="pieData"
-      [gradient]="gradient"
+      [gradient]="false"
       [legend]="showLegend"
       [legendPosition]="legendPosition"
+      [legendTitle]="'Servicios'"
       [labels]="showLabels"
       [doughnut]="isDoughnut"
+      *ngIf="toggle"
     >
     </ngx-charts-pie-chart>
+    <ngx-charts-advanced-pie-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="pieData"
+      [gradient]="false"
+      *ngIf="!toggle"
+    >
+    </ngx-charts-advanced-pie-chart>
   </div>
 </div>

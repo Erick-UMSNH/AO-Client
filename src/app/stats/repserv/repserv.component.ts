@@ -13,6 +13,8 @@ export class RepservComponent implements OnInit {
   pieData: any[] = [];
   loading: boolean = false;
   error: any;
+  toggle: boolean = false;
+  toggleStatus: string = 'Cambiar a vista simple';
   single = [
     {
       name: 'Germany',
@@ -46,14 +48,14 @@ export class RepservComponent implements OnInit {
     selectable: true,
     group: ScaleType.Linear,
     domain: [
-      'green',
-      'yellow',
-      'orange',
-      'brown',
-      'purple',
-      'blue',
-      'pink',
-      'red',
+      '#003f5c',
+      '#2f4b7c',
+      '#665191',
+      '#a05195',
+      '#d45087',
+      '#f95d6a',
+      '#ff7c43',
+      '#ffa600',
     ],
   };
 
@@ -88,6 +90,13 @@ export class RepservComponent implements OnInit {
       }
     );
   }
+
+  toggleChart = () => {
+    this.toggle = !this.toggle;
+    this.toggleStatus === 'Cambiar a vista simple'
+      ? (this.toggleStatus = 'Cambiar a vista avanzada')
+      : (this.toggleStatus = 'Cambiar a vista simple');
+  };
 
   onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
