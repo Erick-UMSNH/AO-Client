@@ -14,74 +14,6 @@ export class SalesComponent implements OnInit {
   loading: boolean = true;
   error: any;
 
-  multi = [
-    {
-      name: 'Germany',
-      series: [
-        {
-          name: '1990',
-          value: 62000000,
-        },
-        {
-          name: '2010',
-          value: 73000000,
-        },
-        {
-          name: '2011',
-          value: 89400000,
-        },
-      ],
-    },
-
-    // {
-    //   name: 'USA',
-    //   series: [
-    //     {
-    //       name: '1990',
-    //       value: 250000000,
-    //     },
-    //     {
-    //       name: '2010',
-    //       value: 309000000,
-    //     },
-    //     {
-    //       name: '2011',
-    //       value: 311000000,
-    //     },
-    //   ],
-    // },
-
-    // {
-    //   name: 'France',
-    //   series: [
-    //     {
-    //       name: '1990',
-    //       value: 58000000,
-    //     },
-    //     {
-    //       name: '2010',
-    //       value: 50000020,
-    //     },
-    //     {
-    //       name: '2011',
-    //       value: 58000000,
-    //     },
-    //   ],
-    // },
-    // {
-    //   name: 'UK',
-    //   series: [
-    //     {
-    //       name: '1990',
-    //       value: 57000000,
-    //     },
-    //     {
-    //       name: '2010',
-    //       value: 62000000,
-    //     },
-    //   ],
-    // },
-  ];
   view: [number, number] = [1000, 400];
 
   // options
@@ -97,7 +29,7 @@ export class SalesComponent implements OnInit {
   timeline: boolean = true;
 
   colorScheme: Color = {
-    name: 'Personalized',
+    name: 'LineChart',
     selectable: true,
     group: ScaleType.Linear,
     domain: ['#ed2f21'],
@@ -132,7 +64,6 @@ export class SalesComponent implements OnInit {
             series: result.data.getRepairsByStateUnsorted,
           },
         ];
-        console.log('DB', this.repairData);
         this.loading = result.loading;
         this.error = result.error;
       },
@@ -140,7 +71,6 @@ export class SalesComponent implements OnInit {
         console.error(error);
       }
     );
-    console.log('Data:', this.multi);
   }
 
   onSelect(data: any): void {

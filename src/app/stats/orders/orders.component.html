@@ -1,18 +1,18 @@
 <app-location
-  title="Ordenes"
-  subtitle="Progreso de ordenes"
+  title="Reparaciones"
+  subtitle="Estado de las reparaciones"
   [tabs]="ordersTabs"
 ></app-location>
 
 <div class="card text-center">
-  <div class="card-header">Ordenes</div>
+  <div class="card-header">Estado</div>
   <div class="card-body d-flex justify-content-center">
     <ngx-charts-bar-vertical
       [view]="[1000, 400]"
       [results]="ordersData"
-      [xAxisLabel]="'Products'"
-      [legendTitle]="'Product Sale Chart'"
-      [yAxisLabel]="'Sale'"
+      [xAxisLabel]="'Estado'"
+      [legendTitle]="'Valores de estado'"
+      [yAxisLabel]="'Cantidad'"
       [legend]="true"
       [showXAxisLabel]="true"
       [showYAxisLabel]="true"

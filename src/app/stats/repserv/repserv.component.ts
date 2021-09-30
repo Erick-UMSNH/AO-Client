@@ -76,10 +76,10 @@ export class RepservComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.repairsService.getQuantityStats().refetch();
-    this.repairsService.getQuantityStats().valueChanges.subscribe(
+    this.repairsService.getQuantityServiceStats().refetch();
+    this.repairsService.getQuantityServiceStats().valueChanges.subscribe(
       (result) => {
-        this.pieData = result.data.getQuantityStats;
+        this.pieData = result.data.getQuantityServiceStats;
         this.loading = result.loading;
         this.error = result.error;
       },

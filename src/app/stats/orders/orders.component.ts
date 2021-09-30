@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderTab } from 'src/app/models/HeaderTab';
+import { RepairsService } from 'src/app/services/repairs.service';
 
 @Component({
   selector: 'app-orders',
@@ -9,15 +10,18 @@ import { HeaderTab } from 'src/app/models/HeaderTab';
 export class OrdersComponent implements OnInit {
   ordersTabs: HeaderTab[];
   loading: boolean = true;
-  ordersData = [
-    { name: 'Mobiles', value: 105000 },
-    { name: 'Laptop', value: 55000 },
-    { name: 'AC', value: 15000 },
-    { name: 'Headset', value: 150000 },
-    { name: 'Fridge', value: 20000 },
-  ];
+  error: any;
+  // ordersData = [
+  //   { name: 'Mobiles', value: 105000 },
+  //   { name: 'Laptop', value: 55000 },
+  //   { name: 'AC', value: 15000 },
+  //   { name: 'Headset', value: 150000 },
+  //   { name: 'Fridge', value: 20000 },
+  // ];
+  //ordersData:[{name:string,value:number}]=[{name:"",value:0}];
+  ordersData: any[] = [];
 
-  constructor() {
+  constructor(private repairsService: RepairsService) {
     //Tabs
     this.ordersTabs = [
       {
@@ -35,5 +39,19 @@ export class OrdersComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //Refetch the result
+    this.repairsService.getQuantityStatusStats().refetch();
+
+    this.repairsService.getQuantityStatusStats().valueChanges.subscribe(
+      (result) => {
+        this.ordersData = result.data.getQuantityStatusStats;
+        this.loading = result.loading;
+        this.error = result.error;
+      },
+      (error) => {
+        console.error('Error on QuantityStatusStats:', error);
+      }
+    );
+  }
 }
