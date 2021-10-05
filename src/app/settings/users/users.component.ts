@@ -27,6 +27,12 @@ export class UsersComponent implements OnInit {
   ) {
     this.usersTabs = [
       {
+        active: false,
+        icon: 'bx bxs-cog',
+        navigate: '/settings',
+        tooltip: 'Ajustes',
+      },
+      {
         active: true,
         icon: 'bx bx-food-menu',
         navigate: '/users',

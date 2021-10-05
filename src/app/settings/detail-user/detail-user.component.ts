@@ -39,6 +39,12 @@ export class DetailUserComponent implements OnInit {
     this.userDetailTabs = [
       {
         active: false,
+        icon: 'bx bxs-cog',
+        navigate: '/settings',
+        tooltip: 'Ajustes',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/users',
         tooltip: 'Usuarios',

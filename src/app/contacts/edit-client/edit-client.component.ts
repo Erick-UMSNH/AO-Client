@@ -73,6 +73,12 @@ export class EditClientComponent implements OnInit {
     this.editClientTabs = [
       {
         active: false,
+        icon: 'bx bxs-contact',
+        navigate: '/contacts',
+        tooltip: 'Contactos',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/clients',
         tooltip: 'Clientes',

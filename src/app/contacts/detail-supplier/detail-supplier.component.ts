@@ -37,6 +37,12 @@ export class DetailSupplierComponent implements OnInit {
     this.supplierDetailTabs = [
       {
         active: false,
+        icon: 'bx bxs-contact',
+        navigate: '/contacts',
+        tooltip: 'Contactos',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/suppliers',
         tooltip: 'Proveedores',

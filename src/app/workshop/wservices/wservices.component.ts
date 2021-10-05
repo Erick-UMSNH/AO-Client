@@ -27,6 +27,12 @@ export class WservicesComponent implements OnInit {
     //Tabs
     this.wservicesTabs = [
       {
+        active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
         active: true,
         icon: 'bx bx-food-menu',
         navigate: '/wservices',

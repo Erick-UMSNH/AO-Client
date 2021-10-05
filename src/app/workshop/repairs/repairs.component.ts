@@ -31,6 +31,12 @@ export class RepairsComponent implements OnInit, OnDestroy {
     //Tabs
     this.repairsTabs = [
       {
+        active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
         active: true,
         icon: 'bx bx-food-menu',
         navigate: '/repairs',

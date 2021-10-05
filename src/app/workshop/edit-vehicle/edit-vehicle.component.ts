@@ -32,6 +32,12 @@ export class EditVehicleComponent implements OnInit {
     this.editVehicleTabs = [
       {
         active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/vehicles',
         tooltip: 'Vehículos',

@@ -38,6 +38,12 @@ export class DetailVehicleComponent implements OnInit {
     this.vehicleDetailTabs = [
       {
         active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/vehicles',
         tooltip: 'vehiclees',

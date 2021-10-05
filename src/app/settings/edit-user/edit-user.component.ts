@@ -102,6 +102,12 @@ export class EditUserComponent implements OnInit {
     this.editUserTabs = [
       {
         active: false,
+        icon: 'bx bxs-cog',
+        navigate: '/settings',
+        tooltip: 'Ajustes',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/users',
         tooltip: 'Usuarios',

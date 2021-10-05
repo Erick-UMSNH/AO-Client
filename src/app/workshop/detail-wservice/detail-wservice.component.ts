@@ -37,6 +37,12 @@ export class DetailWserviceComponent implements OnInit {
     this.wserviceDetailTabs = [
       {
         active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/wservices',
         tooltip: 'Servicios',

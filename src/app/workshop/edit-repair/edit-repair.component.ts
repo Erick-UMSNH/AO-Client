@@ -134,6 +134,12 @@ export class EditRepairComponent implements OnInit {
     this.editRepairTabs = [
       {
         active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/repairs',
         tooltip: 'Reparaciones',

@@ -29,6 +29,12 @@ export class NewVehicleComponent implements OnInit {
     this.newVehiclesTabs = [
       {
         active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/vehicles',
         tooltip: 'Vehículos',

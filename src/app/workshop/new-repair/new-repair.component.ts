@@ -39,6 +39,12 @@ export class NewRepairComponent implements OnInit {
     this.newRepairTabs = [
       {
         active: false,
+        icon: 'bx bxs-wrench',
+        navigate: '/workshop',
+        tooltip: 'Taller',
+      },
+      {
+        active: false,
         icon: 'bx bx-food-menu',
         navigate: '/repairs',
         tooltip: 'Reparaciones',
