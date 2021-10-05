@@ -7,7 +7,7 @@ import { SERVER } from '../../config';
 @Component({
   selector: 'app-detail-user',
   templateUrl: './detail-user.component.html',
-  styleUrls: ['./detail-user.component.css'],
+  styleUrls: ['./detail-user.component.css', '../../css/details.css'],
 })
 export class DetailUserComponent implements OnInit {
   userDetailTabs: HeaderTab[] = [];

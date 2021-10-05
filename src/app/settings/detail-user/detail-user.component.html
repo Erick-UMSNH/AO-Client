@@ -4,20 +4,34 @@
   [tabs]="userDetailTabs"
 ></app-location>
 
-<div class="card">
-  <div class="card-header">#{{ user.id }}</div>
+<div class="card text-center">
+  <div class="card-header">
+    <div class="d-flex align-items-center justify-content-center">
+      <i class="bx bxs-envelope"></i> {{ user.email }}
+    </div>
+  </div>
   <div class="card-body">
-    <h5 class="card-title">{{ user.name }} {{ user.lastName }}</h5>
-    <p class="card-text">{{ user.email }}</p>
-    <p>{{ user.role }}</p>
+    <h5 class="card-title">
+      <div class="d-flex align-items-center justify-content-center">
+        <i class="bx bxs-user"></i> {{ user.name | titlecase }}
+        {{ user.lastName | titlecase }}
+      </div>
+    </h5>
     <img
       [src]="server + user.photo"
       [alt]="user.name"
       width="200px"
       height="200px"
       *ngIf="user.photo"
+      style="border-radius: 12px"
     />
-    <p>{{ user.photo }}</p>
+    <div class="d-flex align-items-center justify-content-center mt-2">
+      <h6 class="card-text">{{ user.role }}</h6>
+    </div>
   </div>
-  <div class="card-footer text-muted">{{ user.areaCode }}-{{ user.phone }}</div>
+  <div class="card-footer text-muted">
+    <div class="d-flex align-items-center justify-content-end">
+      <i class="bx bxs-phone"></i>{{ user.areaCode }}-{{ user.phone }}
+    </div>
+  </div>
 </div>

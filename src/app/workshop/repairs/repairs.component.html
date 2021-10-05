@@ -132,15 +132,10 @@
                 type="button"
                 class="dropdown-item"
                 (click)="
-                  setState(
-                    $event,
-                    repair.id,
-                    repair.status,
-                    'Esperando repuesto'
-                  )
+                  setState($event, repair.id, repair.status, 'Refacción')
                 "
               >
-                Esperando repuesto
+                Refacción
               </button>
             </li>
             <li>

@@ -5,7 +5,7 @@ import { SuppliersService } from '../../services/suppliers.service';
 @Component({
   selector: 'app-detail-supplier',
   templateUrl: './detail-supplier.component.html',
-  styleUrls: ['./detail-supplier.component.css'],
+  styleUrls: ['./detail-supplier.component.css', '../../css/details.css'],
 })
 export class DetailSupplierComponent implements OnInit {
   supplierDetailTabs: HeaderTab[] = [];

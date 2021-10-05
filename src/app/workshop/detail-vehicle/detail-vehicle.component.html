@@ -4,7 +4,7 @@
   [tabs]="vehicleDetailTabs"
 ></app-location>
 
-<div class="card">
+<!-- <div class="card">
   <div class="card-header">#{{ vehicle.id }}</div>
   <div class="card-body">
     <h5 class="card-title">{{ vehicle.brand }} {{ vehicle.model }}</h5>
@@ -12,5 +12,34 @@
   </div>
   <div class="card-footer text-muted">
     {{ vehicle.color }}|{{ vehicle.category }}|{{ vehicle.plate }}
+  </div>
+</div> -->
+
+<div class="card text-center">
+  <div class="card-header">
+    <div class="d-flex align-items-center justify-content-center">
+      <h4>{{ vehicle.brand | uppercase }}</h4>
+    </div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+      <div class="d-flex align-items-center justify-content-center">
+        <i class="bx bxs-car"></i> {{ vehicle.model | titlecase }}
+      </div>
+    </h5>
+
+    <div class="d-flex align-items-center justify-content-center mt-2">
+      <h6 class="card-text">{{ vehicle.year }}</h6>
+    </div>
+    <div class="d-flex align-items-center justify-content-center mt-2">
+      <i class="bx bx-credit-card-front"></i>
+      <h6 class="card-text">{{ vehicle.plate }}</h6>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="d-flex align-items-center justify-content-evenly">
+      <span>{{ vehicle.category }}</span
+      ><span>{{ vehicle.color }}</span>
+    </div>
   </div>
 </div>

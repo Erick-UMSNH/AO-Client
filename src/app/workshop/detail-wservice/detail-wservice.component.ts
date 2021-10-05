@@ -5,7 +5,7 @@ import { WservicesService } from '../../services/wservices.service';
 @Component({
   selector: 'app-detail-wservice',
   templateUrl: './detail-wservice.component.html',
-  styleUrls: ['./detail-wservice.component.css'],
+  styleUrls: ['./detail-wservice.component.css', '../../css/details.css'],
 })
 export class DetailWserviceComponent implements OnInit {
   wserviceDetailTabs: HeaderTab[] = [];

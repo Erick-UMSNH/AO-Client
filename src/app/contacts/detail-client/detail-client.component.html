@@ -5,12 +5,22 @@
 ></app-location>
 
 <div class="card">
-  <div class="card-header">#{{ client.id }}</div>
+  <div class="card-header">
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="bx bxs-envelope"></i>{{ client.email }}
+    </div>
+  </div>
   <div class="card-body">
-    <h5 class="card-title">{{ client.name }} {{ client.lastName }}</h5>
-    <p class="card-text">{{ client.email }}</p>
+    <h5 class="card-title">
+      <div class="d-flex justify-content-center align-items-center">
+        {{ client.name | titlecase }} {{ client.lastName | titlecase }}
+      </div>
+    </h5>
+    <p class="card-text"></p>
   </div>
   <div class="card-footer text-muted">
-    Teléfono: {{ client.areaCode }}-{{ client.phone }}
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="bx bxs-phone"></i>{{ client.areaCode }}-{{ client.phone }}
+    </div>
   </div>
 </div>

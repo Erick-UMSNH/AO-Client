@@ -6,7 +6,7 @@ import { VehiclesService } from '../../services/vehicles.service';
 @Component({
   selector: 'app-detail-vehicle',
   templateUrl: './detail-vehicle.component.html',
-  styleUrls: ['./detail-vehicle.component.css'],
+  styleUrls: ['./detail-vehicle.component.css', '../../css/details.css'],
 })
 export class DetailVehicleComponent implements OnInit {
   vehicleDetailTabs: HeaderTab[] = [];

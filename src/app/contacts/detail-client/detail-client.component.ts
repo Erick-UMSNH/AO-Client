@@ -6,7 +6,7 @@ import { ClientsService } from '../../services/clients.service';
 @Component({
   selector: 'app-detail-client',
   templateUrl: './detail-client.component.html',
-  styleUrls: ['./detail-client.component.css'],
+  styleUrls: ['./detail-client.component.css', '../../css/details.css'],
 })
 export class DetailClientComponent implements OnInit {
   clientDetailTabs: HeaderTab[] = [];
