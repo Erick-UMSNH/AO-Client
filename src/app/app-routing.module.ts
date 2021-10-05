@@ -31,6 +31,7 @@ import { NewRepairComponent } from './workshop/new-repair/new-repair.component';
 import { NewVehicleComponent } from './workshop/new-vehicle/new-vehicle.component';
 import { NewWserviceComponent } from './workshop/new-wservice/new-wservice.component';
 import { RepairsComponent } from './workshop/repairs/repairs.component';
+import { RepoRepairsComponent } from './workshop/repo-repairs/repo-repairs.component';
 import { VehiclesComponent } from './workshop/vehicles/vehicles.component';
 import { WservicesComponent } from './workshop/wservices/wservices.component';
 
@@ -99,7 +100,7 @@ const routes: Routes = [
   {
     path: 'repairs/new',
     component: NewRepairComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'repairs/edit/:id',
@@ -109,8 +110,12 @@ const routes: Routes = [
   {
     path: 'repairs/detail/:id',
     component: DetailRepairComponent,
-    canActivate: [AuthGuard],
   },
+  {
+    path: 'repairs/report/:id',
+    component: RepoRepairsComponent,
+  },
+
   /* Services */
   {
     path: 'wservices',

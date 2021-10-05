@@ -56,6 +56,7 @@ export class RepairsService {
             }
             status
             total
+            comments
           }
         }
       `,
@@ -103,6 +104,7 @@ export class RepairsService {
             }
             status
             total
+            comments
           }
         }
       `,
@@ -153,6 +155,7 @@ export class RepairsService {
             }
             status
             total
+            comments
           }
         }
       `,
@@ -234,7 +237,8 @@ export class RepairsService {
     concept: string,
     service: any[],
     status: string,
-    total: number
+    total: number,
+    comments: string
   ) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
@@ -250,6 +254,7 @@ export class RepairsService {
           $createRepairService: [WserviceItemInput!]
           $createRepairStatus: String!
           $createRepairTotal: Float!
+          $createRepairComments: String
         ) {
           createRepair(
             date: $createRepairDate
@@ -263,6 +268,7 @@ export class RepairsService {
             service: $createRepairService
             status: $createRepairStatus
             total: $createRepairTotal
+            comments: $createRepairComments
           ) {
             id
             order
@@ -299,6 +305,7 @@ export class RepairsService {
             }
             status
             total
+            comments
           }
         }
       `,
@@ -314,6 +321,7 @@ export class RepairsService {
         createRepairService: service,
         createRepairStatus: status,
         createRepairTotal: total,
+        createRepairComments: comments,
       },
     });
     return mutation;
@@ -359,6 +367,7 @@ export class RepairsService {
             }
             status
             total
+            comments
           }
         }
       `,
@@ -396,7 +405,8 @@ export class RepairsService {
     concept: string,
     service: any[],
     status: string,
-    total: number
+    total: number,
+    comments: string
   ) => {
     const mutation = this.apollo.mutate({
       mutation: gql`
@@ -413,6 +423,7 @@ export class RepairsService {
           $updateRepairService: [WserviceItemInput!]
           $updateRepairStatus: String!
           $updateRepairTotal: Float!
+          $updateRepairComments: String
         ) {
           updateRepair(
             id: $updateRepairId
@@ -427,6 +438,7 @@ export class RepairsService {
             service: $updateRepairService
             status: $updateRepairStatus
             total: $updateRepairTotal
+            comments: $updateRepairComments
           ) {
             id
             order
@@ -463,6 +475,7 @@ export class RepairsService {
             }
             status
             total
+            comments
           }
         }
       `,
@@ -479,6 +492,7 @@ export class RepairsService {
         updateRepairService: service,
         updateRepairStatus: status,
         updateRepairTotal: total,
+        updateRepairComments: comments,
       },
     });
     return mutation;

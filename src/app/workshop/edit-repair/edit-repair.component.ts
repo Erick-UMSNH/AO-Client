@@ -50,6 +50,7 @@ export class EditRepairComponent implements OnInit {
       rRims: new FormControl(''),
       rCovers: new FormControl(''),
       rService: new FormControl('', [Validators.required]),
+      rComments: new FormControl(''),
     });
   }
 
@@ -124,6 +125,7 @@ export class EditRepairComponent implements OnInit {
           rCovers: this.repair.covers,
           rConcept: this.repair.concept,
           rService: this.repair.service,
+          rComments: this.repair.comments,
         });
         this.repairForm.updateValueAndValidity();
       });
@@ -210,7 +212,8 @@ export class EditRepairComponent implements OnInit {
         //Status
         this.repair.status,
         //Total
-        this.total //This is computed
+        this.total,
+        this.repairForm.controls.rComments.value
       )
       .subscribe(
         (result) => {
@@ -287,5 +290,25 @@ export class EditRepairComponent implements OnInit {
       //Recompute the total
       this.total = this.repairsService.getTotal(this.rows);
     }
+  };
+
+  updateCost = (e: any, index: number) => {
+    //Update cost
+    this.rows[index].cost = parseFloat(e.target.value);
+    //Update amount value
+    this.rows[index].amount = this.rows[index].cost * this.rows[index].quantity;
+    //Update total
+    this.total = this.repairsService.getTotal(this.rows);
+    console.log('Rows in cost: ', this.rows);
+  };
+
+  updateQuantity = (e: any, index: number) => {
+    //Update quantity
+    this.rows[index].quantity = parseInt(e.target.value);
+    //Update amount value
+    this.rows[index].amount = this.rows[index].cost * this.rows[index].quantity;
+    //Update total
+    this.total = this.repairsService.getTotal(this.rows);
+    console.log('Rows in quantity: ', this.rows);
   };
 }

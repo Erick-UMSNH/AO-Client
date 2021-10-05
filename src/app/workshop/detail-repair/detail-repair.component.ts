@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeaderTab } from '../../models/HeaderTab';
 import { RepairsService } from '../../services/repairs.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-detail-repair',
   templateUrl: './detail-repair.component.html',
@@ -49,5 +52,30 @@ export class DetailRepairComponent implements OnInit {
         tooltip: 'Detalle',
       },
     ];
+  }
+
+  public openPDF(): void {
+    let DATA = document.getElementById('detail-repair');
+
+    html2canvas(DATA!).then((canvas) => {
+      let fileWidth = 208;
+      let pageHeight = 295;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      let heightLeft = fileHeight;
+
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      heightLeft -= pageHeight;
+      while (heightLeft >= 0) {
+        position = heightLeft - fileHeight;
+        PDF.addPage();
+        PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+        heightLeft -= pageHeight;
+      }
+
+      PDF.save(`${this.repair.id}.pdf`);
+    });
   }
 }

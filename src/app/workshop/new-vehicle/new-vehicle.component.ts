@@ -100,7 +100,7 @@ export class NewVehicleComponent implements OnInit {
         this.vehicleForm.controls.vYear.value,
         this.vehicleForm.controls.vColor.value,
         this.vehicleForm.controls.vCategory.value,
-        this.vehicleForm.controls.vPlate.value
+        this.vehicleForm.controls.vPlate.value.toUpperCase()
       )
       .subscribe(
         (result) => {

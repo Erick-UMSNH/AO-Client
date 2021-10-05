@@ -168,8 +168,8 @@
       <tbody>
         <tr *ngFor="let row of rows; index as i">
           <th>{{ row.name }}</th>
-          <td>{{ row.type }}</td>
-          <td>
+          <td>{{ row.category }}</td>
+          <!-- <td>
             <div class="d-flex justify-content-evenly">
               <i
                 type="button"
@@ -183,9 +183,30 @@
                 (click)="addQuantity(i)"
               ></i>
             </div>
+          </td> -->
+          <td style="width: 10%">
+            <input
+              type="number"
+              name="wsCustomQuantity"
+              class="form-control"
+              step="1"
+              min="1"
+              [value]="row.quantity"
+              (change)="updateQuantity($event, i)"
+            />
           </td>
-          <td class="text-center">
-            {{ row.cost | currency: "MXN":"symbol-narrow" }}
+          <td style="width: 15%">
+            <!-- {{ row.cost | currency: "MXN":"symbol-narrow" }} -->
+
+            <input
+              type="number"
+              name="wsCustomCost"
+              class="form-control"
+              step="0.1"
+              min="0"
+              [value]="row.cost"
+              (change)="updateCost($event, i)"
+            />
           </td>
           <td class="text-center">
             {{ row.amount | currency: "MXN":"symbol-narrow" }}
@@ -213,6 +234,19 @@
         </div>
       </div>
     </div>
+    <div class="mb-3">
+      <label for="rComments" class="form-label fw-bold">Comentarios:</label>
+      <textarea
+        name="rComments"
+        id="vCommentsId"
+        class="form-control"
+        aria-describedby="Comments"
+        formControlName="rComments"
+        rows="3"
+        cols="50"
+      >
+      </textarea>
+    </div>
 
     <div class="d-grid gap-2 col-6 mx-auto">
       <button
@@ -221,7 +255,7 @@
         [disabled]="!repairForm.valid"
       >
         <div class="d-inline-flex">
-          Registrar orden <i class="bx bxs-wrench"></i>
+          Actualizar <i class="bx bxs-wrench"></i>
         </div>
       </button>
     </div>

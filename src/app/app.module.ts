@@ -49,6 +49,7 @@ import { MenuStatsComponent } from './stats/menu-stats/menu-stats.component';
 import { SalesComponent } from './stats/sales/sales.component';
 import { OrdersComponent } from './stats/orders/orders.component';
 import { RepservComponent } from './stats/repserv/repserv.component';
+import { RepoRepairsComponent } from './workshop/repo-repairs/repo-repairs.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { RepservComponent } from './stats/repserv/repserv.component';
     SalesComponent,
     OrdersComponent,
     RepservComponent,
+    RepoRepairsComponent,
   ],
   imports: [
     BrowserModule,
