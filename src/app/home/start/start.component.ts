@@ -8,7 +8,13 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./start.component.css', '../../css/menus.css'],
 })
 export class StartComponent implements OnInit {
+  user: any;
+
   constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.userInfo.subscribe((result) => {
+      this.user = result;
+    });
+  }
 }
