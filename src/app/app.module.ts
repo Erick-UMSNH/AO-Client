@@ -50,6 +50,8 @@ import { SalesComponent } from './stats/sales/sales.component';
 import { OrdersComponent } from './stats/orders/orders.component';
 import { RepservComponent } from './stats/repserv/repserv.component';
 import { RepoRepairsComponent } from './workshop/repo-repairs/repo-repairs.component';
+import { ClipboardModule } from 'ngx-clipboard';
+import { TrackRepairComponent } from './workshop/track-repair/track-repair.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +95,7 @@ import { RepoRepairsComponent } from './workshop/repo-repairs/repo-repairs.compo
     OrdersComponent,
     RepservComponent,
     RepoRepairsComponent,
+    TrackRepairComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +113,7 @@ import { RepoRepairsComponent } from './workshop/repo-repairs/repo-repairs.compo
     NgxPaginationModule,
     Ng2SearchPipeModule,
     NgxChartsModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

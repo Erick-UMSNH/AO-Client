@@ -32,6 +32,7 @@ import { NewVehicleComponent } from './workshop/new-vehicle/new-vehicle.componen
 import { NewWserviceComponent } from './workshop/new-wservice/new-wservice.component';
 import { RepairsComponent } from './workshop/repairs/repairs.component';
 import { RepoRepairsComponent } from './workshop/repo-repairs/repo-repairs.component';
+import { TrackRepairComponent } from './workshop/track-repair/track-repair.component';
 import { VehiclesComponent } from './workshop/vehicles/vehicles.component';
 import { WservicesComponent } from './workshop/wservices/wservices.component';
 
@@ -110,6 +111,10 @@ const routes: Routes = [
   {
     path: 'repairs/detail/:id',
     component: DetailRepairComponent,
+  },
+  {
+    path: 'repairs/track/:id',
+    component: TrackRepairComponent,
   },
   {
     path: 'repairs/report/:id',
