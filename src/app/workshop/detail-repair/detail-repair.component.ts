@@ -5,7 +5,8 @@ import { RepairsService } from '../../services/repairs.service';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ClipboardService } from 'ngx-clipboard';
-import { CLIENT } from '../../config';
+//import { CLIENT } from '../../config';
+import { FIREBASE } from '../../config';
 import { TitleCasePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
@@ -110,7 +111,8 @@ export class DetailRepairComponent implements OnInit {
       repairDetails.push(`- Placas: ${this.repair.vehicle.plate}\n\n`);
 
       repairDetails.push(
-        `*Seguimiento:*\n${CLIENT.url}${CLIENT.port}/repairs/track/${this.repairId}\n\n`
+        //`*Seguimiento:*\n${CLIENT.url}${CLIENT.port}/repairs/track/${this.repairId}\n\n`
+        `*Seguimiento:*\n${FIREBASE.url}/repairs/track/${this.repairId}\n\n`
       );
       repairDetails.push(`Automotriz Osnaya\n`);
       repairDetails.push(

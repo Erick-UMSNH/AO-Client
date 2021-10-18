@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "automotrizosnaya-5f63e": {
+      "hosting": {
+        "AO": [
+          "automotrizosnaya-5f63e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "automotrizosnaya-5f63e"
+  }
+}

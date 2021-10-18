@@ -52,6 +52,8 @@ import { RepservComponent } from './stats/repserv/repserv.component';
 import { RepoRepairsComponent } from './workshop/repo-repairs/repo-repairs.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TrackRepairComponent } from './workshop/track-repair/track-repair.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -114,6 +116,7 @@ import { TrackRepairComponent } from './workshop/track-repair/track-repair.compo
     Ng2SearchPipeModule,
     NgxChartsModule,
     ClipboardModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
   providers: [],
   bootstrap: [AppComponent],

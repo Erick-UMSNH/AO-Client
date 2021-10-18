@@ -7,3 +7,7 @@ export const CLIENT = {
   url: 'http://localhost:',
   port: '4200',
 };
+
+export const FIREBASE = {
+  url: 'https://automotrizosnaya-5f63e.web.app',
+};
